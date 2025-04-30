@@ -1,3 +1,4 @@
+import { navigateToAdmin } from "../../app_admin/app.js";
 import { navigateTo } from "../app.js";
 
 export default function renderScreenUser1() {
@@ -25,6 +26,11 @@ export default function renderScreenUser1() {
 
   const clientBTN = document.getElementById("clientBTN");
   const adminBTN = document.getElementById("adminBTN");
+
+  adminBTN.addEventListener("click", () => {
+    console.log("click");
+    navigateToAdmin("/loginAdmin");
+  });
 
   clientBTN.addEventListener("click", () => {
     console.log("click");

@@ -2,6 +2,7 @@
 // import renderScreen2 from "./screens/screen2.js";
 
 import renderScreenAdmin1 from "./screens/screenAdmin1.js";
+import renderScreenAdminLogin from "./screens/screenLoginAdmin.js";
 
 const socket = io("/", { path: "/real-time" });
 
@@ -16,11 +17,11 @@ function renderRoute(route) {
   switch (route?.path) {
     case "/":
       clearScripts();
-      renderScreenAdmin1(route?.data);
+      renderScreenAdmin1();
       break;
-    case "/screen2":
+    case "/loginAdmin":
       clearScripts();
-      renderScreen2(route?.data);
+      renderScreenAdminLogin();
       break;
     default:
       const app = document.getElementById("app");
@@ -28,9 +29,9 @@ function renderRoute(route) {
   }
 }
 
-function navigateTo(path, data) {
+function navigateToAdmin(path, data) {
   route = { path, data };
   renderRoute(route);
 }
 
-export { navigateTo, socket };
+export { navigateToAdmin, socket };
