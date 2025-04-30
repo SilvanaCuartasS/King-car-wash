@@ -1,3 +1,5 @@
+import { navigateTo } from "../app.js";
+
 export default function renderScreenUser1() {
   const app = document.getElementById("app");
   app.innerHTML = `
@@ -17,9 +19,16 @@ export default function renderScreenUser1() {
     <button id="clientBTN">Client</button>
     <button id="adminBTN">Admin</button>
     </div>
+
+    <div>Aqui va el footer</div>
     `;
 
-    document.getElementById("clientBTN").addEventListener("click",);
-    document.getElementById("adminBTN").addEventListener("click", );
+  const clientBTN = document.getElementById("clientBTN");
+  const adminBTN = document.getElementById("adminBTN");
 
+  clientBTN.addEventListener("click", () => {
+    console.log("click");
+
+    navigateTo("/loginUser1");
+  });
 }

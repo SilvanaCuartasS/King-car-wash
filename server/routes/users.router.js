@@ -1,11 +1,12 @@
 //Métodos REST
 
 const express = require("express");
-const { createUser, getUsers } = require("../controllers/users.controller");
+const { loginService, getUsers } = require("../controllers/users.controller");
+
 const router = express.Router();
 
 router.get("/users", getUsers);
 
-router.post("/users", createUser);
+router.post("/login-service", loginService);
 
 module.exports = router;

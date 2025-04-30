@@ -1,13 +1,17 @@
 // Solo obtener y visualizar la DB
-let users = [
+let users = [];
+let admins = [
   {
-    id: 1,
-    name: "John Doe",
-  },
+
+  }
 ];
 
 const getAllUsers = async () => {
   return users;
+};
+
+const getAllAdmins = async () => {
+  return admins;
 };
 
 const createUser = async (user) => {
@@ -16,5 +20,6 @@ const createUser = async (user) => {
 
 module.exports = {
   getAllUsers,
+  getAllAdmins,
   createUser,
 };

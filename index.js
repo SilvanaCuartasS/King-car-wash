@@ -2,9 +2,9 @@ const express = require("express");
 const path = require("path");
 const { createServer } = require("http");
 
-const usersRouter = require("./server/routes/users.router");
-const screen1EventsRouter = require("./server/routes/screen1Events.router");
-const { initSocketInstance } = require("./server/services/socket.service");
+const usersRouter = require("./server/routes/users.router.js");
+const screen1EventsRouter = require("./server/routes/screen1Events.router.js");
+const { initSocketInstance } = require("./server/services/socket.service.js");
 
 const PORT = 5057;
 

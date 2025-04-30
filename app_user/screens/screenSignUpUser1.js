@@ -30,5 +30,5 @@ export default function renderScreenUserSignUp1() {
       const inputFirstName = document.getElementById("firts-name")
       const inputLastName = document.getElementById("last-name")
 
-      document.getElementById("sign-up").addEventListener("click", );
+      // document.getElementById("sign-up").addEventListener("click", );
   }
