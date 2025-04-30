@@ -14,17 +14,17 @@ router();
 function router() {
   switch (route.path) {
     case "/":
-      // clearScripts();
+      clearScripts();
       renderScreenUser1(route);
       break;
 
     case "/loginUser1":
-      // clearScripts();
+      clearScripts();
       renderScreenUserLogin1();
       break;
     
     case "/signUpUser1":
-      // clearScripts();
+      clearScripts();
       renderScreenUserSignUp1();
       break;
 

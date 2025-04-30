@@ -1,6 +1,9 @@
+import { navigateTo } from "../../app_user/app.js";
+import { navigateToAdmin } from "../app.js";
+
 export default function renderScreenAdmin1() {
-    const app = document.getElementById("app");
-    app.innerHTML = `
+  const app = document.getElementById("app");
+  app.innerHTML = `
   
       <nav>
       <a href="">Services</a>
@@ -17,10 +20,21 @@ export default function renderScreenAdmin1() {
       <button id="clientBTN">Client</button>
       <button id="adminBTN">Admin</button>
       </div>
+
+      <div>Aqui va el footer</div>
       `;
-  
-      document.getElementById("clientBTN").addEventListener("click",);
-      document.getElementById("adminBTN").addEventListener("click", );
-  
-  }
-  
+
+  const clientBTN = document.getElementById("clientBTN");
+  const adminBTN = document.getElementById("adminBTN");
+
+  adminBTN.addEventListener("click", () => {
+    console.log("click");
+    navigateToAdmin("/loginAdmin");
+  });
+
+  clientBTN.addEventListener("click", () => {
+    console.log("click");
+
+    navigateTo("/loginUser1");
+  });
+}
