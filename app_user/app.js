@@ -1,4 +1,4 @@
-import renderScreen1 from "./screens/screen1.js";
+import renderScreenUser1 from "./screens/screenUser1.js";
 
 const socket = io("/", { path: "/real-time" });
 
@@ -11,7 +11,7 @@ let route = { path: "/", data: {} };
 switch (route.path) {
   case "/":
     clearScripts();
-    renderScreen1(route.data);
+    renderScreenUser1(route.data);
     break;
   default:
     const app = document.getElementById("app");
