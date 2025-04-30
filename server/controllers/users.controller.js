@@ -10,7 +10,7 @@ const loginService = async (req, res) => {
   
   const users = await getAllUsers();
   // comparar si el usuario que se logueo existe en la BD
-  const aver = { inputEmail, inputPassword } = req.body;
+  const { inputEmail, inputPassword } = req.body;
 
   if (!inputEmail || !inputPassword) {
     return res

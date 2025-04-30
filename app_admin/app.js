@@ -1,6 +1,3 @@
-// import renderScreen1 from "./screens/screen1.js";
-// import renderScreen2 from "./screens/screen2.js";
-
 import renderScreenAdmin1 from "./screens/screenAdmin1.js";
 import renderScreenAdminLogin from "./screens/screenLoginAdmin.js";
 
@@ -34,4 +31,5 @@ function navigateToAdmin(path, data) {
   renderRoute(route);
 }
 
-export { navigateToAdmin, socket };
+
+export { navigateToAdmin, socket};

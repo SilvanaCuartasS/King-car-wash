@@ -41,6 +41,7 @@ function navigateTo(path, data) {
   console.log(route);
 }
 
+//For both Admin and User
 async function makeRequest(url, method, body) {
 
   //bien
@@ -58,7 +59,6 @@ async function makeRequest(url, method, body) {
   });
 
   response = await response.json();
-
   return response;
 }
 

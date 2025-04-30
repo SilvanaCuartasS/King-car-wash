@@ -1,3 +1,4 @@
+import { makeRequest } from "../../app_user/app.js";
 import { navigateToAdmin } from "../app.js";
 
 export default function renderScreenAdminLogin() {
@@ -26,7 +27,9 @@ export default function renderScreenAdminLogin() {
 
   const inputEmail = document.getElementById("email");
   const inputPassword = document.getElementById("password");
+  const inputAdminCode = document.getElementById("adminCode");
 
+  const log = document.getElementById("log-in").addEventListener("click",loginAdmin);
   const backBTN = document.getElementById("backBTN")
   
   backBTN.addEventListener("click", () => {
@@ -34,10 +37,10 @@ export default function renderScreenAdminLogin() {
     navigateToAdmin("/");
   });
 
-  // async function loginService() {
-  //   const response = await makeRequest("/login-admin", "POST", {inputEmail: inputEmail.value, inputPassword:inputPassword.value});
-  //   console.log("response", response);
-  // }
+  async function loginAdmin() {
+    const response = await makeRequest("/login-admin", "POST", {inputEmail: inputEmail.value, inputPassword:inputPassword.value, inputAdminCode:inputAdminCode.value});
+    console.log("response", response);
+  }
 
   // function registroUsuarios ()
   // {
