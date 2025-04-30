@@ -9,6 +9,7 @@ export default function renderScreenUserLogin1() {
     </div>
 
     <div id="login-container">
+    <button id="backBTN">Back</button>
     <h1>LOG IN</h1>
     <img src="" alt="userIcon" id="userIcon">
     <input type="email" id="email" placeholder="email">
@@ -28,7 +29,7 @@ export default function renderScreenUserLogin1() {
 
   const inputEmail = document.getElementById("email");
   const inputPassword = document.getElementById("password");
-  
+  const backBTN = document.getElementById("backBTN")
 
   const log = document.getElementById("log-in").addEventListener("click",loginService);
   const sign = document.getElementById("sign-up");
@@ -61,5 +62,10 @@ export default function renderScreenUserLogin1() {
   sign.addEventListener("click", () => {
     console.log("click");
     navigateTo("/signUpUser1");
+  });
+
+  backBTN.addEventListener("click", () => {
+    console.log("click");
+    navigateTo("/");
   });
 }

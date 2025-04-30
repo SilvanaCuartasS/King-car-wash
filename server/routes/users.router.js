@@ -1,7 +1,7 @@
 //Métodos REST
 
 const express = require("express");
-const { loginService, getUsers } = require("../controllers/users.controller");
+const { loginService, getUsers } = require("../controllers/users.controller.js");
 
 const router = express.Router();
 
