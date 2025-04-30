@@ -10,15 +10,15 @@ function clearScripts() {
 let route = { path: "/", data: {} };
 renderRoute(route);
 
-function renderRoute(currentRoute) {
-  switch (currentRoute?.path) {
+function renderRoute(route) {
+  switch (route?.path) {
     case "/":
       clearScripts();
-      renderScreen1(currentRoute?.data);
+      renderScreen1(route?.data);
       break;
     case "/screen2":
       clearScripts();
-      renderScreen2(currentRoute?.data);
+      renderScreen2(route?.data);
       break;
     default:
       const app = document.getElementById("app");

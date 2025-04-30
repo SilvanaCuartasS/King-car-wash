@@ -17,7 +17,6 @@ export default function renderScreen1() {
 
   async function getUsers() {
     const response = await makeRequest("/users", "GET");
-
     console.log("response", response);
   }
 
