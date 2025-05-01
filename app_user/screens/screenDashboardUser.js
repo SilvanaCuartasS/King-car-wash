@@ -99,10 +99,32 @@ export default function renderScreenDashboardUser(data) {
         </div>
       </div>
     </div>
+
+    <section class="modal">
+    <div class="modal-container">
+        <h1>Your Car is Ready to Shine!</h1>
+        <p>You've selected Full Clean at King Car Wash. Do you confirm your appointment?</p>
+        <label for="date-service">📅 Date:</label>
+        <input type="date" id="date-service">
+        <label for="date-service"> 🕒 Time:</label>
+        <input type="time" id="time-user"> 
+        <button id="acept-service">Acept</button>
+        <button id="modal-close">Cancel</button>
+    </div>
+    </section>
   `;
   const currentName = document.getElementById("currentName");
+  const requestServiceUser = document.getElementById("requestService");
   currentName.innerHTML = "";
   currentName.innerHTML = `Welcome, ${data.inputFirstName}, to`;
+
+  requestServiceUser.addEventListener("click", () => {
+    const servicesSection = document.getElementById("services");
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+  
 
   document.getElementById("user-icon").addEventListener("click", () => {
     console.log("User icon clicked"); // Ci
@@ -117,5 +139,28 @@ export default function renderScreenDashboardUser(data) {
     alert("You have logged out successfully");
     navigateTo("/");
   });
-  
+
+  const modal = document.querySelector(".modal");
+const closeModal = document.getElementById("modal-close");
+
+// Seleccionamos todos los botones con ID que comienzan con "choose-"
+const chooseButtons = document.querySelectorAll("button[id^='choose-']");
+
+chooseButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const serviceName = button.id.replace("choose-", "").replace("-", " ").toUpperCase();
+    const serviceDisplayName = button.parentElement.querySelector("h3")?.textContent || serviceName;
+
+    const modalText = modal.querySelector("p");
+    modalText.innerHTML = `You've selected <strong>${serviceDisplayName}</strong> at King Car Wash. Do you confirm your appointment?`;
+
+    modal.classList.add("modal--show");
+  });
+});
+
+closeModal.addEventListener("click", (e) => {
+  e.preventDefault();
+  modal.classList.remove("modal--show");
+});
+
 }
