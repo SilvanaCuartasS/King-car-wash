@@ -1,8 +1,8 @@
 export default function renderScreenUserSignUp2(data) {
-  console.log(data);
-  
-    const app = document.getElementById("app");
-    app.innerHTML = `
+  console.log(data); // Hecho
+
+  const app = document.getElementById("app");
+  app.innerHTML = `
   
     <div id="logo-container">
     <img src="" alt="Logo" id="logo">
@@ -52,14 +52,26 @@ export default function renderScreenUserSignUp2(data) {
       </div>
     </div>
       `;
-  
-  
-      const inputYear = document.getElementById("year")
-      const inputLicense = document.getElementById("license")
-      const selectElementVehicles = document.getElementById('vehicles')
-      const selectElementBrand = document.getElementById('brand')
-      const selectElementColors = document.getElementById('colors')
 
-      document.getElementById("back").addEventListener("click", );
-      document.getElementById("next").addEventListener("click", );
+  const inputYear = document.getElementById("year");
+  const inputLicense = document.getElementById("license");
+  const selectElementVehicles = document.getElementById("vehicles");
+  const selectElementBrand = document.getElementById("brand");
+  const selectElementColors = document.getElementById("colors");
+
+  document.getElementById("back").addEventListener("click");
+  document.getElementById("next").addEventListener("click");
+
+  function signUpUser2() {
+    if (inputPassword.value !== inputConfirmPassword.value) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+    navigateTo("/signUpUser2", {
+      inputEmail: inputEmail.value,
+      inputPassword: inputPassword.value,
+      inputFirstName: inputFirstName.value,
+      inputLastName: inputLastName.value,
+    });
   }
+}
