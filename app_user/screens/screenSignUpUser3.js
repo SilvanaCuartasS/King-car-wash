@@ -10,7 +10,7 @@ export default function renderScreenUserSignUp3(data) {
       </div>
   
       <div id="user-begin">
-        <h1></h1>
+        <h1 id="currentName"></h1>
         <p>Let us get to know you better</p>
   
         <div id="dots"></div>
@@ -37,6 +37,8 @@ export default function renderScreenUserSignUp3(data) {
           </div>
         </div>
     `;
+  const currentName = document.getElementById("currentName");
+  currentName.innerHTML = data.inputFirstName;
 
   const checkboxes = document.querySelectorAll(
     "#wash-form input[type='checkbox']"
