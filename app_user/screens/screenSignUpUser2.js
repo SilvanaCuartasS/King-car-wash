@@ -1,3 +1,5 @@
+import { navigateTo } from "../app.js";
+
 export default function renderScreenUserSignUp2(data) {
   console.log(data); // Hecho
 
@@ -19,12 +21,14 @@ export default function renderScreenUserSignUp2(data) {
     <div id="form">
    
         <select id="vehicles" name="vehicle" required>
+          <option value="vehicle">Vehicle</option>
           <option value="car">Car</option>
           <option value="truck">Truck</option>
         </select>
 
  
       <select id="brand" name="brand" required>
+          <option value="vehicle">Brand</option>
           <option value="toyota">Toyota</option>
           <option value="renault">Renault</option>
           <option value="kia">KIA</option>
@@ -34,6 +38,7 @@ export default function renderScreenUserSignUp2(data) {
    
 
         <select id="colors" name="color" required>
+          <option value="vehicle">Color</option>
           <option value="black">Black</option>
           <option value="white">White</option>
           <option value="gray">Gray</option>
@@ -47,7 +52,6 @@ export default function renderScreenUserSignUp2(data) {
       </div>
       
       <div id="buttons">
-        <button type="button" id="back">Back</button>
         <button type="submit" id="next">Next</button>
       </div>
     </div>
@@ -59,19 +63,20 @@ export default function renderScreenUserSignUp2(data) {
   const selectElementBrand = document.getElementById("brand");
   const selectElementColors = document.getElementById("colors");
 
-  document.getElementById("back").addEventListener("click");
-  document.getElementById("next").addEventListener("click");
+  inputLicense.addEventListener("input", () => {
+    inputLicense.value = inputLicense.value.toUpperCase();
+  });
+
+  document.getElementById("next").addEventListener("click", signUpUser2);
 
   function signUpUser2() {
-    if (inputPassword.value !== inputConfirmPassword.value) {
-      alert("Las contraseñas no coinciden");
-      return;
-    }
-    navigateTo("/signUpUser2", {
-      inputEmail: inputEmail.value,
-      inputPassword: inputPassword.value,
-      inputFirstName: inputFirstName.value,
-      inputLastName: inputLastName.value,
+    navigateTo("/signUpUser3", {
+      ...data,
+      inputYear: inputYear.value,
+      inputLicense: inputLicense.value,
+      selectElementVehicles: selectElementVehicles.value,
+      selectElementBrand: selectElementBrand.value,
+      selectElementColors: selectElementColors.value,
     });
   }
 }

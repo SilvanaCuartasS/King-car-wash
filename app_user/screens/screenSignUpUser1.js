@@ -80,15 +80,27 @@ export default function renderScreenUserSignUp1() {
   });
 
   function signUpUser() {
-    if (
-      inputPassword.value !== inputConfirmPassword.value &&
-      inputPassword.value.length < 6
-    ) {
-      alert("Las contraseñas no coinciden");
-      return;
-    }
+  // Validación: verificar si algún campo está vacío
+  if (
+    inputFirstName.value.trim() === "" ||
+    inputLastName.value.trim() === "" ||
+    inputEmail.value.trim() === "" ||
+    inputPassword.value.trim() === "" ||
+    inputConfirmPassword.value.trim() === ""
+  ) {
+    alert("Please fill in all the fields before signing up.");
+    return;
+  }
 
-    const modal = document.getElementById("modal");
+  if (inputPassword.value.length < 6) {
+    alert("The password must be at least 6 characters long.");
+    return;
+  }
+
+  if (inputPassword.value !== inputConfirmPassword.value) {
+    alert("Passwords do not match.");
+    return;
+  }
     modal.style.display = "block";
 
     const closeModal = document.getElementById("close-modal");

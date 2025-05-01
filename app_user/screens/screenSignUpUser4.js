@@ -1,4 +1,6 @@
-export default function renderScreenUserSignUp3() {
+export default function renderScreenUserSignUp4(data) {
+    console.log(data); // Hecho
+    
     const app = document.getElementById("app");
     app.innerHTML = `
   
