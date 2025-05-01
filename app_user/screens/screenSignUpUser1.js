@@ -30,11 +30,19 @@ export default function renderScreenUserSignUp1() {
     <input type="text" id="firts-name" placeholder="First Name">
     <input type="text" id="last-name" placeholder="Last Name">
     <input type="email" id="email" placeholder="email">
-    <input type="password" id="password" placeholder="password">
-    <p>Make sure you create it with more than 6 characters*</p>
-    <p id="message1"></p>
-    <input type="password" id="confirm-password" placeholder="Confirm Password">
-    <p id="message2"></p>
+
+      <div class="password-wrapper">
+        <input type="password" id="password" placeholder="password">
+        <button type="button" id="togglePassword">Show</button>
+      </div>
+      <p>Make sure you create it with more than 6 characters*</p>
+      <p id="message1"></p>
+
+      <div class="password-wrapper">
+        <input type="password" id="confirm-password" placeholder="Confirm Password">
+        <button type="button" id="toggleConfirmPassword">Show</button>
+      </div>
+      <p id="message2"></p>
 
     <button id="sign-up">Sign up</button>
     <p>Or sign in with</p>
@@ -54,10 +62,26 @@ export default function renderScreenUserSignUp1() {
   const message1 = document.getElementById("message1");
   const message2 = document.getElementById("message2");
 
-  const backBTN = document.getElementById("backBTN");
-  const signUpBTN = document
-    .getElementById("sign-up")
-    .addEventListener("click", signUpUser);
+  const togglePassword = document.getElementById("togglePassword");
+  const toggleConfirmPassword = document.getElementById(
+    "toggleConfirmPassword"
+  );
+
+  togglePassword.addEventListener("click", () => {
+    const type =
+      inputPassword.getAttribute("type") === "password" ? "text" : "password";
+    inputPassword.setAttribute("type", type);
+    togglePassword.textContent = type === "password" ? "Show" : "Hide";
+  });
+
+  toggleConfirmPassword.addEventListener("click", () => {
+    const type =
+      inputConfirmPassword.getAttribute("type") === "password"
+        ? "text"
+        : "password";
+    inputConfirmPassword.setAttribute("type", type);
+    toggleConfirmPassword.textContent = type === "password" ? "Show" : "Hide";
+  });
 
   inputPassword.addEventListener("input", () => {
     if (inputPassword.value.length < 6) {
@@ -80,27 +104,27 @@ export default function renderScreenUserSignUp1() {
   });
 
   function signUpUser() {
-  // Validación: verificar si algún campo está vacío
-  if (
-    inputFirstName.value.trim() === "" ||
-    inputLastName.value.trim() === "" ||
-    inputEmail.value.trim() === "" ||
-    inputPassword.value.trim() === "" ||
-    inputConfirmPassword.value.trim() === ""
-  ) {
-    alert("Please fill in all the fields before signing up.");
-    return;
-  }
+    // Validación: verificar si algún campo está vacío
+    if (
+      inputFirstName.value.trim() === "" ||
+      inputLastName.value.trim() === "" ||
+      inputEmail.value.trim() === "" ||
+      inputPassword.value.trim() === "" ||
+      inputConfirmPassword.value.trim() === ""
+    ) {
+      alert("Please fill in all the fields before signing up.");
+      return;
+    }
 
-  if (inputPassword.value.length < 6) {
-    alert("The password must be at least 6 characters long.");
-    return;
-  }
+    if (inputPassword.value.length < 6) {
+      alert("The password must be at least 6 characters long.");
+      return;
+    }
 
-  if (inputPassword.value !== inputConfirmPassword.value) {
-    alert("Passwords do not match.");
-    return;
-  }
+    if (inputPassword.value !== inputConfirmPassword.value) {
+      alert("Passwords do not match.");
+      return;
+    }
     modal.style.display = "block";
 
     const closeModal = document.getElementById("close-modal");

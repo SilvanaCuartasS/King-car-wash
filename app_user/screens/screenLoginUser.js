@@ -14,7 +14,11 @@ export default function renderScreenUserLogin1() {
     <img src="" alt="userIcon" id="userIcon">
     <input type="email" id="email" placeholder="email">
     <img src="" alt="lockIcon" id="lockIcon">
-    <input type="password" id="password" placeholder="password">
+
+      <div class="password-wrapper">
+        <input type="password" id="password" placeholder="password">
+        <button type="button" id="togglePassword">Show</button>
+      </div>
     <p>Forgot password? Remember in HERE</p>
 
     <button id="log-in">Log in</button>
@@ -29,12 +33,18 @@ export default function renderScreenUserLogin1() {
 
   const inputEmail = document.getElementById("email");
   const inputPassword = document.getElementById("password");
+  const togglePassword = document.getElementById("togglePassword");
   const backBTN = document.getElementById("backBTN");
-
-  const log = document
-    .getElementById("log-in")
-    .addEventListener("click", loginService);
   const sign = document.getElementById("sign-up");
+
+  togglePassword.addEventListener("click", () => {
+    const type =
+      inputPassword.getAttribute("type") === "password" ? "text" : "password";
+    inputPassword.setAttribute("type", type);
+    togglePassword.textContent = type === "password" ? "Show" : "Hide";
+  });
+
+  document.getElementById("log-in").addEventListener("click", loginService);
 
   async function loginService() {
     const response = await makeRequest("/login-service", "POST", {

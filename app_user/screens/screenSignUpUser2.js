@@ -73,6 +73,16 @@ export default function renderScreenUserSignUp2(data) {
   document.getElementById("next").addEventListener("click", signUpUser2);
 
   function signUpUser2() {
+    if (
+      inputYear.value === "" ||
+      inputLicense.value === "" ||
+      selectElementVehicles.value === "vehicle" ||
+      selectElementBrand.value === "vehicle" ||
+      selectElementColors.value === "vehicle"
+    ) {
+      alert("Please fill in all fields.");
+      return;
+    }
     navigateTo("/signUpUser3", {
       ...data,
       inputYear: inputYear.value,

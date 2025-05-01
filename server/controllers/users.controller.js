@@ -30,7 +30,6 @@ const loginService = async (req, res) => {
 
   console.log("Inicio de sesión exitoso:", foundUser);
   res.json({ message: "Inicio de sesión exitoso", success: true, currentUserData: foundUser });
-  res.send(users); //Envio al cliente lo que tenga users
 };
 
 const createUser = async (req, res) => {
