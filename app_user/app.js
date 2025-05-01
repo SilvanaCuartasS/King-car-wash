@@ -1,8 +1,11 @@
 import renderScreenUserLogin1 from "./screens/screenLoginUser.js";
 import renderScreenUserSignUp1 from "./screens/screenSignUpUser1.js";
-import renderScreenUser1 from "./screens/screenUser1.js";
+import renderScreenUserSignUp2 from "./screens/screenSignUpUser2.js";
+import renderScreenUserSignUp3 from "./screens/screenSignUpUser3.js";
+import renderScreenUserSignUp4 from "./screens/screenSignUpUser4.js";
 import renderScreenUserLanding from "./screens/screenLadingPageUser.js";
-import renderScreenUserService from "./screens/screenServiceUser.js";
+import renderScreenDashboardUser from "./screens/screenDashboardUser.js";
+import renderScreenUser1 from "./screens/screenUser1.js";
 
 const socket = io("/", { path: "/real-time" });
 
@@ -36,10 +39,25 @@ function router() {
       renderScreenUserSignUp1();
       break;
 
-    case "/signUpUser1":
-        // clearScripts();
-        renderScreenUserService();
-      break;
+      case "/signUpUser2":
+        clearScripts();
+        renderScreenUserSignUp2(route.data);
+        break;
+
+      case "/signUpUser3":
+        clearScripts();
+        renderScreenUserSignUp3(route.data);
+        break;
+
+      case "/signUpUser4":
+        clearScripts();
+        renderScreenUserSignUp4(route.data);
+        break;
+
+      case "/dashboardUser":
+        clearScripts();
+        renderScreenDashboardUser(route.data);
+        break;
 
     default:
       const app = document.getElementById("app");

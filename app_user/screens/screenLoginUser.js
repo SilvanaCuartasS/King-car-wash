@@ -9,11 +9,16 @@ export default function renderScreenUserLogin1() {
     </div>
 
     <div id="login-container">
+    <button id="backBTN">Back</button>
     <h1>LOG IN</h1>
     <img src="" alt="userIcon" id="userIcon">
     <input type="email" id="email" placeholder="email">
     <img src="" alt="lockIcon" id="lockIcon">
-    <input type="password" id="password" placeholder="password">
+
+      <div class="password-wrapper">
+        <input type="password" id="password" placeholder="password">
+        <button type="button" id="togglePassword">Show</button>
+      </div>
     <p>Forgot password? Remember in HERE</p>
 
     <button id="log-in">Log in</button>
@@ -28,17 +33,33 @@ export default function renderScreenUserLogin1() {
 
   const inputEmail = document.getElementById("email");
   const inputPassword = document.getElementById("password");
-  
-
-  const log = document.getElementById("log-in").addEventListener("click",loginService);
+  const togglePassword = document.getElementById("togglePassword");
+  const backBTN = document.getElementById("backBTN");
   const sign = document.getElementById("sign-up");
 
+  togglePassword.addEventListener("click", () => {
+    const type =
+      inputPassword.getAttribute("type") === "password" ? "text" : "password";
+    inputPassword.setAttribute("type", type);
+    togglePassword.textContent = type === "password" ? "Show" : "Hide";
+  });
+
+  document.getElementById("log-in").addEventListener("click", loginService);
+
   async function loginService() {
-    const response = await makeRequest("/login-service", "POST", {inputEmail: inputEmail.value, inputPassword:inputPassword.value});
+    const response = await makeRequest("/login-service", "POST", {
+      inputEmail: inputEmail.value,
+      inputPassword: inputPassword.value,
+    });
     console.log("response", response);
+    if (response.success) {
+      navigateTo("/dashboardUser", response.currentUserData);
+    } else {
+      alert(response.message || "Login failed.");
+    }
   }
-  
-  // function registroUsuarios () 
+
+  // function registroUsuarios ()
   // {
   //     fetch ("http://localhost:5051/registro/" ,{
   //         method: "POST",
@@ -55,11 +76,16 @@ export default function renderScreenUserLogin1() {
   //             mostrarPantalla("inicio");
   //           })
   //           .catch((error) => console.error("Error:", error));
-  
+
   // }
 
   sign.addEventListener("click", () => {
     console.log("click");
     navigateTo("/signUpUser1");
+  });
+
+  backBTN.addEventListener("click", () => {
+    console.log("click");
+    navigateTo("/");
   });
 }
