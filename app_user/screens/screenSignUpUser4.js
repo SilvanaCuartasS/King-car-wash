@@ -39,9 +39,9 @@ export default function renderScreenUserSignUp4(data) {
   `;
 
   const currentName = document.getElementById("currentName");
-    currentName.innerHTML = data.inputFirstName;
-    
-    //Intentar agregar le boton de back y que permita cambiar los datos colocados antes
+  currentName.innerHTML = data.inputFirstName;
+
+  //Intentar agregar le boton de back y que permita cambiar los datos colocados antes
 
   const checkboxes = document.querySelectorAll(
     "#fragance-form input[type='checkbox']"
@@ -69,12 +69,14 @@ export default function renderScreenUserSignUp4(data) {
     };
 
     try {
-      const response = await makeRequest("/signup-user", "POST", fullData);
+        const response = await makeRequest("/signup-user", "POST", fullData);
+        
       console.log("response", response);
 
-      if (response.success) {
+        if (response.success) {
+        console.log("response", response.currentUserData);
         alert("User registered successfully!");
-        navigateTo("/");//Por ahora se va a la pantalla de inicio
+        navigateTo("/dashboardUser", response.currentUserData);
       } else {
         alert(response.message || "Registration failed.");
       }
