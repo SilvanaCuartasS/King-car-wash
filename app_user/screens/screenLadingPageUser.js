@@ -4,13 +4,13 @@ export default function renderScreenUserLanding() {
   const app = document.getElementById("app");
   app.innerHTML = `
 
-    <nav>
-    <a href="">Services</a>
-    <a href="">Wash Insure</a>
-    <img src="" alt="KingCarWashLogo">
-    <a href="">Experiences</a>
-    <a href="">Wash Track</a>
-    </nav>
+  <nav>
+    <a href="#" id="services">Services</a>
+    <a href="#" id="washInsure">Wash Insure</a>
+    <img src="#" alt="KingCarWashLogo">
+    <a href="#" id="experiences">Experiences</a>
+    <a href="#" id="washTrack">Wash Track</a>
+</nav>
 
     <section id="container">
     <div id="bannerInitial">
@@ -183,8 +183,15 @@ export default function renderScreenUserLanding() {
     `;
 
   const bookBTN = document.getElementById("bookNow");
+  const washTrackA = document.getElementById("washTrack");
 
   bookBTN.addEventListener("click", () => {
+    console.log("click");
+
+    navigateTo("/screenUser1");
+  });
+
+  washTrack.addEventListener("click", () => {
     console.log("click");
 
     navigateTo("/screenUser1");
