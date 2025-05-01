@@ -10,7 +10,6 @@ export default function renderScreenAdminDashboard(data) {
     </div>
 
     <div id="login-container">
-    <button id="backBTN">Back</button>
     <h1>Welcome</h1>
     <p id="currentName"></p>
 
@@ -28,18 +27,15 @@ export default function renderScreenAdminDashboard(data) {
   } else {
     currentName.textContent = "Unknown Admin";
   }
-  
-
-  const backBTN = document.getElementById("backBTN");
-
-  backBTN.addEventListener("click", () => {
-    console.log("click");
-    navigateToAdmin("/");
-  });
-    
+      
   logOutBTN.addEventListener("click", () => {
-    localStorage.removeItem("currentAdmin");
-    navigateToAdmin("/");
+    console.log("Logout clicked");
+  
+    localStorage.clear();
+    sessionStorage.clear();
+  
+    alert("You have logged out successfully");
+    navigateTo("/");
   });
   
 
