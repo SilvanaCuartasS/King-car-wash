@@ -20,7 +20,14 @@ let admins = [
     adminCode: "A6089",
     email: "juanAdmin@gmail.com",
     password:"654321",
-  }
+ },
+ {
+  id: 4,
+  name: "David",
+  adminCode: "1",
+  email: "d",
+  password:"1",
+},
 ];
 
 const getAllAdmins = async () => {

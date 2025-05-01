@@ -1,6 +1,7 @@
 import { navigateToAdmin } from "../app.js";
 
-export default function renderScreenAdminDashboard() {
+export default function renderScreenAdminDashboard(data) {
+  console.log(data);
   const app = document.getElementById("app");
   app.innerHTML = `
     
@@ -22,10 +23,8 @@ export default function renderScreenAdminDashboard() {
   const logOutBTN = document.getElementById("logOut");
   const currentName = document.getElementById("currentName");
 
-  const currentAdmin = JSON.parse(localStorage.getItem("currentAdmin"));
-
-  if (currentAdmin) {
-    currentName.textContent = currentAdmin.name;
+  if (data) {
+    currentName.textContent = data.name;
   } else {
     currentName.textContent = "Unknown Admin";
   }

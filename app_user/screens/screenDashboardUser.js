@@ -1,3 +1,5 @@
+import { navigateTo } from "../app.js";
+
 export default function renderScreenDashboardUser(data) {
   console.log(data);
 
@@ -99,11 +101,21 @@ export default function renderScreenDashboardUser(data) {
     </div>
   `;
   const currentName = document.getElementById("currentName");
+  currentName.innerHTML = "";
   currentName.innerHTML = `Welcome, ${data.inputFirstName}, to`;
 
   document.getElementById("user-icon").addEventListener("click", () => {
     console.log("User icon clicked"); // Ci
   });
-  
 
+  document.getElementById("logout").addEventListener("click", () => {
+    console.log("Logout clicked");
+  
+    localStorage.clear();
+    sessionStorage.clear();
+  
+    alert("You have logged out successfully");
+    navigateTo("/");
+  });
+  
 }

@@ -23,7 +23,7 @@ function renderRoute(route) {
       break;
     case "/dashboardAdmin":
       clearScripts();
-      renderScreenAdminDashboard();
+      renderScreenAdminDashboard(route.data);
       break;
     default:
       const app = document.getElementById("app");
