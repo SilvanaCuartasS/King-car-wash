@@ -29,18 +29,27 @@ export default function renderScreenUserLogin1() {
 
   const inputEmail = document.getElementById("email");
   const inputPassword = document.getElementById("password");
-  const backBTN = document.getElementById("backBTN")
+  const backBTN = document.getElementById("backBTN");
 
-  const log = document.getElementById("log-in").addEventListener("click",loginService);
+  const log = document
+    .getElementById("log-in")
+    .addEventListener("click", loginService);
   const sign = document.getElementById("sign-up");
 
   async function loginService() {
-    const response = await makeRequest("/login-service", "POST", {inputEmail: inputEmail.value, inputPassword:inputPassword.value});
+    const response = await makeRequest("/login-service", "POST", {
+      inputEmail: inputEmail.value,
+      inputPassword: inputPassword.value,
+    });
     console.log("response", response);
-
+    if (response.success) {
+      navigateTo("/dashboardUser", response.currentUserData);
+    } else {
+      alert(response.message || "Login failed.");
+    }
   }
-  
-  // function registroUsuarios () 
+
+  // function registroUsuarios ()
   // {
   //     fetch ("http://localhost:5051/registro/" ,{
   //         method: "POST",
@@ -57,7 +66,7 @@ export default function renderScreenUserLogin1() {
   //             mostrarPantalla("inicio");
   //           })
   //           .catch((error) => console.error("Error:", error));
-  
+
   // }
 
   sign.addEventListener("click", () => {
