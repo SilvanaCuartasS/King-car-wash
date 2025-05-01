@@ -1,5 +1,6 @@
 import renderScreenUserLogin1 from "./screens/screenLoginUser.js";
 import renderScreenUserSignUp1 from "./screens/screenSignUpUser1.js";
+import renderScreenUserSignUp2 from "./screens/screenSignUpUser2.js";
 import renderScreenUser1 from "./screens/screenUser1.js";
 
 const socket = io("/", { path: "/real-time" });
@@ -22,10 +23,14 @@ function router() {
       clearScripts();
       renderScreenUserLogin1();
       break;
-    
+
     case "/signUpUser1":
       clearScripts();
       renderScreenUserSignUp1();
+      break;
+    case "/signUpUser2":
+      clearScripts();
+      renderScreenUserSignUp2(route.data);
       break;
 
     default:
@@ -41,12 +46,11 @@ function navigateTo(path, data) {
 
 //For both Admin and User
 async function makeRequest(url, method, body) {
-
   //bien
   console.log(url);
   console.log(method);
   console.log(body);
-  
+
   const BASE_URL = "http://localhost:5057";
   let response = await fetch(`${BASE_URL}${url}`, {
     method: method,
