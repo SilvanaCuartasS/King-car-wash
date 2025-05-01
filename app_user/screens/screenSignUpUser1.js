@@ -62,6 +62,8 @@ export default function renderScreenUserSignUp1() {
   const message1 = document.getElementById("message1");
   const message2 = document.getElementById("message2");
 
+  document.getElementById("sign-up").addEventListener("click", signUpUser);
+
   const togglePassword = document.getElementById("togglePassword");
   const toggleConfirmPassword = document.getElementById(
     "toggleConfirmPassword"
