@@ -11,7 +11,7 @@ export default function renderScreenUserSignUp2(data) {
     </div>
 
     <div id="user-begin">
-    <h1></h1>
+    <h1 id="currentName"></h1>
     <p>Let us get to know you better</p>
 
     <div id="dots"></div>
@@ -62,6 +62,9 @@ export default function renderScreenUserSignUp2(data) {
   const selectElementVehicles = document.getElementById("vehicles");
   const selectElementBrand = document.getElementById("brand");
   const selectElementColors = document.getElementById("colors");
+
+  const currentName = document.getElementById("currentName");
+  currentName.innerHTML = data.inputFirstName;
 
   inputLicense.addEventListener("input", () => {
     inputLicense.value = inputLicense.value.toUpperCase();

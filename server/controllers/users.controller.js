@@ -1,5 +1,5 @@
 //Lógica de cada método REST
-const { getAllUsers } = require("../db/users.db");
+const { getAllUsers, createUserDB } = require("../db/users.db");
 
 const getUsers = async (req, res) => {
   const users = await getAllUsers();
@@ -7,7 +7,6 @@ const getUsers = async (req, res) => {
 };
 
 const loginService = async (req, res) => {
-  
   const users = await getAllUsers();
   // comparar si el usuario que se logueo existe en la BD
   const { inputEmail, inputPassword } = req.body;
@@ -23,12 +22,10 @@ const loginService = async (req, res) => {
   );
 
   if (!foundUser) {
-    return res
-      .status(401)
-      .json({
-        message: "Usuario no existe o contraseña incorrecta",
-        success: false,
-      });
+    return res.status(401).json({
+      message: "Usuario no existe o contraseña incorrecta",
+      success: false,
+    });
   }
 
   console.log("Inicio de sesión exitoso:", foundUser);
@@ -37,9 +34,33 @@ const loginService = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-  const { id, name } = req.body;
-  const response = await createUser({ id, name });
-  res.send(response);
+  const users = await getAllUsers();
+  const userData = req.body;
+
+  console.log(userData);
+
+  const hasEmptyField = Object.values(userData).some(
+    (value) => value === undefined || value === null || value === ""
+  );
+
+  if (hasEmptyField) {
+    return res.status(400).json({
+      message: "Ops, faltan datos",
+      success: false,
+    });
+  }
+
+  const currentUserData = { id: users.length + 1, ...userData };
+
+  createUserDB(currentUserData);
+  console.log("Usuario creado y enviado a DB:", currentUserData);
+
+  console.log("Inicio de sesión exitoso:", currentUserData);
+  res.json({
+    message: "Inicio de sesión exitoso",
+    success: true,
+    currentUserData: currentUserData,
+  });
 };
 
 module.exports = {
