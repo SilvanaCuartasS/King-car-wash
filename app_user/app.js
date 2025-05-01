@@ -35,10 +35,8 @@ function router() {
 }
 
 function navigateTo(path, data) {
-  console.log(path); //aqui si llega
   route = { path, data };
   router();
-  console.log(route);
 }
 
 //For both Admin and User

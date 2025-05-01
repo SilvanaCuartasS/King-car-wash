@@ -1,4 +1,5 @@
 import renderScreenAdmin1 from "./screens/screenAdmin1.js";
+import renderScreenAdminDashboard from "./screens/screenDashboardAdmin.js";
 import renderScreenAdminLogin from "./screens/screenLoginAdmin.js";
 
 const socket = io("/", { path: "/real-time" });
@@ -20,6 +21,10 @@ function renderRoute(route) {
       clearScripts();
       renderScreenAdminLogin();
       break;
+    case "/dashboardAdmin":
+      clearScripts();
+      renderScreenAdminDashboard();
+      break;
     default:
       const app = document.getElementById("app");
       app.innerHTML = `<h1>404 - Not Found</h1><p>The page you are looking for does not exist.</p>`;
@@ -31,5 +36,4 @@ function navigateToAdmin(path, data) {
   renderRoute(route);
 }
 
-
-export { navigateToAdmin, socket};
+export { navigateToAdmin, socket };
