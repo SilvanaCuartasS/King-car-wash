@@ -29,17 +29,32 @@ export default function renderScreenAdminLogin() {
   const inputPassword = document.getElementById("password");
   const inputAdminCode = document.getElementById("adminCode");
 
-  const log = document.getElementById("log-in").addEventListener("click",loginAdmin);
-  const backBTN = document.getElementById("backBTN")
-  
+  const log = document
+    .getElementById("log-in")
+    .addEventListener("click", loginAdminREQ);
+  const backBTN = document.getElementById("backBTN");
+
   backBTN.addEventListener("click", () => {
     console.log("click");
     navigateToAdmin("/");
   });
 
-  async function loginAdmin() {
-    const response = await makeRequest("/login-admin", "POST", {inputEmail: inputEmail.value, inputPassword:inputPassword.value, inputAdminCode:inputAdminCode.value});
+  async function loginAdminREQ() {
+    const response = await makeRequest("/login-admin", "POST", {
+      inputEmail: inputEmail.value,
+      inputPassword: inputPassword.value,
+      inputAdminCode: inputAdminCode.value,
+    });
     console.log("response", response);
+
+    if (response.success) {
+      console.log("Login exitoso");
+      localStorage.setItem("currentAdmin", JSON.stringify(response.currentAdmin)); // Guarda el admin
+      navigateToAdmin("/dashboardAdmin");
+    } else {
+      alert(response.message || "Error al iniciar sesión");
+    }
+    return response;
   }
 
   // function registroUsuarios ()

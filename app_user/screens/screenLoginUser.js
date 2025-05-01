@@ -37,6 +37,7 @@ export default function renderScreenUserLogin1() {
   async function loginService() {
     const response = await makeRequest("/login-service", "POST", {inputEmail: inputEmail.value, inputPassword:inputPassword.value});
     console.log("response", response);
+
   }
   
   // function registroUsuarios () 
