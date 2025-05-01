@@ -5,12 +5,12 @@ export default function renderScreenUser1() {
   app.innerHTML = `
 
     <nav>
-    <a href="">Services</a>
-    <a href="">Wash Insure</a>
-    <img src="" alt="KingCarWashLogo">
-    <a href="">Experiences</a>
-    <a href="">Wash Track</a>
-    </nav>
+    <a href="#" id="services">Services</a>
+    <a href="#" id="washInsure">Wash Insure</a>
+    <img src="#" alt="KingCarWashLogo">
+    <a href="#" id="experiences">Experiences</a>
+    <a href="#" id="washTrack">Wash Track</a>
+  </nav>
 
     <div id="container">
     <h3>Welcome to</h3>
@@ -54,10 +54,17 @@ export default function renderScreenUser1() {
 
   const clientBTN = document.getElementById("clientBTN");
   const adminBTN = document.getElementById("adminBTN");
+  const washTrackA = document.getElementById("washTrack");
 
   clientBTN.addEventListener("click", () => {
     console.log("click");
 
     navigateTo("/loginUser1");
+
+    washTrackA.addEventListener("click", () => {
+      console.log("click");
+  
+      navigateTo("/screenUser1");
+    });
   });
 }

@@ -10,7 +10,7 @@ export default function renderScreenUserLanding() {
     <img src="#" alt="KingCarWashLogo">
     <a href="#" id="experiences">Experiences</a>
     <a href="#" id="washTrack">Wash Track</a>
-</nav>
+  </nav>
 
     <section id="container">
     <div id="bannerInitial">
@@ -191,7 +191,7 @@ export default function renderScreenUserLanding() {
     navigateTo("/screenUser1");
   });
 
-  washTrack.addEventListener("click", () => {
+  washTrackA.addEventListener("click", () => {
     console.log("click");
 
     navigateTo("/screenUser1");
