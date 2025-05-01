@@ -1,4 +1,6 @@
-export default function renderScreenUserSignUp2() {
+export default function renderScreenUserSignUp2(data) {
+  console.log(data);
+  
     const app = document.getElementById("app");
     app.innerHTML = `
   
@@ -50,6 +52,7 @@ export default function renderScreenUserSignUp2() {
       </div>
     </div>
       `;
+  
   
       const inputYear = document.getElementById("year")
       const inputLicense = document.getElementById("license")

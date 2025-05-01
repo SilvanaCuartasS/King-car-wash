@@ -54,7 +54,6 @@ export default function renderScreenAdminLogin() {
     } else {
       alert(response.message || "Error al iniciar sesión");
     }
-    return response;
   }
 
   // function registroUsuarios ()
