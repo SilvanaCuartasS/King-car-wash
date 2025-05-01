@@ -1,4 +1,4 @@
-import { navigateTo } from "../app.js";
+import { navigateTo, makeRequest } from "../app.js";
 
 export default function renderScreenDashboardUser(data) {
   console.log(data);
@@ -143,7 +143,7 @@ export default function renderScreenDashboardUser(data) {
   const modal = document.querySelector(".modal");
 const closeModal = document.getElementById("modal-close");
 
-// Seleccionamos todos los botones con ID que comienzan con "choose-"
+
 const chooseButtons = document.querySelectorAll("button[id^='choose-']");
 
 chooseButtons.forEach((button) => {
