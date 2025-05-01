@@ -1,3 +1,4 @@
+import renderScreenDashboardUser from "./screens/screenDashboardUser.js";
 import renderScreenUserLogin1 from "./screens/screenLoginUser.js";
 import renderScreenUserSignUp1 from "./screens/screenSignUpUser1.js";
 import renderScreenUserSignUp2 from "./screens/screenSignUpUser2.js";
@@ -41,6 +42,10 @@ function router() {
     case "/signUpUser4":
       clearScripts();
       renderScreenUserSignUp4(route.data);
+      break;
+    case "/dashboardUser":
+      clearScripts();
+      renderScreenDashboardUser(route.data);
       break;
 
     default:

@@ -3,13 +3,6 @@ let admins = [
   {
     id: 1,
     name: "David",
-    adminCode: "1",
-    email: "d",
-    password:"2",
-  },
-  {
-    id: 1,
-    name: "David",
     adminCode: "A4123",
     email: "davidAdmin@gmail.com",
     password:"13579",

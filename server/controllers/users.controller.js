@@ -50,16 +50,13 @@ const createUser = async (req, res) => {
     });
   }
 
-  const currentUserData = { id: users.length + 1, ...userData };
+  createUserDB({ id: users.length + 1, ...userData });
+  console.log("Usuario creado y enviado a DB:", users);
 
-  createUserDB(currentUserData);
-  console.log("Usuario creado y enviado a DB:", currentUserData);
-
-  console.log("Inicio de sesión exitoso:", currentUserData);
   res.json({
     message: "Inicio de sesión exitoso",
     success: true,
-    currentUserData: currentUserData,
+    currentUserData: userData,
   });
 };
 
