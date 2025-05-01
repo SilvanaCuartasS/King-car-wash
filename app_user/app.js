@@ -1,6 +1,7 @@
 import renderScreenUserLogin1 from "./screens/screenLoginUser.js";
 import renderScreenUserSignUp1 from "./screens/screenSignUpUser1.js";
 import renderScreenUser1 from "./screens/screenUser1.js";
+import renderScreenUserLanding from "./screens/screenLadingPageUser.js";
 
 const socket = io("/", { path: "/real-time" });
 
@@ -13,9 +14,15 @@ router();
 
 function router() {
   switch (route.path) {
+
     case "/":
       // clearScripts();
-      renderScreenUser1(route);
+      renderScreenUserLanding(route);
+      break;
+      
+    case "/screenUser1":
+      // clearScripts();
+      renderScreenUser1();
       break;
 
     case "/loginUser1":
