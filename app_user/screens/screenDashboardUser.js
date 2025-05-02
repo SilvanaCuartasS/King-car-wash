@@ -170,29 +170,32 @@ export default function renderScreenDashboardUser(data) {
     modal.classList.remove("modal--show");
   });
 
-  document.getElementById("acept-service").addEventListener("click", async () => {
+  // screenDashboardUser.js
+document.getElementById("acept-service").addEventListener("click", async () => {
+  const serviceDisplayName = document.querySelector(".modal p strong").textContent;
+  
+  const serviceData = {
+    serviceName: serviceDisplayName,
+    timeServiceInput: timeServiceInput.value,
+    dateServiceInput: dateServiceInput.value,
+  };
+
+  try {
+    const response = await makeRequest("/new-service", "POST", serviceData);
     
-    const fullData = {
-      ...data,
-      timeServiceInput: timeServiceInput.value,
-      dateServiceInput: dateServiceInput.value,
-    };
-  
-      try {
-          const response = await makeRequest("/new-service", "POST", fullData);
-          
-        console.log("response", response);
-  
-          if (response.success) {
-          console.log("response", response.currentUserData);
-          alert("Service booked successfully!");
-          navigateTo("/userProfile", response.currentUserData);
-        } else {
-          alert(response.message || "Error booking service");
-        }
-      } catch (error) {
-        console.error(error);
-        alert("Error connecting to the server.");
-      }
-    });
+    console.log("response", response);
+
+    if (response.success) {
+      console.log("Servicio creado:", response.currentServiceData);
+      alert("Service booked successfully!");
+      modal.classList.remove("modal--show");
+      // Aquí puedes redirigir o actualizar la UI como necesites
+    } else {
+      alert(response.message || "Error booking service");
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Error connecting to the server.");
+  }
+});
 }
