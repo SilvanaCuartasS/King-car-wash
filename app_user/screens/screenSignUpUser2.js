@@ -1,44 +1,39 @@
 import { navigateTo } from "../app.js";
 
 export default function renderScreenUserSignUp2(data) {
-  console.log(data); // Hecho
+  console.log(data); //hecho
 
   const app = document.getElementById("app");
   app.innerHTML = `
-  
     <div id="logo-container">
-    <img src="" alt="Logo" id="logo">
+      <img src="" alt="Logo" id="logo">
     </div>
 
     <div id="user-begin">
-    <h1 id="currentName"></h1>
-    <p>Let us get to know you better</p>
+      <h1 id="currentName"></h1>
+      <p>Let us get to know you better</p>
+      <div id="dots"></div>
 
-    <div id="dots"></div>
+      <h2>Details of your vehicle</h2>
 
-    <h2>Details of your vehicle</h2>
-
-    <div id="form">
-   
+      <div id="form">
         <select id="vehicles" name="vehicle" required>
-          <option value="vehicle">Vehicle</option>
+          <option value="" disabled selected>Select vehicle</option>
           <option value="car">Car</option>
           <option value="truck">Truck</option>
         </select>
 
- 
-      <select id="brand" name="brand" required>
-          <option value="vehicle">Brand</option>
+        <select id="brand" name="brand" required>
+          <option value="" disabled selected>Select brand</option>
           <option value="toyota">Toyota</option>
           <option value="renault">Renault</option>
           <option value="kia">KIA</option>
           <option value="chevrolet">Chevrolet</option>
           <option value="mazda">Mazda</option>
-          </select>
-   
+        </select>
 
         <select id="colors" name="color" required>
-          <option value="vehicle">Color</option>
+          <option value="" disabled selected>Select color</option>
           <option value="black">Black</option>
           <option value="white">White</option>
           <option value="gray">Gray</option>
@@ -46,16 +41,17 @@ export default function renderScreenUserSignUp2(data) {
           <option value="red">Red</option>
         </select>
 
-      <div id="inputs">
-      <input id="year" type="text" name="year" placeholder="Year" required />
-      <input id="license" type="text" name="license_plate" placeholder="License plate" required />
-      </div>
-      
-      <div id="buttons">
-        <button type="submit" id="next">Next</button>
+        <div id="inputs">
+          <input id="year" type="text" name="year" placeholder="Year" required />
+          <input id="license" type="text" name="license_plate" placeholder="License plate" required />
+        </div>
+
+        <div id="buttons">
+          <button type="submit" id="next">Next</button>
+        </div>
       </div>
     </div>
-      `;
+  `;
 
   const inputYear = document.getElementById("year");
   const inputLicense = document.getElementById("license");
@@ -76,13 +72,14 @@ export default function renderScreenUserSignUp2(data) {
     if (
       inputYear.value === "" ||
       inputLicense.value === "" ||
-      selectElementVehicles.value === "vehicle" ||
-      selectElementBrand.value === "vehicle" ||
-      selectElementColors.value === "vehicle"
+      selectElementVehicles.value === "" ||
+      selectElementBrand.value === "" ||
+      selectElementColors.value === ""
     ) {
       alert("Please fill in all fields.");
       return;
     }
+
     navigateTo("/signUpUser3", {
       ...data,
       inputYear: inputYear.value,
