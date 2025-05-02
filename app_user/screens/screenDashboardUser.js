@@ -1,4 +1,4 @@
-import { navigateTo } from "../app.js";
+import { navigateTo, makeRequest } from "../app.js";
 
 export default function renderScreenDashboardUser(data) {
   console.log(data);
@@ -144,6 +144,9 @@ export default function renderScreenDashboardUser(data) {
   const modal = document.querySelector(".modal");
   const closeModal = document.getElementById("modal-close");
 
+  const timeServiceInput = document.getElementById("time-user");
+  const dateServiceInput = document.getElementById("date-service");
+
   const chooseButtons = document.querySelectorAll("button[id^='choose-']");
 
   chooseButtons.forEach((button) => {
@@ -166,4 +169,30 @@ export default function renderScreenDashboardUser(data) {
     e.preventDefault();
     modal.classList.remove("modal--show");
   });
+
+  document.getElementById("acept-service").addEventListener("click", async () => {
+    
+    const fullData = {
+      ...data,
+      timeServiceInput: timeServiceInput.value,
+      dateServiceInput: dateServiceInput.value,
+    };
+  
+      try {
+          const response = await makeRequest("/new-service", "POST", fullData);
+          
+        console.log("response", response);
+  
+          if (response.success) {
+          console.log("response", response.currentUserData);
+          alert("Service booked successfully!");
+          navigateTo("/userProfile", response.currentUserData);
+        } else {
+          alert(response.message || "Error booking service");
+        }
+      } catch (error) {
+        console.error(error);
+        alert("Error connecting to the server.");
+      }
+    });
 }
