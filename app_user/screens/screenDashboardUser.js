@@ -113,32 +113,32 @@ export default function renderScreenDashboardUser(data) {
   </div>
   </section>
 `;
-const currentName = document.getElementById("currentName");
-const requestServiceUser = document.getElementById("requestService");
-currentName.innerHTML = "";
-currentName.innerHTML = `Welcome, ${data.inputFirstName}, to`;
+  const currentName = document.getElementById("currentName");
+  const requestServiceUser = document.getElementById("requestService");
+  currentName.innerHTML = "";
+  currentName.innerHTML = `Welcome, ${data.inputFirstName}, to`;
 
-requestServiceUser.addEventListener("click", () => {
-  const servicesSection = document.getElementById("services");
-  if (servicesSection) {
-    servicesSection.scrollIntoView({ behavior: "smooth" });
-  }
-});
+  requestServiceUser.addEventListener("click", () => {
+    const servicesSection = document.getElementById("services");
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: "smooth" });
+    }
+  });
 
+  document.getElementById("user-icon").addEventListener("click", () => {
+    console.log("User icon clicked");
+    navigateTo("/userProfile",data);
+  });
 
-document.getElementById("user-icon").addEventListener("click", () => {
-  console.log("User icon clicked"); // Ci
-});
+  document.getElementById("logout").addEventListener("click", () => {
+    console.log("Logout clicked");
 
-document.getElementById("logout").addEventListener("click", () => {
-  console.log("Logout clicked");
+    localStorage.clear();
+    sessionStorage.clear();
 
-  localStorage.clear();
-  sessionStorage.clear();
-
-  alert("You have logged out successfully");
-  navigateTo("/");
-});
+    alert("You have logged out successfully");
+    navigateTo("/");
+  });
 
   //Modal
   const modal = document.querySelector(".modal");
