@@ -1,4 +1,4 @@
-import { navigateTo } from "../app.js";
+import { makeRequest, navigateTo } from "../app.js";
 
 export default function renderScreenProfile(data) {
   console.log(data); // hecho
@@ -26,6 +26,9 @@ export default function renderScreenProfile(data) {
 
         <label for="email">Email</label>
         <input type="email" id="email">
+
+        <label for="password">Password</label>
+        <input type="text" id="password">
       </div>
 
       <div id="form-right">
@@ -71,6 +74,10 @@ export default function renderScreenProfile(data) {
 
   const currentName = document.getElementById("currentName");
 
+  document
+    .getElementById("save-profile")
+    .addEventListener("click", editProfile);
+
   const firstName = document.getElementById("first-name");
   const lastName = document.getElementById("last-name");
   const email = document.getElementById("email");
@@ -79,13 +86,15 @@ export default function renderScreenProfile(data) {
   const brand = document.getElementById("brand");
   const year = document.getElementById("year");
   const license = document.getElementById("license");
+  const password = document.getElementById("password");
 
-  // Asignación de valores
+  // Asignación de valores no de los select aún
   firstName.value = data.inputFirstName;
   lastName.value = data.inputLastName;
   email.value = data.inputEmail;
   license.value = data.inputLicense;
   year.value = data.inputYear;
+  password.value = data.inputPassword;
 
   // Helper para seleccionar valor
   function setSelectValue(selectElement, value) {
@@ -100,6 +109,27 @@ export default function renderScreenProfile(data) {
   setSelectValue(brand, data.selectElementBrand);
 
   currentName.innerHTML = `HI, ${data.inputFirstName}!`;
+
+  async function editProfile() {
+    const response = await makeRequest("/edit-user", "PUT", {
+      inputFirstName: firstName.value,
+      inputLastName: lastName.value,
+      inputEmail: email.value,
+      inputVehicle: vehicle.value,
+      inputColor: color.value,
+      inputBrand: brand.value,
+      inputYear: year.value,
+      inputLicense: license.value,
+    });
+    console.log("response", response);
+    if (response.success) {
+      const userName = response.currentUserData?.inputFirstName || "user";
+      alert(`Welcome back, ${userName}!`);
+      navigateTo("/dashboardUser", response.currentUserData);
+    } else {
+      alert(response.message || "Login failed.");
+    }
+  }
 
   document.getElementById("logout").addEventListener("click", () => {
     console.log("Logout clicked");
