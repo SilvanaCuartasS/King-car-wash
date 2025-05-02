@@ -35,7 +35,7 @@ export default function renderScreenAdminDashboard(data) {
     sessionStorage.clear();
   
     alert("You have logged out successfully");
-    navigateTo("/");
+    navigateToAdmin("/");
   });
   
 
