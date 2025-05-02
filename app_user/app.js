@@ -1,4 +1,5 @@
 import renderScreenDashboardUser from "./screens/screenDashboardUser.js";
+import renderScreenUserLanding from "./screens/screenLandingPage.js";
 import renderScreenUserLogin1 from "./screens/screenLoginUser.js";
 import renderScreenUserSignUp1 from "./screens/screenSignUpUser1.js";
 import renderScreenUserSignUp2 from "./screens/screenSignUpUser2.js";
@@ -12,21 +13,23 @@ function clearScripts() {
   document.getElementById("app").innerHTML = "";
 }
 
-let route = { path: "/", data: {} };
+let route = { path: "/landingPage", data: {} };
 router();
 
 function router() {
   switch (route.path) {
     case "/":
       clearScripts();
-      renderScreenUser1(route);
+      renderScreenUser1();
       break;
-
+    case "/landingPage":
+      clearScripts();
+      renderScreenUserLanding();
+      break;
     case "/loginUser1":
       clearScripts();
       renderScreenUserLogin1();
       break;
-
     case "/signUpUser1":
       clearScripts();
       renderScreenUserSignUp1();

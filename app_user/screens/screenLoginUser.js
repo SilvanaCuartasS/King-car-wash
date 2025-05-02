@@ -53,6 +53,8 @@ export default function renderScreenUserLogin1() {
     });
     console.log("response", response);
     if (response.success) {
+      const userName = response.currentUserData?.inputFirstName || "user";
+      alert(`Welcome back, ${userName}!`);      
       navigateTo("/dashboardUser", response.currentUserData);
     } else {
       alert(response.message || "Login failed.");

@@ -8,7 +8,9 @@ export default function renderScreenUser1() {
     <nav>
     <a href="">Services</a>
     <a href="">Wash Insure</a>
-    <img src="" alt="KingCarWashLogo">
+    <div id="logoDiv">
+        <img src="" alt="KingCarWashLogo" id="logoForClick">
+    </div>
     <a href="">Experiences</a>
     <a href="">Wash Track</a>
     </nav>
@@ -26,6 +28,11 @@ export default function renderScreenUser1() {
 
   const clientBTN = document.getElementById("clientBTN");
   const adminBTN = document.getElementById("adminBTN");
+
+  document.getElementById("logoForClick").addEventListener("click", () => {
+    console.log("King icon clicked"); 
+    navigateTo("/landingPage");
+  });
 
   adminBTN.addEventListener("click", () => {
     console.log("click");
