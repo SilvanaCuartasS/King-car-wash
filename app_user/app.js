@@ -1,5 +1,11 @@
+import renderScreenDashboardUser from "./screens/screenDashboardUser.js";
+import renderScreenProfile from "./screens/screenEditUser.js";
+import renderScreenUserLanding from "./screens/screenLandingPage.js";
 import renderScreenUserLogin1 from "./screens/screenLoginUser.js";
 import renderScreenUserSignUp1 from "./screens/screenSignUpUser1.js";
+import renderScreenUserSignUp2 from "./screens/screenSignUpUser2.js";
+import renderScreenUserSignUp3 from "./screens/screenSignUpUser3.js";
+import renderScreenUserSignUp4 from "./screens/screenSignUpUser4.js";
 import renderScreenUser1 from "./screens/screenUser1.js";
 
 const socket = io("/", { path: "/real-time" });
@@ -8,24 +14,46 @@ function clearScripts() {
   document.getElementById("app").innerHTML = "";
 }
 
-let route = { path: "/", data: {} };
+let route = { path: "/landingPage", data: {} };
 router();
 
 function router() {
   switch (route.path) {
     case "/":
-      // clearScripts();
-      renderScreenUser1(route);
+      clearScripts();
+      renderScreenUser1();
       break;
-
+    case "/landingPage":
+      clearScripts();
+      renderScreenUserLanding();
+      break;
     case "/loginUser1":
-      // clearScripts();
+      clearScripts();
       renderScreenUserLogin1();
       break;
-    
     case "/signUpUser1":
-      // clearScripts();
+      clearScripts();
       renderScreenUserSignUp1();
+      break;
+    case "/signUpUser2":
+      clearScripts();
+      renderScreenUserSignUp2(route.data);
+      break;
+    case "/signUpUser3":
+      clearScripts();
+      renderScreenUserSignUp3(route.data);
+      break;
+    case "/signUpUser4":
+      clearScripts();
+      renderScreenUserSignUp4(route.data);
+      break;
+    case "/dashboardUser":
+      clearScripts();
+      renderScreenDashboardUser(route.data);
+      break;
+    case "/userProfile":
+      clearScripts();
+      renderScreenProfile(route.data);
       break;
 
     default:
@@ -35,19 +63,17 @@ function router() {
 }
 
 function navigateTo(path, data) {
-  console.log(path); //aqui si llega
   route = { path, data };
   router();
-  console.log(route);
 }
 
+//For both Admin and User
 async function makeRequest(url, method, body) {
-
   //bien
   console.log(url);
   console.log(method);
   console.log(body);
-  
+
   const BASE_URL = "http://localhost:5057";
   let response = await fetch(`${BASE_URL}${url}`, {
     method: method,
@@ -58,7 +84,6 @@ async function makeRequest(url, method, body) {
   });
 
   response = await response.json();
-
   return response;
 }
 
