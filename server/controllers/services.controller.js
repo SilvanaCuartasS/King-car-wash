@@ -7,32 +7,41 @@ const getServices = async (req, res) => {
 
 const serviceUser = async (req, res) => {
     const service = await getAllservices();
-    const { timeServiceInput, dateServiceInput } = req.body;
+    const { serviceName, timeServiceInput, dateServiceInput } = req.body;
   
-    if (!timeServiceInput || !dateServiceInput) {
+    if (!serviceName || !timeServiceInput || !dateServiceInput) {
       return res
         .status(400)
         .json({ message: "Ops, faltan datos", success: false });
     }
   
     const foundService = service.find(
-      (u) => u.timeServiceInput === timeServiceInput && u.dateServiceInput === dateServiceInput
+      (u) => u.timeServiceInput === timeServiceInput && 
+             u.dateServiceInput === dateServiceInput &&
+             u.serviceName === serviceName
     );
   
-    console.log("Servicio guardado con éxito:", foundService);
-    res.json({ message: "Servicio guardado", success: true, currentUserData: foundService });
+    console.log("Servicio encontrado:", foundService);
+    res.json({ 
+      message: "Servicio encontrado", 
+      success: true, 
+      serviceData: foundService 
+    });
 };
 
+// controllers/services.controller.js
 const createService = async (req, res) => {
-    const userDataService = req.body;
+    const { serviceName, dateServiceInput, timeServiceInput } = req.body;
   
-    if (!userDataService.timeServiceInput || !userDataService.dateServiceInput) {
+    if (!serviceName || !timeServiceInput || !dateServiceInput) {
       return res.status(400).json({ message: "Faltan datos del servicio", success: false });
     }
   
     const newService = {
       id: Date.now(), 
-      ...userDataService,
+      serviceName,
+      dateServiceInput,
+      timeServiceInput
     };
   
     await createServiceDB(newService);
@@ -42,9 +51,9 @@ const createService = async (req, res) => {
     res.json({
       message: "Servicio guardado",
       success: true,
-      currentUserData: newService,
+      currentServiceData: newService,
     });
-  };
+};
   
 module.exports = {
     getServices,
