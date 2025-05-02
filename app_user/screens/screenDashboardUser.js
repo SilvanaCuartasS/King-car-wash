@@ -100,6 +100,37 @@ export default function renderScreenDashboardUser(data) {
     </div>
   </div>
 
+  <footer>
+        <div id="social&king">
+           <img src="" alt="" id="kingIcon">
+           <img src="" alt="" id="facebookIcon">
+           <img src="" alt="" id="igIcon">
+           <img src="" alt="" id="pinterestIcon">
+        </div>
+
+        <div id="workingHours">
+            <h3>Working Hours:</h3>
+            <p>Mon-Sat: 08:30 - 17:00</p>
+            <p>Sun: 09:00 - 17:00</p>
+        </div>
+
+        <div id="adress">
+            <h3>Address::</h3>
+            <p>Caney, Cra.83c #25-15, Cali, Valle del Cauca, Colombia</p>
+        </div>
+
+        <div id="hitsUp">
+            <h3>Hits Up:</h3>
+            <p>+57 313 123 4567</p>
+            <p>KingWashTrack@gmail.com</p>
+        </div>
+
+        <hr>
+
+        <img src="" alt="" id="footerIcon">
+        <p>KingWashTrack.com.au. All rights reserved  | designed by ChontaduroGroup</p>
+      </footer>
+
   <section class="modal">
   <div class="modal-container">
       <h1>Your Car is Ready to Shine!</h1>
@@ -189,7 +220,8 @@ document.getElementById("acept-service").addEventListener("click", async () => {
       console.log("Servicio creado:", response.currentServiceData);
       alert("Service booked successfully!");
       modal.classList.remove("modal--show");
-      // Aquí puedes redirigir o actualizar la UI como necesites
+     
+      navigateTo("/userProgressService", response.currentServiceData);
     } else {
       alert(response.message || "Error booking service");
     }

@@ -7,6 +7,7 @@ import renderScreenUserSignUp2 from "./screens/screenSignUpUser2.js";
 import renderScreenUserSignUp3 from "./screens/screenSignUpUser3.js";
 import renderScreenUserSignUp4 from "./screens/screenSignUpUser4.js";
 import renderScreenUser1 from "./screens/screenUser1.js";
+import renderScreenUserProgressService from "./screens/screenProgressServiceUser.js";
 
 const socket = io("/", { path: "/real-time" });
 
@@ -54,6 +55,11 @@ function router() {
     case "/userProfile":
       clearScripts();
       renderScreenProfile(route.data);
+
+    case "/userProgressService":
+      clearScripts();
+      renderScreenUserProgressService(route.data);
+    
       break;
 
     default:
