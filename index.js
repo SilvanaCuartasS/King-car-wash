@@ -4,6 +4,7 @@ const { createServer } = require("http");
 
 const usersRouter = require("./server/routes/users.router.js");
 const adminRouter = require("./server/routes/admin.router.js");
+const servicesRoutes = require("./server/routes/service.router.js");
 const { initSocketInstance } = require("./server/services/socket.service.js");
 
 const PORT = 5057;
@@ -19,6 +20,7 @@ app.use("/app_user", express.static(path.join(__dirname, "app_user")));
 // Routes
 app.use("/", usersRouter);
 app.use("/", adminRouter);
+app.use("/", servicesRoutes);
 
 // Services
 initSocketInstance(httpServer);
