@@ -73,7 +73,8 @@ export default function renderScreenAdminLogin() {
 
     if (response.success) {
       console.log("Login exitoso");
-      localStorage.setItem("currentAdmin", JSON.stringify(response.currentAdmin)); // Guarda el admin
+      const adminName = response.currentAdmin?.name || "admin";
+      alert(`Welcome back, ${adminName}!`);  
       navigateToAdmin("/dashboardAdmin",response.currentAdmin);
     } else {
       alert(response.message || "Error al iniciar sesión");
