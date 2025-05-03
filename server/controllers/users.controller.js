@@ -37,7 +37,6 @@ const loginService = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-  const users = await getAllUsers();
   const userData = req.body;
 
   console.log("esto llegó del body", userData);
@@ -53,7 +52,7 @@ const createUser = async (req, res) => {
     });
   }
 
-  const newUser = await createUserDB({ id: users.length + 1, ...userData });
+  const newUser = await createUserDB({ id: Date.now(), ...userData });
 
   console.log("Usuario creado y enviado a DB:", newUser);
 

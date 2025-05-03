@@ -1,5 +1,6 @@
 import renderScreenAdmin1 from "./screens/screenAdmin1.js";
 import renderScreenAdminDashboard from "./screens/screenDashboardAdmin.js";
+import renderScreenDashboardOrders from "./screens/screenDashboardOrdersAdmin.js";
 import renderScreenAdminLogin from "./screens/screenLoginAdmin.js";
 
 const socket = io("/", { path: "/real-time" });
@@ -11,7 +12,7 @@ function clearScripts() {
 let route = { path: "/", data: {} };
 renderRoute(route);
 
-function renderRoute(route) {
+async function renderRoute(route) {
   switch (route?.path) {
     case "/":
       clearScripts();
@@ -24,6 +25,10 @@ function renderRoute(route) {
     case "/dashboardAdmin":
       clearScripts();
       renderScreenAdminDashboard(route.data);
+      break;
+    case "/dashboardOrdersAdmin":
+      clearScripts();
+      await renderScreenDashboardOrders();
       break;
     default:
       const app = document.getElementById("app");

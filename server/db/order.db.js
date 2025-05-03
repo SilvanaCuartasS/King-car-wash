@@ -6,6 +6,7 @@ const getAllOrders = async () => {
 
 const createOrderDB = async (payload) => {
   orders.push(payload);
+  return payload
 };
 
 module.exports = {

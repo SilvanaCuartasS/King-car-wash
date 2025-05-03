@@ -10,7 +10,12 @@ const getServices = async (req, res) => {
 //Obtiene todas las ordenes que se van creando
 const getOrders = async (req, res) => {
   const orders = await getAllOrders();
-  res.send(orders);
+
+  res.json({
+    message: "Enviadas todas las ordenes",
+    success: true,
+    orders: orders,
+  });
 };
 
 //Esta aún no se está usando
@@ -41,9 +46,23 @@ const serviceUser = async (req, res) => {
 
 // controllers/services.controller.js
 const createOrder = async (req, res) => {
-  const { idUser, serviceName, dateServiceInput, timeServiceInput } = req.body;
+  const {
+    idUser,
+    nameUser,
+    plateUser,
+    serviceName,
+    dateServiceInput,
+    timeServiceInput,
+  } = req.body;
 
-  if (!idUser || !serviceName || !timeServiceInput || !dateServiceInput) {
+  if (
+    !idUser ||
+    !nameUser ||
+    !plateUser ||
+    !serviceName ||
+    !timeServiceInput ||
+    !dateServiceInput
+  ) {
     return res
       .status(400)
       .json({ message: "Faltan datos del servicio", success: false });
@@ -51,20 +70,24 @@ const createOrder = async (req, res) => {
 
   // hacer lógica para verificar si el servicio ya existe
   const existingOrder = await getAllOrders();
+
   const foundOrder = existingOrder.find(
-    (u) =>
-      u.timeServiceInput === timeServiceInput
+    (u) => u.timeServiceInput === timeServiceInput
   );
   if (foundOrder) {
-    return res
-      .status(400)
-      .json({ message: "El servicio ya existe, elige otra franja horaria", success: false });
+    return res.status(400).json({
+      message: "El servicio ya existe, elige otra franja horaria",
+      success: false,
+    });
   }
+
   // Si no existe, crear la nueva orden
 
   const newOrder = {
-    id: Date.now(), //Esta bien porque es el id de la orden
+    idOrder: Date.now(), //Esta bien porque es el id de la orden
     idUser: idUser,
+    nameClient: nameUser,
+    plate: plateUser,
     serviceName: serviceName,
     dateServiceInput: dateServiceInput,
     timeServiceInput: timeServiceInput,
