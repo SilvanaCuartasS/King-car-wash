@@ -1,7 +1,7 @@
 import { navigateTo, makeRequest } from "../app.js";
 
 export default function renderScreenDashboardUser(data) {
-  console.log(data);
+  console.log("data que llegó del sign up: ", data);
 
   const app = document.getElementById("app");
   app.innerHTML = `
@@ -205,7 +205,10 @@ export default function renderScreenDashboardUser(data) {
 document.getElementById("acept-service").addEventListener("click", async () => {
   const serviceDisplayName = document.querySelector(".modal p strong").textContent;
   
+  console.log(data.id);
+  
   const serviceData = {
+    idUser: data.id, //Debemos saber el id del usuario que está creando su servicio
     serviceName: serviceDisplayName,
     timeServiceInput: timeServiceInput.value,
     dateServiceInput: dateServiceInput.value,
