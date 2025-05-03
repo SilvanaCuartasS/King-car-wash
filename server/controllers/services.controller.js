@@ -49,6 +49,19 @@ const createOrder = async (req, res) => {
       .json({ message: "Faltan datos del servicio", success: false });
   }
 
+  // hacer lógica para verificar si el servicio ya existe
+  const existingOrder = await getAllOrders();
+  const foundOrder = existingOrder.find(
+    (u) =>
+      u.timeServiceInput === timeServiceInput
+  );
+  if (foundOrder) {
+    return res
+      .status(400)
+      .json({ message: "El servicio ya existe, elige otra franja horaria", success: false });
+  }
+  // Si no existe, crear la nueva orden
+
   const newOrder = {
     id: Date.now(), //Esta bien porque es el id de la orden
     idUser: idUser,
