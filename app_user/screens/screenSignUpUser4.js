@@ -69,7 +69,7 @@ export default function renderScreenUserSignUp4(data) {
     };
 
     try {
-        const response = await makeRequest("/signup-user", "POST", fullData);
+      const response = await makeRequest("/signup-user", "POST", fullData);
         
       console.log("response", response);
 
