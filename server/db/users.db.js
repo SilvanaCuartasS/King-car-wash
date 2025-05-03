@@ -7,6 +7,7 @@ const getAllUsers = async () => {
 
 const createUserDB = async (user) => {
   users.push(user);
+  return user;
 };
 
 module.exports = {

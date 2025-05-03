@@ -29,14 +29,18 @@ const loginService = async (req, res) => {
   }
 
   console.log("Inicio de sesión exitoso:", foundUser);
-  res.json({ message: "Inicio de sesión exitoso", success: true, currentUserData: foundUser });
+  res.json({
+    message: "Inicio de sesión exitoso",
+    success: true,
+    currentUserData: foundUser,
+  });
 };
 
 const createUser = async (req, res) => {
   const users = await getAllUsers();
   const userData = req.body;
 
-  console.log(userData);
+  console.log("esto llegó del body", userData);
 
   const hasEmptyField = Object.values(userData).some(
     (value) => value === undefined || value === null || value === ""
@@ -49,13 +53,14 @@ const createUser = async (req, res) => {
     });
   }
 
-  createUserDB({ id: users.length + 1, ...userData });
-  console.log("Usuario creado y enviado a DB:", users);
+  const newUser = await createUserDB({ id: users.length + 1, ...userData });
+
+  console.log("Usuario creado y enviado a DB:", newUser);
 
   res.json({
     message: "Inicio de sesión exitoso",
     success: true,
-    currentUserData: userData,
+    currentUserData: newUser,
   });
 };
 
