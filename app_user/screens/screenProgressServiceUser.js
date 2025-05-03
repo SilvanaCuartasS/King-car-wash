@@ -88,7 +88,4 @@ export default function renderScreenUserProgressService(data) {
   </section>
 `;
 
-
-
-  
 }
