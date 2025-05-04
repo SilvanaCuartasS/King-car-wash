@@ -17,31 +17,36 @@ export default function renderScreenAdminLogin() {
     // 👇 Carga el CSS al renderizar esta pantalla
     loadCSS("/app_admin/styles/screenLoginAdmin.css");
     
-  app.innerHTML = `
-    <div id="logo-container">
-      <img src="" alt="Logo" id="logo">
-    </div>
-
-    <div id="login-container">
-      <button id="backBTN">Back</button>
-      <h1>LOG IN ADMIN</h1>
-      <p>Welcome back!</p>
-      <img src="" alt="userIcon" id="userIcon">
-      <input type="email" id="email" placeholder="email">
-
-      <div id="password-container">
-        <img src="" alt="lockIcon" id="lockIcon">
-        <input type="password" id="password" placeholder="password">
-        <button type="button" id="togglePassword">Show</button>
+    app.innerHTML = `
+    <div id="login-wrapper">
+      <div id="logo-container">
+        <img src="/app_admin/assets/logo-king.png" alt="Logo" id="logo">
       </div>
-
-      <div id="admincode-container">
-        <img src="" alt="lockIcon2" id="lockIcon2">
-        <input type="password" id="adminCode" placeholder="Admin code">
-        <button type="button" id="toggleAdminCode">Show</button>
+  
+      <div id="login-container">
+        <button id="backBTN">Back</button>
+        <h1>LOG IN ADMIN</h1>
+        <p>Welcome back!</p>
+  
+        <div class="input-group" id="email-container">
+          <img src="/app_admin/assets/user-icon.png" alt="userIcon" id="userIcon">
+          <input type="email" id="email" placeholder="Email">
+        </div>
+  
+        <div class="input-group password-wrapper" id="password-container">
+          <img src="/app_admin/assets/lock-icon.png" alt="lockIcon" id="lockIcon">
+          <input type="password" id="password" placeholder="Password">
+          <button type="button" id="togglePassword">Show</button>
+        </div>
+  
+        <div class="input-group password-wrapper" id="admincode-container">
+          <img src="/app_admin/assets/admin-icon.png" alt="lockIcon2" id="lockIcon2">
+          <input type="password" id="adminCode" placeholder="Admin code">
+          <button type="button" id="toggleAdminCode">Show</button>
+        </div>
+  
+        <button id="log-in">Log in</button>
       </div>
-
-      <button id="log-in">Log in</button>
     </div>
   `;
 
