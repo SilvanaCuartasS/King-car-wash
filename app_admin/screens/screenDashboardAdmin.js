@@ -1,7 +1,22 @@
 import { navigateToAdmin } from "../app.js";
 
+// 👉 Función para cargar el CSS dinámicamente
+function loadCSS(href) {
+  const existingLink = document.querySelector(`link[href="${href}"]`);
+  if (!existingLink) {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    document.head.appendChild(link);
+  }
+}
+
 export default function renderScreenAdminDashboard(data) {
   console.log(data);
+
+    // 👇 Carga el CSS al renderizar esta pantalla
+    loadCSS("/app_admin/styles/screenDashboardAdmin.css");
+
   const app = document.getElementById("app");
   app.innerHTML = `
     
