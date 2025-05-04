@@ -1,7 +1,7 @@
 import { makeRequest } from "../../app_user/app.js";
 import { navigateToAdmin } from "../app.js";
 
-export default async function renderScreenDashboardOrders(data) {
+export default function renderScreenEditOrder(data) {
   console.log(data); // hecho
 
   const app = document.getElementById("app");
@@ -24,40 +24,25 @@ export default async function renderScreenDashboardOrders(data) {
     <!-- Contenido principal -->
     <main id="content">
       <header id="header">
-        <h1 id="page-title">CAR MANAGEMENT</h1>
-        <div id="filters">
-          <button id="filter-active">🟢 Active</button>
-          <button id="filter-finalized">🟡 Finalized</button>
-          <button id="filter-notarrive">⚫ Not Arrive</button>
-          <input type="date" id="date-filter" value="2024-04-24" />
-          <input type="text" id="search-bar" placeholder="Search" />
-        </div>
+        <h1 id="page-title">EDIT</h1>
       </header>
 
       <!-- Contenedor de tarjetas dinámicas -->
       <section id="card-container"></section>
-  `;
 
+      <div id="buttonsEdit">
+      <button id="confirm">Confirm</button>
+      <button id="back">Back</button>
+      </div>
+      <button id="deleteOrder">Delete Order</button>
+  `;
+  const confirm = document.getElementById("confirm");
+  const back = document.getElementById("back");
+  const deleteOrder = document.getElementById("deleteOrder");
   const logOutBTN = document.getElementById("logOut");
   const cardContainer = document.getElementById("card-container");
 
-  async function orderGetDB() {
-    const response = await makeRequest("/orders", "GET");
-
-    if (response.success) {
-      console.log("response:", response.orders);
-
-      return response.orders;
-    } else {
-      alert(response.message || "Error al obtener la orden");
-      return [];
-    }
-  }
-
-  const orderDB = await orderGetDB();
-  console.log("orderDB:", orderDB);
-
-  orderDB.forEach((order) => {
+  data.forEach((order) => {
     const card = document.createElement("div");
     card.classList.add("car-card");
     card.id = ("order-card-" + order.id).toLowerCase();
@@ -80,12 +65,11 @@ export default async function renderScreenDashboardOrders(data) {
       </div>
     `;
 
-    // Agrega el event listener aquí:
-    card.addEventListener("click", () => {
-      navigateToAdmin("/editOrder", [order]);
-    });
-
     cardContainer.appendChild(card);
+  });
+
+  back.addEventListener("click", () => {
+    navigateToAdmin("/dashboardOrdersAdmin");
   });
 
   logOutBTN.addEventListener("click", () => {

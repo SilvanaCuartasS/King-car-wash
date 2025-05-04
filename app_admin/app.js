@@ -1,4 +1,5 @@
 import renderScreenAdmin1 from "./screens/screenAdmin1.js";
+import renderScreenEditOrder from "./screens/screenChangeStatusAdmin.js";
 import renderScreenAdminDashboard from "./screens/screenDashboardAdmin.js";
 import renderScreenDashboardOrders from "./screens/screenDashboardOrdersAdmin.js";
 import renderScreenAdminLogin from "./screens/screenLoginAdmin.js";
@@ -29,6 +30,10 @@ async function renderRoute(route) {
     case "/dashboardOrdersAdmin":
       clearScripts();
       await renderScreenDashboardOrders();
+      break;
+    case "/editOrder":
+      clearScripts();
+      await renderScreenEditOrder(route.data);
       break;
     default:
       const app = document.getElementById("app");
