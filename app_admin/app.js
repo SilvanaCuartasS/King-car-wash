@@ -1,6 +1,7 @@
 import renderScreenAdmin1 from "./screens/screenAdmin1.js";
 import renderScreenAdminDashboard from "./screens/screenDashboardAdmin.js";
 import renderScreenDashboardOrders from "./screens/screenDashboardOrdersAdmin.js";
+import renderScreenEditOrden from "./screens/screenOrdersEditAdmin.js";
 import renderScreenAdminLogin from "./screens/screenLoginAdmin.js";
 
 const socket = io("/", { path: "/real-time" });
