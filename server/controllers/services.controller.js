@@ -1,5 +1,7 @@
 const { getAllOrders, createOrderDB } = require("../db/order.db.js");
 const { getAllservices } = require("../db/services.db.js");
+const { emitEvent } = require("../services/socket.service.js");
+const { deleteOrderDB } = require("../db/order.db.js");
 
 //Obtiene los servicios de la base de datos quemada
 const getServices = async (req, res) => {
@@ -104,9 +106,60 @@ const createOrder = async (req, res) => {
   });
 };
 
+const stateSend = async (req, res) => {
+  try {
+    const { id, estado } = req.body;
+
+    if (!id || !estado) {
+      return res.status(400).json({ message: "ID y estado son requeridos" });
+    }
+
+    // Simula guardado o actualización (por ejemplo en DB)
+    console.log(`Orden con ID ${id} actualizada al estado: ${estado}`);
+
+    emitEvent("estadoServicio", {
+      id,
+      estado,
+    });
+
+    return res.status(200).json({
+      message: `Estado "${estado}" recibido correctamente para la orden ${id}`
+    });
+  } catch (error) {
+    console.error("Error en el controlador stateSend:", error);
+    return res.status(500).json({ message: "Error interno del servidor" });
+  }
+};
+
+const deleteOrder = async (req, res) => {
+  const { id } = req.body;
+
+  if (!id) {
+    return res.status(400).json({ message: "ID requerido", success: false });
+  }
+
+  await deleteOrderDB(id);
+
+  // Emitimos evento al cliente indicando que fue cancelado
+  emitEvent("ordenCancelada", {
+    id,
+    mensaje: "Your order was cancelled due to non-compliance.",
+  });
+
+  console.log(`Orden con ID ${id} eliminada`);
+
+  return res.status(200).json({
+    message: "Orden eliminada exitosamente",
+    success: true,
+  });
+};
+
+
 module.exports = {
   getServices,
   getOrders,
   serviceUser,
   createOrder,
+  stateSend,
+  deleteOrder,
 };

@@ -1,4 +1,4 @@
-import { navigateTo, makeRequest } from "../app.js";
+import { navigateTo, makeRequest, socket } from "../app.js";
 
 export default function renderScreenUserProgressService(data) {
   console.log(data);
@@ -41,6 +41,8 @@ export default function renderScreenUserProgressService(data) {
               </svg>
               
     </div>
+    <div id="estadoMensaje" style="margin-top: 1rem; font-weight: bold; font-size: 1.2rem; color: #333;"></div>
+
 
 
     <div id="banner-progressSpam">
@@ -50,6 +52,20 @@ export default function renderScreenUserProgressService(data) {
         <p>Because your ride deserves to shine without breaking the bank.</p>
     </div>
 </div>
+
+<div id="readyModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
+  <div style="background:#4b4b4b; color:white; padding:2rem; border-radius:12px; max-width:500px; text-align:center; position:relative;">
+    <button id="closeModal" style="position:absolute; top:10px; right:15px; background:none; border:none; font-size:1.2rem; color:white; cursor:pointer;">✕</button>
+    <h2 style="margin-bottom:1rem;">THANK YOU FOR CHOOSING <br> KING CAR WASH!</h2>
+    <p>Your car is ready! You can pick it up and make the payment at any of our physical locations.</p>
+    <p>We'd love to hear about your experience! Help us improve by filling out this quick survey:</p>
+    <div style="margin-top:1.5rem;">
+      <button style="padding:0.5rem 1.5rem; margin-right:1rem; background:white; color:#4b4b4b; border-radius:20px; border:none; font-weight:bold; cursor:pointer;">Survey</button>
+      <button id="notNow" style="padding:0.5rem 1.5rem; background:white; color:#4b4b4b; border-radius:20px; border:none; font-weight:bold; cursor:pointer;">Not now</button>
+    </div>
+  </div>
+</div>
+
 
 
     <footer>
@@ -88,4 +104,83 @@ export default function renderScreenUserProgressService(data) {
   </section>
 `;
 
-}
+socket.on("estadoServicio", ({ estado }) => {
+    console.log("Estado recibido del servidor:", estado);
+  
+    // Primero, limpiar cualquier estado activo anterior
+    const iconIds = ["iconReceived", "iconWashing", "iconFinalTouches", "iconAllSet"];
+    iconIds.forEach(id => {
+      const icon = document.getElementById(id);
+      if (icon) icon.classList.remove("icon-active");
+    });
+
+    const estadoMensaje = document.getElementById("estadoMensaje");
+    if (estadoMensaje) {
+      let texto = "";
+      switch (estado) {
+        case "wash":
+          texto = "Status changed to: Washed";
+          break;
+        case "touches":
+          texto = "Status changed to: Finishing Touches";
+          break;
+        case "set":
+        document.getElementById("iconAllSet")?.classList.add("icon-active");
+          
+        // Mostrar modal
+        const modal = document.getElementById("readyModal");
+        if (modal) modal.style.display = "flex";
+        break;
+        
+        default:
+          texto = "Unknown status";
+      }
+      estadoMensaje.textContent = texto;
+    }
+    
+  });
+
+  document.getElementById("closeModal")?.addEventListener("click", () => {
+    document.getElementById("readyModal").style.display = "none";
+  });
+  
+  document.getElementById("notNow")?.addEventListener("click", () => {
+    document.getElementById("readyModal").style.display = "none";
+  });
+
+  document.getElementById("notNow")?.addEventListener("click", () => {
+    navigateTo("/dashboardUser", data);
+  });
+
+  socket.on("ordenCancelada", (data) => {
+    
+    const modal = document.createElement("div");
+    modal.innerHTML = `
+      <div style="
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      ">
+        <div style="background: white; padding: 2rem; border-radius: 8px; max-width: 400px; text-align: center;">
+          <h2 style="margin-bottom: 1rem;">Order canceled</h2>
+          <p>${data.mensaje}</p>
+          <button id="closeModalDash" style="margin-top: 1.5rem; padding: 0.5rem 1rem;">Acept</button>
+        </div>
+      </div>
+    `;
+  
+    document.body.appendChild(modal);
+  
+    document.getElementById("closeModalDash").onclick = () => {
+      modal.remove();
+      navigateTo("/dashboardUser", data); 
+    };
+  });
+  
+  
+}  

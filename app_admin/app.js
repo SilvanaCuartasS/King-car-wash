@@ -29,11 +29,11 @@ async function renderRoute(route) {
       break;
     case "/dashboardOrdersAdmin":
       clearScripts();
-      await renderScreenDashboardOrders();
+      renderScreenDashboardOrders();
       break;
     case "/editOrder":
       clearScripts();
-      await renderScreenEditOrder(route.data);
+      renderScreenEditOrder(route.data);
       break;
     default:
       const app = document.getElementById("app");
@@ -46,4 +46,23 @@ function navigateToAdmin(path, data) {
   renderRoute(route);
 }
 
-export { navigateToAdmin, socket };
+async function makeRequest(url, method, body) {
+  //bien
+  console.log(url);
+  console.log(method);
+  console.log(body);
+
+  const BASE_URL = "http://localhost:5057";
+  let response = await fetch(`${BASE_URL}${url}`, {
+    method: method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: body ? JSON.stringify(body) : null,
+  });
+
+  response = await response.json();
+  return response;
+}
+
+export { navigateToAdmin, socket, makeRequest };

@@ -3,6 +3,8 @@ import { navigateTo, makeRequest } from "../app.js";
 export default function renderScreenDashboardUser(data) {
   console.log("data que llegó del sign up: ", data);
 
+  
+
   const app = document.getElementById("app");
   app.innerHTML = `
   <div id="dashboard-user">
@@ -147,7 +149,7 @@ export default function renderScreenDashboardUser(data) {
   const currentName = document.getElementById("currentName");
   const requestServiceUser = document.getElementById("requestService");
   currentName.innerHTML = "";
-  currentName.innerHTML = `Welcome, ${data.inputFirstName}, to`;
+  currentName.innerHTML = `Welcome, ${data.inputFirstName || data.nameClient}, to`;
 
   requestServiceUser.addEventListener("click", () => {
     const servicesSection = document.getElementById("services");
