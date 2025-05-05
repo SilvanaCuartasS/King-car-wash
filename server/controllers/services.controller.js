@@ -1,6 +1,7 @@
 const { getAllOrders, createOrderDB } = require("../db/order.db.js");
 const { getAllservices } = require("../db/services.db.js");
 const { emitEvent } = require("../services/socket.service.js");
+const { deleteOrderDB } = require("../db/order.db.js");
 
 //Obtiene los servicios de la base de datos quemada
 const getServices = async (req, res) => {
@@ -130,6 +131,28 @@ const stateSend = async (req, res) => {
   }
 };
 
+const deleteOrder = async (req, res) => {
+  const { id } = req.body;
+
+  if (!id) {
+    return res.status(400).json({ message: "ID requerido", success: false });
+  }
+
+  await deleteOrderDB(id);
+
+  // Emitimos evento al cliente indicando que fue cancelado
+  emitEvent("ordenCancelada", {
+    id,
+    mensaje: "Your order was cancelled due to non-compliance.",
+  });
+
+  console.log(`Orden con ID ${id} eliminada`);
+
+  return res.status(200).json({
+    message: "Orden eliminada exitosamente",
+    success: true,
+  });
+};
 
 
 module.exports = {
@@ -138,4 +161,5 @@ module.exports = {
   serviceUser,
   createOrder,
   stateSend,
+  deleteOrder,
 };

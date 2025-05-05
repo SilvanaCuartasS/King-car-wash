@@ -3,6 +3,8 @@ import { navigateTo, makeRequest } from "../app.js";
 export default function renderScreenDashboardUser(data) {
   console.log("data que llegó del sign up: ", data);
 
+  
+
   const app = document.getElementById("app");
   app.innerHTML = `
   <div id="dashboard-user">

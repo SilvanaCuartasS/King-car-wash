@@ -9,7 +9,13 @@ const createOrderDB = async (payload) => {
   return payload
 };
 
+const deleteOrderDB = async (id) => {
+  orders = orders.filter((order) => order.idOrder !== id);
+  return true;
+};
+
 module.exports = {
     getAllOrders,
     createOrderDB,
+    deleteOrderDB
   };

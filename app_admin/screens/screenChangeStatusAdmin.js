@@ -30,10 +30,20 @@ export default function renderScreenEditOrder(data) {
       <section id="card-container"></section>
 
       <div id="buttonsEdit">
-      <button id="confirm">Confirm</button>
       <button id="back">Back</button>
       </div>
       <button id="deleteOrder">Delete Order</button>
+
+      <div id="deleteModal" class="modal hidden">
+      <div class="modal-content">
+      <p><strong>Delete Order</strong></p>
+      <p>Are you really sure you want to delete this service?</p>
+      <div class="modal-actions">
+      <button id="cancelDelete">Cancel</button>
+      <button id="confirmDelete">Delete</button>
+      </div>
+      </div>
+      </div>
   `;
   const confirm = document.getElementById("confirm");
   const back = document.getElementById("back");
@@ -127,6 +137,31 @@ export default function renderScreenEditOrder(data) {
     alert("You have logged out successfully");
     navigateToAdmin("/");
   });
+
+  const modal = document.getElementById("deleteModal");
+const cancelDelete = document.getElementById("cancelDelete");
+const confirmDelete = document.getElementById("confirmDelete");
+
+deleteOrder.addEventListener("click", () => {
+  modal.classList.remove("hidden");
+});
+
+cancelDelete.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+
+confirmDelete.addEventListener("click", async () => {
+  try {
+    const response = await makeRequest("/delete-order", "POST", { id: data[0].idOrder });
+    console.log("Orden eliminada:", response.message);
+    alert("Order deleted successfully");
+    navigateToAdmin("/dashboardOrdersAdmin");
+  } catch (err) {
+    console.error("Error deleting order:", err);
+    alert("Error deleting the order.");
+  }
+});
+
 
 };
 
