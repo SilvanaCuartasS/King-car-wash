@@ -1,4 +1,4 @@
-import { navigateTo, makeRequest } from "../app.js";
+import { navigateTo, makeRequest, socket } from "../app.js";
 
 export default function renderScreenUserProgressService(data) {
   console.log(data);
@@ -41,6 +41,8 @@ export default function renderScreenUserProgressService(data) {
               </svg>
               
     </div>
+    <div id="estadoMensaje" style="margin-top: 1rem; font-weight: bold; font-size: 1.2rem; color: #333;"></div>
+
 
 
     <div id="banner-progressSpam">
@@ -88,4 +90,34 @@ export default function renderScreenUserProgressService(data) {
   </section>
 `;
 
-}
+socket.on("estadoServicio", ({ estado }) => {
+    console.log("Estado recibido del servidor:", estado);
+  
+    // Primero, limpiar cualquier estado activo anterior
+    const iconIds = ["iconReceived", "iconWashing", "iconFinalTouches", "iconAllSet"];
+    iconIds.forEach(id => {
+      const icon = document.getElementById(id);
+      if (icon) icon.classList.remove("icon-active");
+    });
+
+    const estadoMensaje = document.getElementById("estadoMensaje");
+    if (estadoMensaje) {
+      let texto = "";
+      switch (estado) {
+        case "wash":
+          texto = "Status changed to: Washed";
+          break;
+        case "touches":
+          texto = "Status changed to: Finishing Touches";
+          break;
+        case "set":
+          texto = "Status changed to: All set";
+          break;
+        default:
+          texto = "Unknown status";
+      }
+      estadoMensaje.textContent = texto;
+    }
+    
+  });
+}  

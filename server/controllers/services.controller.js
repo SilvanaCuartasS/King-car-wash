@@ -1,5 +1,6 @@
 const { getAllOrders, createOrderDB } = require("../db/order.db.js");
 const { getAllservices } = require("../db/services.db.js");
+const { emitEvent } = require("../services/socket.service.js");
 
 //Obtiene los servicios de la base de datos quemada
 const getServices = async (req, res) => {
@@ -104,9 +105,37 @@ const createOrder = async (req, res) => {
   });
 };
 
+const stateSend = async (req, res) => {
+  try {
+    const { id, estado } = req.body;
+
+    if (!id || !estado) {
+      return res.status(400).json({ message: "ID y estado son requeridos" });
+    }
+
+    // Simula guardado o actualización (por ejemplo en DB)
+    console.log(`Orden con ID ${id} actualizada al estado: ${estado}`);
+
+    emitEvent("estadoServicio", {
+      id,
+      estado,
+    });
+
+    return res.status(200).json({
+      message: `Estado "${estado}" recibido correctamente para la orden ${id}`
+    });
+  } catch (error) {
+    console.error("Error en el controlador stateSend:", error);
+    return res.status(500).json({ message: "Error interno del servidor" });
+  }
+};
+
+
+
 module.exports = {
   getServices,
   getOrders,
   serviceUser,
   createOrder,
+  stateSend,
 };
