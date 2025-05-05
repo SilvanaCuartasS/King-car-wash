@@ -163,14 +163,12 @@ body {
     gap: 1rem;
   }
   
-  .social-icons i {
-    font-size: 1.1rem;
-    color: #F8F8F8;
-    transition: opacity 0.3s;
-  }
-  
-  .social-icons i:hover {
-    opacity: 0.7;
+  #FacebookIcon,
+  #pinterestIcon,
+  #igIcon {
+    height: 30px;
+    margin: 10px 10px 0 0;
+    cursor: pointer;
   }
   
   .info-column {

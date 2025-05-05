@@ -1,0 +1,853 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background: none;
+    color: #000;
+  }
+  
+  /* ------------------------- */
+  /* NAVBAR                    */
+  /* ------------------------- */
+    /* --- Navbar --- */
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2rem;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+      
+      .hamburger {
+        position: absolute;
+        left: 1.5rem;
+        font-size: 1.8rem;
+        color: #fff;
+        cursor: pointer;
+        display: none;
+      }
+      
+      .logo {
+        height: 70px;
+        margin: 0 1rem;
+      }
+      
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+      }
+      
+      .nav-links a {
+        color: #F8F8F8;
+        text-decoration: none;
+        font-weight: bold;
+        position: relative;
+        padding: 0.5rem 0.8rem;
+      }
+      
+      .nav-links a::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 25%;
+        bottom: 25%;
+        width: 2px;
+        background-color: #F8F8F8;
+      }
+  
+  /* ------------------------- */
+  /* BANNER PRINCIPAL          */
+  /* ------------------------- */
+  #bannerInitial {
+    height: calc(100vh - 80px);
+    width: 100%;
+    margin: 0;
+    padding: 0 20px;
+    background: linear-gradient(rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url("/app_user/assets/banner-image.png") no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+  }
+  #bannerInitial::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px; /* mismo alto que la navbar */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 100), rgba(0, 0, 0, 0));
+    z-index: 1;
+  }
+  
+  #bannerIcon {
+    width: 55px;
+    margin-bottom: 1.5rem;
+  }
+  
+  #bannerInitial h1 {
+    font-size: 48px;
+    font-weight: 900;
+    color: #FFD700;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+  }
+  
+  #bannerInitial p {
+    font-size: 17px;
+    max-width: 620px;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    color: white;
+  }
+  
+  #bannerInitial p span {
+    color: #FFD700;
+    font-weight: bold;
+  }
+  
+  #bannerInitial h2 {
+    font-size: 25px;
+    font-style: italic;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 25px;
+  }
+  
+  #bookNow {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 10px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  #bookNow:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  
+  /* Separador de secciones */
+  section#container {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+  /* ------------------------- */
+/* PACKAGES                  */
+/* ------------------------- */
+#packages {
+    text-align: center;
+    padding: 60px 20px 20px;
+    background-color: white;
+    color: #333;
+    font-family: 'Inter', sans-serif; /* si estás usando Inter o similar */
+  }
+  
+  #packages h2 {
+    font-size: 32px;
+    font-weight: 800; /* más grueso para destacar como en la referencia */
+    color: #222;
+    margin-bottom: 10px;
+  }
+  
+  #packages p {
+    font-size: 15px;
+    margin: 5px auto;
+    max-width: 800px;
+    color: #333;
+    line-height: 1.5;
+  }
+  
+  
+  /* ------------------------- */
+  /* SERVICES CARDS            */
+  /* ------------------------- */
+  #services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 40px auto;
+    margin-bottom: 7rem;
+  }
+  
+  .card {
+    background-color: #222;
+    color: white;
+    width: calc(33.333% - 40px); /* tres por fila con espacio */
+    max-width: 300px;
+    min-height: 350px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-title {
+    background-color: #FFD700;
+    color: black;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 8px 20px;
+    border-radius: 25px;
+    display: inline-block;
+    margin: -20px auto 10px;
+    position: relative;
+    top: -25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  } 
+  .card-title:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card button {
+    background-color: #FFD700;
+    color: black;
+    padding: 6px 12px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: none;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .card .quality {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #bbb;
+    margin-bottom: 8px;
+  }
+  
+  .card .price {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card .description {
+    font-size: 14px;
+    color: #ddd;
+    margin-bottom: 15px;
+  }
+  
+  .card ul {
+    text-align: left;
+    padding-left: 20px;
+    color: #eee;
+  }
+  
+  .card ul li {
+    margin-bottom: 6px;
+    position: relative;
+    padding-left: 18px;
+  }
+  
+  .card ul li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #FFD700;
+    font-size: 14px;
+  }
+/* ------------------------- */
+/* RAIN INSURANCE SECTION    */
+/* ------------------------- */
+#banner-spam {
+    width: 100vw; /* Ocupar todo el ancho de la pantalla */
+    margin-left: 0;
+    margin-right: 0;
+    background: url("/app_user/assets/unexpected-rain-bckg.png") no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  
+  #bannerIcon {
+    width: 50px;
+    margin-bottom: 20px;
+  }
+  
+  #banner-spam h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #FFD700;
+    margin-bottom: 10px;
+  }
+  
+  #banner-spam p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  #banner-spam h3 {
+    font-size: 25px;
+    font-style: italic;
+    font-weight: 500;
+    margin-top: 10px;
+  }
+    
+  /* ------------------------- */
+  /* HIGHLIGHTS SECTION        */
+  /* ------------------------- */
+  #highlights {
+    background-color: #f8f8f8; /* fondo claro */
+    text-align: center;
+    padding: 60px 20px;
+    width: 100%;
+  }
+  
+  #highlights h2 {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+  }
+  
+  #highlights p {
+    font-size: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Negrita para el fragmento deseado */
+  #highlights p strong {
+    font-weight: 700;
+  }
+  
+  
+  /* ------------------------- */
+  /* KING VALUE CARDS          */
+  /* ------------------------- */
+  #kingValue {
+    display: flex;
+    width: 100%;
+    justify-content: center; /* Centra las cards */
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #FFD700;
+    padding: 40px 40px;
+    gap: 30px; /* Reduce el espacio horizontal entre cards */
+  }
+  
+  .kingValueCard {
+    display: flex;
+    align-items: center; /* Centra verticalmente ícono y textos */
+    gap: 10px; /* Menor separación entre icono y texto */
+    max-width: 300px;
+  }
+  
+  .kingValueCard img {
+    width: 30px; /* Tamaño más proporcional */
+    height: auto;
+  }
+  
+  .textContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* alinea a la izquierda */
+    text-align: left;        /* asegura alineación del texto */
+    gap: 1px;          /* fuerza a ocupar todo el ancho disponible del card */
+  }
+  
+  .textContent h4,
+  .textContent p {
+    text-align: left; /* refuerzo adicional por si hay herencia */
+  }
+  
+  .textContent h6 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 2px;
+  }
+  
+  .textContent p {
+    font-size: 15px;
+    color: #000;
+    margin-top: 0; /* Evita espacio adicional arriba */
+  }
+  
+  /* --- Footer --- */
+  footer {
+    background-color: #000;
+    width: 100%;
+    color: #F8F8F8;
+    padding: 2.5rem 1.5rem;
+    font-size: 0.9rem;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8rem;
+    max-width: 1200px;
+    width: 100%;
+    padding: 1rem 0;
+  }
+  
+  .logo-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    min-width: 180px;
+  }
+  
+  .logo-column img {
+    height: 70px;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .social-icons i {
+    font-size: 1.1rem;
+    color: #F8F8F8;
+    transition: opacity 0.3s;
+  }
+  
+  .social-icons i:hover {
+    opacity: 0.7;
+  }
+  
+  .info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 200px;
+  }
+  
+  .info-column h4 {
+    color: #FFCC00;
+    margin-bottom: 0.2rem;
+  }
+  
+  .info-column p {
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .copyright {
+    text-align: center;
+    border-top: 1px solid #333;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    font-size: 0.75rem;
+    opacity: 0.6;
+    width: 100%;
+  }
+  #FacebookIcon,
+  #pinterestIcon,
+  #igIcon {
+    height: 30px;
+    margin: 10px 10px 0 0;
+    cursor: pointer;
+  }
+  
+  /* --- Sidebar --- */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #000;
+    padding-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-left: 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 9999;
+  }
+  
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  
+  .sidebar a {
+    color: #F8F8F8;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .close-sidebar {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    font-size: 1.8rem;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  /* --------------------------- */
+  /* RESPONSIVE - SOLO EN MÓVIL */
+  /* --------------------------- */
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      min-height: 90px;
+    }
+  
+    .hamburger {
+        display: block;
+        font-size: 1.8rem;
+        color: #fff;
+        cursor: pointer;
+        margin-bottom: 0.5rem;
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+        z-index: 10000;
+      }
+    
+  
+    .logo {
+      height: 65px;
+      margin: 0.5rem 0 0;
+    }
+  
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background-color: #000;
+      padding: 1rem 0;
+    }
+  
+    .nav-links.show {
+      display: flex;
+    }
+  
+    .nav-links a {
+      padding: 0.8rem;
+      text-align: center;
+    }
+  
+    .nav-links a::before {
+      display: none;
+    }
+  
+    nav {
+      justify-content: space-between;
+      padding: 1rem;
+    }
+  
+    nav a {
+      display: none;
+    }
+  
+    nav img {
+      height: 60px;
+    }
+  
+    .menu-toggle {
+      display: block;
+      font-size: 1.8rem;
+      color: white;
+      cursor: pointer;
+    }
+    .footer-content {
+        gap: 2rem;
+      }
+        #services {
+          gap: 30px;
+          margin-bottom: 5rem;
+        }
+      
+        .card {
+          width: calc(50% - 30px);
+          max-width: 100%;
+        }
+      
+        #banner-spam {
+          padding: 60px 20px;
+        }
+      
+        #kingValue {
+          gap: 25px;
+          justify-content: space-around;
+        }
+      
+        .kingValueCard {
+          max-width: 40%;
+        }
+        #bannerInitial {
+            text-align: center;
+          }
+        
+          #bannerInitial h1 {
+            font-size: 40px;
+          }
+        
+          #bannerInitial h2 {
+            font-size: 22px;
+          }
+        
+          #bannerInitial p {
+            font-size: 15px;
+          }
+        
+          #bookNow {
+            font-size: 15px;
+            padding: 9px 26px;
+          }
+}
+@media (max-width: 480px) {
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+  
+    .logo-column,
+    .info-column {
+      align-items: center;
+      width: 100%;
+    }
+  
+    .social-icons {
+      justify-content: center;
+    }
+    #bannerInitial {
+        padding: 0 10px;
+        height: auto;
+        text-align: center;
+      }
+    
+      #bannerInitial h1 {
+        font-size: 28px;
+      }
+    
+      #bannerInitial p {
+        font-size: 14px;
+        max-width: 90%;
+      }
+    
+      #bannerInitial h2 {
+        font-size: 18px;
+      }
+    
+      #bookNow {
+        font-size: 14px;
+        padding: 8px 20px;
+      }
+    
+      .card {
+        width: 100%;
+        max-width: 90%;
+      }
+    
+      #banner-spam h1 {
+        font-size: 24px;
+      }
+    
+      #banner-spam h3 {
+        font-size: 18px;
+      }
+    
+      #highlights h2 {
+        font-size: 22px;
+      }
+    
+      #highlights p {
+        font-size: 14px;
+      }
+    
+      #kingValue {
+        padding: 30px 20px;
+        gap: 20px;
+      }
+    
+      .kingValueCard {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 100%;
+      }
+    
+      .textContent {
+        align-items: center;
+        text-align: center;
+      }
+        #bannerInitial {
+          padding: 0 15px;
+          height: auto;
+        }
+      
+        #bannerIcon {
+          width: 40px;
+          margin-bottom: 1rem;
+        }
+      
+        #bannerInitial h1 {
+          font-size: 28px;
+        }
+      
+        #bannerInitial h2 {
+          font-size: 18px;
+          margin-bottom: 15px;
+        }
+      
+        #bannerInitial p {
+          font-size: 14px;
+          max-width: 90%;
+        }
+      
+        #bookNow {
+          font-size: 14px;
+          padding: 8px 20px;
+        }
+      
+        #bannerInitial::before {
+          height: 200px;
+        }
+
+  }
+  @media (min-width: 481px) and (max-width: 767px) {
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      padding: 2rem 1rem;
+      text-align: left;
+    }
+  
+    .logo-column,
+    .info-column {
+      align-items: flex-start;
+    }
+  
+    .social-icons {
+      justify-content: flex-start;
+    }
+    #bannerInitial {
+        padding: 0 15px;
+        height: auto;
+        text-align: center;
+      }
+    
+      #bannerInitial h1 {
+        font-size: 36px;
+      }
+    
+      #bannerInitial p {
+        font-size: 15px;
+        max-width: 90%;
+      }
+    
+      #bannerInitial h2 {
+        font-size: 22px;
+      }
+    
+      .card {
+        width: calc(50% - 40px); /* dos cards por fila */
+      }
+    
+      #banner-spam h1 {
+        font-size: 28px;
+      }
+    
+      #banner-spam h3 {
+        font-size: 20px;
+      }
+    
+      #highlights h2 {
+        font-size: 26px;
+      }
+    
+      #highlights p {
+        font-size: 15px;
+      }
+    
+      #kingValue {
+        padding: 40px 30px;
+        gap: 25px;
+      }
+    
+      .kingValueCard {
+        max-width: 45%;
+      }
+      #bannerInitial {
+        padding: 0 20px;
+        height: auto;
+      }
+    
+      #bannerIcon {
+        width: 45px;
+        margin-bottom: 1.2rem;
+      }
+    
+      #bannerInitial h1 {
+        font-size: 36px;
+      }
+    
+      #bannerInitial h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+    
+      #bannerInitial p {
+        font-size: 15px;
+        max-width: 95%;
+      }
+    
+      #bookNow {
+        font-size: 15px;
+        padding: 9px 24px;
+      }
+    
+      #bannerInitial::before {
+        height: 250px;
+      }
+  }

@@ -58,9 +58,9 @@ export default function renderScreenAdmin1() {
         <div class="logo-column">
           <img src="/app_admin/assets/logo-user.png" alt="KingWashTrack logo" />
           <div class="social-icons">
-            <i class="fab fa-facebook-f"></i>
-            <i class="fab fa-instagram"></i>
-            <i class="fab fa-pinterest-p"></i>
+            <img src="/app_user/assets/facebook-icon.png" id="FacebookIcon" alt="Facebook">
+            <img src="/app_user/assets/instagram-icon.png" id="igIcon" alt="Instagram">
+            <img src="/app_user/assets/pinterest-icon.png" id="igIcon" alt="Pinterest">
           </div>
         </div>
 
