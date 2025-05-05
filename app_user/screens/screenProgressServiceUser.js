@@ -149,7 +149,7 @@ socket.on("estadoServicio", ({ estado }) => {
   });
 
   document.getElementById("notNow")?.addEventListener("click", () => {
-    navigateTo("/dashboardUser", data);
+    navigateTo("/dashboardUser");
   });
 
   socket.on("ordenCancelada", (data) => {
@@ -178,7 +178,7 @@ socket.on("estadoServicio", ({ estado }) => {
   
     document.getElementById("closeModalDash").onclick = () => {
       modal.remove();
-      navigateTo("/dashboardUser", data); 
+      navigateTo("/dashboardUser"); 
     };
   });
   

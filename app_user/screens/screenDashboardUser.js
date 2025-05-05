@@ -149,7 +149,7 @@ export default function renderScreenDashboardUser(data) {
   const currentName = document.getElementById("currentName");
   const requestServiceUser = document.getElementById("requestService");
   currentName.innerHTML = "";
-  currentName.innerHTML = `Welcome, ${data.inputFirstName || data.nameClient}, to`;
+  currentName.innerHTML = `Welcome, ${data.inputFirstName}, to`;
 
   requestServiceUser.addEventListener("click", () => {
     const servicesSection = document.getElementById("services");
