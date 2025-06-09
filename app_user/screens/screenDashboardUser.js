@@ -160,7 +160,7 @@ export default function renderScreenDashboardUser(data) {
 
   document.getElementById("user-icon").addEventListener("click", () => {
     console.log("User icon clicked");
-    navigateTo("/userProfile",data);
+    navigateTo("/userProfile", data);
   });
 
   document.getElementById("logout").addEventListener("click", () => {
