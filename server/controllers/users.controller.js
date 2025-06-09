@@ -52,7 +52,7 @@ const createUser = async (req, res) => {
     });
   }
 
-  const newUser = await createUserDB({ id: Date.now(), ...userData });
+  const newUser = await createUserDB({...userData }); //especificaciones usuario
 
   console.log("Usuario creado y enviado a DB:", newUser);
 
