@@ -1,9 +1,5 @@
 const supabaseCli = require("../services/supabase.service");
 
-// const getAllUsers = async () => {
-//   return users;
-// };
-
 const getAllUsers = async () => {
   const { data, error } = await supabaseCli.from("Usuario").select();
   if (error) {
