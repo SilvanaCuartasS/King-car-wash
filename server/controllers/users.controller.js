@@ -53,7 +53,7 @@ const createUser = async (req, res) => {
   }
 
   try {
-    // 1. Insert preguntas
+    // 1. preguntas
     const preguntasData = {
       fragance: userData.fragrancePreference || userData.inputFragrancePreference,
       car_wash: userData.washFrequency, 
@@ -69,7 +69,7 @@ const createUser = async (req, res) => {
 
     console.log("preguntaId:", preguntaId);
 
-    // 2. Insert vehiculo
+    // 2. vehiculo
     const vehiculoData = {
       plate: userData.inputLicense || userData.inputlicense,
       preferences_id: preguntaId,
@@ -89,7 +89,7 @@ const createUser = async (req, res) => {
 
     console.log("vehiculoId:", vehiculoId);
 
-    // 3. Insert usuario
+    // 3. usuario
     const usuarioData = {
       email: userData.inputEmail,
       vehicle_data_id: vehiculoId,
