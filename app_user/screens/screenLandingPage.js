@@ -185,9 +185,8 @@ export default function renderScreenUserLanding() {
   const bookBTN = document.getElementById("bookNow");
   const washTrackA = document.getElementById("washTrack");
 
-  bookBTN.addEventListener("click", () => {
+  bookBTN.addEventListener("click",() => {
     console.log("click");
-
     navigateTo("/");
   });
 

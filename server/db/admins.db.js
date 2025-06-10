@@ -13,8 +13,6 @@ const getAllAdmins = async () => {
   return data;
 };
 
-
-
 module.exports = {
   getAllAdmins,
 };
