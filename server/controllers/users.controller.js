@@ -1,18 +1,18 @@
 //Lógica de cada método REST
 const { getAllUsers, createUserDB } = require("../db/users.db");
-const { sendEmailWithTemplate } = require("../services/brevo.service");
+// const { sendEmailWithTemplate } = require("../services/brevo.service");
 
 const getUsers = async (req, res) => {
   const users = await getAllUsers();
   res.send(users);
 
-  const payload = {
-    templateId: 4, // Replace with your actual template ID
-    email: "mariajose.rosascuellar@gmail.com",
-    name: "Majo", // Replace with actual user data
-    service: "Express", // Replace with the actual service selected
-  };
-  await sendEmailWithTemplate(payload);
+  // const payload = {
+  //   templateId: 4, // Replace with your actual template ID
+  //   email: "mariajose.rosascuellar@gmail.com",
+  //   name: "Majo", // Replace with actual user data
+  //   service: "Express", // Replace with the actual service selected
+  // };
+  // await sendEmailWithTemplate(payload);
 };
 
 const loginService = async (req, res) => {

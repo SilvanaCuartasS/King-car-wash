@@ -2,6 +2,7 @@ const { getAllOrders, createOrderDB } = require("../db/order.db.js");
 const { getAllservices } = require("../db/services.db.js");
 const { emitEvent } = require("../services/socket.service.js");
 const { deleteOrderDB } = require("../db/order.db.js");
+const { sendEmailWithTemplate } = require("../services/brevo.service");
 
 //Obtiene los servicios de la base de datos quemada
 const getServices = async (req, res) => {
@@ -122,8 +123,40 @@ const stateSend = async (req, res) => {
       estado,
     });
 
+    const payload = {
+      templateId: 1, // Replace with your actual template ID
+      email: "mariajose.rosascuellar@gmail.com",
+      name: "Majo", // Replace with actual user data
+      service: "Express", // Replace with the actual service selected
+    };
+
+    if (estado === "set") {
+      payload = {
+        templateId: 2, // Replace with your actual template ID
+        email: "mariajose.rosascuellar@gmail.com",
+        name: "Majo", // Replace with actual user data
+        service: "Express", // Replace with the actual service selected
+      };
+    } else if (estado === "wash") {
+      payload = {
+        templateId: 3, // Replace with your actual template ID
+        email: "mariajose.rosascuellar@gmail.com",
+        name: "Majo", // Replace with actual user data
+        service: "Express", // Replace with the actual service selected
+      };
+    } else if (estado === "touches") {
+      payload = {
+        templateId: 4, // Replace with your actual template ID
+        email: "mariajose.rosascuellar@gmail.com",
+        name: "Majo", // Replace with actual user data
+        service: "Express", // Replace with the actual service selected
+      };
+    }
+
+    await sendEmailWithTemplate(payload);
+
     return res.status(200).json({
-      message: `Estado "${estado}" recibido correctamente para la orden ${id}`
+      message: `Estado "${estado}" recibido correctamente para la orden ${id}`,
     });
   } catch (error) {
     console.error("Error en el controlador stateSend:", error);
@@ -153,7 +186,6 @@ const deleteOrder = async (req, res) => {
     success: true,
   });
 };
-
 
 module.exports = {
   getServices,

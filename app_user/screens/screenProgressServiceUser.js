@@ -104,12 +104,18 @@ export default function renderScreenUserProgressService(data) {
   </section>
 `;
 
-socket.on("estadoServicio", ({ estado }) => {
+  socket.on("estadoServicio", ({ estado }) => { // aquí
+    
     console.log("Estado recibido del servidor:", estado);
-  
+
     // Primero, limpiar cualquier estado activo anterior
-    const iconIds = ["iconReceived", "iconWashing", "iconFinalTouches", "iconAllSet"];
-    iconIds.forEach(id => {
+    const iconIds = [
+      "iconReceived",
+      "iconWashing",
+      "iconFinalTouches",
+      "iconAllSet",
+    ];
+    iconIds.forEach((id) => {
       const icon = document.getElementById(id);
       if (icon) icon.classList.remove("icon-active");
     });
@@ -125,25 +131,24 @@ socket.on("estadoServicio", ({ estado }) => {
           texto = "Status changed to: Finishing Touches";
           break;
         case "set":
-        document.getElementById("iconAllSet")?.classList.add("icon-active");
-          
-        // Mostrar modal
-        const modal = document.getElementById("readyModal");
-        if (modal) modal.style.display = "flex";
-        break;
-        
+          document.getElementById("iconAllSet")?.classList.add("icon-active");
+
+          // Mostrar modal
+          const modal = document.getElementById("readyModal");
+          if (modal) modal.style.display = "flex";
+          break;
+
         default:
           texto = "Unknown status";
       }
       estadoMensaje.textContent = texto;
     }
-    
   });
 
   document.getElementById("closeModal")?.addEventListener("click", () => {
     document.getElementById("readyModal").style.display = "none";
   });
-  
+
   document.getElementById("notNow")?.addEventListener("click", () => {
     document.getElementById("readyModal").style.display = "none";
   });
@@ -153,7 +158,6 @@ socket.on("estadoServicio", ({ estado }) => {
   });
 
   socket.on("ordenCancelada", (data) => {
-    
     const modal = document.createElement("div");
     modal.innerHTML = `
       <div style="
@@ -173,14 +177,12 @@ socket.on("estadoServicio", ({ estado }) => {
         </div>
       </div>
     `;
-  
+
     document.body.appendChild(modal);
-  
+
     document.getElementById("closeModalDash").onclick = () => {
       modal.remove();
-      navigateTo("/dashboardUser"); 
+      navigateTo("/dashboardUser");
     };
   });
-  
-  
-}  
+}
