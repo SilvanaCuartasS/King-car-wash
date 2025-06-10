@@ -20,7 +20,7 @@ const getOrders = async (req, res) => {
   });
 };
 
-//Esta aún no se está usando
+
 const serviceUser = async (req, res) => {
   const service = await getAllservices();
   const { serviceName, timeServiceInput, dateServiceInput } = req.body;
@@ -33,7 +33,7 @@ const serviceUser = async (req, res) => {
 
   const foundService = service.find(
     (u) =>
-      u.timeServiceInput === timeServiceInput &&
+      u.time_book === timeServiceInput &&
       u.dateServiceInput === dateServiceInput &&
       u.serviceName === serviceName
   );
@@ -46,36 +46,26 @@ const serviceUser = async (req, res) => {
   });
 };
 
-// controllers/services.controller.js
 const createOrder = async (req, res) => {
   const {
-    idUser,
-    nameUser,
-    plateUser,
-    serviceName,
-    dateServiceInput,
-    timeServiceInput,
+    id_user,      
+    id_service,   
+    date_book,    
+    time_book,    
+    created_at    
   } = req.body;
 
-  if (
-    !idUser ||
-    !nameUser ||
-    !plateUser ||
-    !serviceName ||
-    !timeServiceInput ||
-    !dateServiceInput
-  ) {
+  if (!id_user || !id_service || !time_book || !date_book) {
     return res
       .status(400)
       .json({ message: "Faltan datos del servicio", success: false });
   }
 
-  // hacer lógica para verificar si el servicio ya existe
   const existingOrder = await getAllOrders();
-
   const foundOrder = existingOrder.find(
-    (u) => u.timeServiceInput === timeServiceInput
+    (u) => u.time_book === time_book && u.date_book === date_book
   );
+
   if (foundOrder) {
     return res.status(400).json({
       message: "El servicio ya existe, elige otra franja horaria",
@@ -83,21 +73,16 @@ const createOrder = async (req, res) => {
     });
   }
 
-  // Si no existe, crear la nueva orden
-
   const newOrder = {
-    idOrder: Date.now(), //Esta bien porque es el id de la orden
-    idUser: idUser,
-    nameClient: nameUser,
-    plate: plateUser,
-    serviceName: serviceName,
-    dateServiceInput: dateServiceInput,
-    timeServiceInput: timeServiceInput,
+    id: Date.now().toString(),
+    id_user,
+    id_service,
+    date_book,
+    time_book,
+    created_at: created_at || new Date().toISOString(),
   };
 
   await createOrderDB(newOrder);
-
-  console.log("Servicio creado y enviado a DB:", newOrder);
 
   res.json({
     message: "Servicio guardado",

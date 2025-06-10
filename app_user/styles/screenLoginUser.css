@@ -1,0 +1,270 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    background: none;
+  }
+  
+  #login-wrapper {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  /* Panel izquierdo */
+  #logo-container {
+    width: 35%;
+    background-color: #2e2b2c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #logo-container img#logo {
+    width: 70%;
+    max-width: 250px;
+  }
+  
+  /* Panel derecho con fondo e inputs */
+  #login-container {
+    width: 65%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url('/app_user/assets/Fondo-login.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 60px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* 👈 Alineado a la izquierda */
+  }
+  
+  /* Botón Back */
+  #backBTN {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  /* Títulos */
+  #login-container h1 {
+    font-size: 3.2rem;
+    font-weight: bold;
+    color: #FFD500;
+    margin-bottom: 5px;
+  }
+  
+  #login-container p {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Grupo de entrada */
+  .input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .input-group img {
+    width: 30px;
+    margin-right: 15px;
+  }
+  
+  .input-group input {
+    width: 350px;
+    padding: 14px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  /* Contraseña */
+  .password-wrapper {
+    position: relative;
+  }
+  
+  #togglePassword {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  /* Enlaces */
+  #login-container p a,
+  #login-container #sign-up {
+    color: #FFD500;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  #log-in {
+    margin-top: 10px;
+    background: none;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  #log-in:hover {
+    background: white;
+    color: black;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  /* Redes sociales */
+  #FacebookIcon,
+  #igIcon {
+    width: 30px;
+    margin: 10px 10px 0 0;
+    cursor: pointer;
+  }
+  
+  /* Registro */
+  #sign-up {
+    margin-top: 20px;
+    display: block;
+    font-size: 1rem;
+  }
+  /* Espaciado entre el botón y el texto "Or sign in with" */
+#log-in {
+  margin-top: 10px;
+  background: none;
+  color: white;
+  border: 2px solid white;
+  padding: 10px 30px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 25px; /* 👈 Aumenta la separación del texto siguiente */
+}
+
+#log-in:hover {
+  background: white;
+  color: black;
+}
+
+/* Texto "Or sign in with" */
+#login-container p:nth-of-type(3) {
+  margin-bottom: 10px;
+}
+#sign-up-text {
+    margin-top: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    font-size: 1rem;
+    color: white;
+    flex-wrap: wrap;
+  }
+  
+  #sign-up-text a {
+    color: #FFD500;
+    font-weight: normal;
+    text-decoration: underline;
+    text-decoration-color: #FFD500; /* asegura que el subrayado sea amarillo */
+    text-underline-offset: 2px;
+    font-size: 1rem;
+  }
+  
+  /* Responsive */
+  @media screen and (max-width: 768px) {
+    #login-wrapper {
+      flex-direction: column;
+    }
+  
+    #logo-container {
+      width: 100%;
+      height: auto;
+      padding: 20px 0;
+      justify-content: center;
+    }
+  
+    #logo-container img#logo {
+      max-width: 160px;
+      width: 45%;
+    }
+  
+    #login-container {
+      width: 100%;
+      padding: 30px 20px;
+      align-items: center;
+    }
+  
+    #login-container h1 {
+      font-size: 2rem;
+      text-align: center;
+    }
+  
+    #login-container p {
+      font-size: 1rem;
+      text-align: center;
+    }
+  
+    .input-group {
+      width: 100%;
+      max-width: 100%;
+      justify-content: center;
+    }
+  
+    .input-group input {
+      width: 100%;
+      font-size: 1rem;
+    }
+  
+    .input-group img {
+      width: 25px;
+    }
+  
+    #togglePassword {
+      font-size: 0.85rem;
+    }
+  
+    #log-in {
+      width: 100%;
+      padding: 12px 0;
+      font-size: 1rem;
+    }
+  
+    .social-icons {
+      justify-content: center;
+      gap: 20px;
+    }
+  
+    #sign-up-text {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }

@@ -1,4 +1,4 @@
-import { makeRequest } from "../../app_user/app.js";
+import { makeRequest } from "../app.js";
 import { navigateToAdmin } from "../app.js";
 
 export default async function renderScreenDashboardOrders(data) {
@@ -45,9 +45,18 @@ export default async function renderScreenDashboardOrders(data) {
     const response = await makeRequest("/orders", "GET");
 
     if (response.success) {
-      console.log("response:", response.orders);
-
-      return response.orders;
+      // Transforma los datos del backend 
+      const transformedOrders = response.orders.map(data => ({
+        id: data.id,
+        plate: data.plate || 'No plate', 
+        serviceName: data.name || 'Sin nombre',
+        timeServiceInput: data.time_book || 'Hora no especificada',
+        dateServiceInput: data.id_service || 'Servicio no especificado',
+        status: data.status || 'active'
+      }));
+      
+      console.log("Orders transformed:", transformedOrders);
+      return transformedOrders;
     } else {
       alert(response.message || "Error al obtener la orden");
       return [];
@@ -66,7 +75,7 @@ export default async function renderScreenDashboardOrders(data) {
       <div class="card-content">
         <p><strong>Status:</strong> <span class="status-active">🟢 Active</span></p>
         <p><strong>Plate:</strong> ${order.plate}</p>
-        <p><strong>Client:</strong> ${order.nameClient}</p>
+        <p><strong>Client:</strong> ${order.serviceName}</p>
         <p><strong>Arrival time:</strong> ${order.timeServiceInput}</p>
 
         <div id="progress">
@@ -93,7 +102,7 @@ export default async function renderScreenDashboardOrders(data) {
               
     </div>
 
-        <p><strong>Service:</strong> ${order.serviceName}</p>
+        <p><strong>Service:</strong> ${order.dateServiceInput}</p>
       </div>
     `;
 
