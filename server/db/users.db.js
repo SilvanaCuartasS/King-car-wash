@@ -9,18 +9,18 @@ const getAllUsers = async () => {
   return data;
 };
 
-const createUserDB = async (user) => {
-  const { data, error } = await supabaseCli
-    .from("Usuario")
-    .insert([user])
+const createUserDB = async (table, data) => {
+  const { data: result, error } = await supabaseCli
+    .from(table)
+    .insert([data])
     .select();
 
   if (error) {
     console.error(error);
-    return error;
+    return new Error(error.message);
   }
 
-  return data;
+  return result;
 };
 
 // const createUserDB = async (user) => {
