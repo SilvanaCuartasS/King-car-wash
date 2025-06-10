@@ -1,11 +1,5 @@
 const supabaseCli = require("../services/supabase.service");
 
-// let orders = [];
-
-// const getAllOrders = async () => {
-//   return orders;
-// };
-
 const getAllOrders = async () => {
   const { data, error } = await supabaseCli.from("Pedido").select();
   if (error) {
@@ -15,40 +9,34 @@ const getAllOrders = async () => {
   return data;
 };
 
-const createOrderDB = async (user) => {
-  const { data, error } = await supabaseCli
-    .from("order")
-    .insert([user])
-    .select();
+const createOrderDB = async (orderData) => {
+  try {
+    // Validación de los datos 
+    if (!orderData.id_user || !orderData.id_service || !orderData.date_book || !orderData.time_book) {
+      throw new Error('Faltan campos obligatorios en orderData');
+    }
 
-  if (error) {
-    console.error(error);
-    return error;
+    const { data, error } = await supabaseCli
+      .from("Pedido")
+      .insert([{
+        id_user: orderData.id_user,
+        id_service: orderData.id_service,
+        date_book: orderData.date_book,
+        time_book: orderData.time_book,
+        created_at: orderData.created_at || new Date().toISOString()
+      }])
+      .select();
+
+    if (error) throw error;
+    
+    console.log('Pedido creado en Supabase:', data);
+    return data[0]; // Devuelve solo el objeto insertado
+  } catch (error) {
+    console.error('Error en createOrderDB:', error.message);
+    throw error; // Propaga el error
   }
-
-  return data;
 };
 
-// const createOrderDB = async (payload) => {
-//   orders.push(payload);
-//   return payload;
-// };
-
-// const deleteOrderDB = async (id) => {
-//   orders = orders.filter((order) => order.idOrder !== id);
-//   return true;
-// };
-
-// const deleteOrderDB = async (id) => {
-//   const { error } = await supabaseCli.from("Pedido").delete().eq("idUser", id); // usa "id" si ese es el nombre de tu columna clave primaria
-
-//   if (error) {
-//     console.error(error);
-//     return error;
-//   }
-
-//   return true;
-// };
 
 const deleteOrderDB = async (userId) => {
   const { data, error } = await supabaseCli

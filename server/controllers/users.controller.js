@@ -52,15 +52,79 @@ const createUser = async (req, res) => {
     });
   }
 
-  const newUser = await createUserDB({ id: Date.now(), ...userData });
+  try {
+    // 1. preguntas
+    const preguntasData = {
+      fragance: userData.fragrancePreference || userData.inputFragrancePreference,
+      car_wash: userData.washFrequency, 
+    };
+    console.log("preguntasData:", preguntasData);
+    const preguntasResult = await createUserDB('Preferencias_Preguntas', preguntasData);
+    if (preguntasResult instanceof Error) throw preguntasResult;
+    if (!preguntasResult || !preguntasResult[0]) {
+    throw new Error("No se pudo insertar en la tabla 'Preferencias_Preguntas'");
+    }
 
-  console.log("Usuario creado y enviado a DB:", newUser);
+    const preguntaId = preguntasResult[0].id;
 
-  res.json({
-    message: "Inicio de sesión exitoso",
-    success: true,
-    currentUserData: newUser,
-  });
+    console.log("preguntaId:", preguntaId);
+
+    // 2. vehiculo
+    const vehiculoData = {
+      plate: userData.inputLicense || userData.inputlicense,
+      preferences_id: preguntaId,
+      type: userData.selectElementVehicles,
+      brand: userData.selectElementBrand,
+      color: userData.selectElementColors,
+      year: userData.inputYear, 
+    };
+    console.log("vehiculoData:", vehiculoData);
+    const vehiculoResult = await createUserDB('Datos_Vehiculo', vehiculoData);
+    if (vehiculoResult instanceof Error) throw vehiculoResult;
+    if (!vehiculoResult || !vehiculoResult[0]) {
+    throw new Error("No se pudo insertar en la tabla 'Datos_Vehiculo'");
+    }
+
+    const vehiculoId = vehiculoResult[0].id;
+
+    console.log("vehiculoId:", vehiculoId);
+
+    // 3. usuario
+    const usuarioData = {
+      email: userData.inputEmail,
+      vehicle_data_id: vehiculoId,
+      name: userData.inputFirstName,
+      apellido: userData.inputLastName,
+      password: userData.inputPassword,
+    };
+    console.log("usuarioData:", usuarioData);
+    const usuarioResult = await createUserDB('Usuario', usuarioData);
+    if (usuarioResult instanceof Error) throw usuarioResult;
+
+    if (!usuarioResult || !usuarioResult[0]) {
+    throw new Error("No se pudo insertar en la tabla 'Usuario'");
+    }
+    const newUser = usuarioResult[0];
+
+
+    console.log("Usuario creado y enviado a DB:", newUser);
+
+    res.json({
+      message: "Inicio de sesión exitoso",
+      success: true,
+      currentUserData: newUser,
+    });
+
+    console.log("Resultado preguntas:", preguntasResult);
+
+  } catch (error) {
+    console.error("Error al crear usuario:", error.message || error);
+    res.status(500).json({
+      message: "Error al crear usuario",
+      success: false,
+      error: error.message || "Internal Server Error",
+    });
+  }
 };
 
 module.exports = {

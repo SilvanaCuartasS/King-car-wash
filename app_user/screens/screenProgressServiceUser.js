@@ -178,7 +178,7 @@ socket.on("estadoServicio", ({ estado }) => {
   
     document.getElementById("closeModalDash").onclick = () => {
       modal.remove();
-      navigateTo("/dashboardUser"); 
+      navigateTo("/dashboardUser", data); 
     };
   });
   
