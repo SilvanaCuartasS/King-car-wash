@@ -73,7 +73,7 @@ export default function renderScreenEditOrder(data) {
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m12 18-7 3 7-18 7 18-7-3Zm0 0v-5"/>
         </svg>
 
-        <svg id="wash-${order.idOrder}" class="stage" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+        <svg id="wash-${order.id}" class="stage" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
             <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
                 <path d="M 44.99 8.943 c 0 0 -17.891 20.646 -17.891 33.409 c 0 9.87 8.03 17.9 17.9 17.9 c 9.87 0 17.9 -8.03 17.9 -17.9 C 62.9 29.59 44.99 8.943 44.99 8.943 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
                 <path d="M 69.196 50.623 c 8.432 1.309 23.869 6.006 20.254 17.324 c -3.992 8.87 -16.561 12.304 -25.27 14.271 c -15.634 2.902 -32.013 2.576 -47.21 -2.369 c -6.6 -2.357 -15.775 -6.354 -16.968 -14.208 c -0.472 -9.905 12.64 -13.565 20.383 -14.908 c -4.295 1.674 -8.506 3.537 -12.156 6.288 c -14.939 11.541 9.597 18.57 19.019 19.78 c 11.824 1.821 24.109 1.871 35.921 -0.064 C 87.337 72.709 97.724 61.362 69.196 50.623 L 69.196 50.623 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
@@ -81,12 +81,12 @@ export default function renderScreenEditOrder(data) {
             </g>
             </svg>
 
-            <svg id="touches-${order.idOrder}" class=" stage w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <svg id="touches-${order.id}" class=" stage w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
             </svg>
 
             
-            <svg id="set-${order.idOrder}" class=" stage w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <svg id="set-${order.id}" class=" stage w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                 <path fill-rule="evenodd" d="M12 2c-.791 0-1.55.314-2.11.874l-.893.893a.985.985 0 0 1-.696.288H7.04A2.984 2.984 0 0 0 4.055 7.04v1.262a.986.986 0 0 1-.288.696l-.893.893a2.984 2.984 0 0 0 0 4.22l.893.893a.985.985 0 0 1 .288.696v1.262a2.984 2.984 0 0 0 2.984 2.984h1.262c.261 0 .512.104.696.288l.893.893a2.984 2.984 0 0 0 4.22 0l.893-.893a.985.985 0 0 1 .696-.288h1.262a2.984 2.984 0 0 0 2.984-2.984V15.7c0-.261.104-.512.288-.696l.893-.893a2.984 2.984 0 0 0 0-4.22l-.893-.893a.985.985 0 0 1-.288-.696V7.04a2.984 2.984 0 0 0-2.984-2.984h-1.262a.985.985 0 0 1-.696-.288l-.893-.893A2.984 2.984 0 0 0 12 2Zm3.683 7.73a1 1 0 1 0-1.414-1.413l-4.253 4.253-1.277-1.277a1 1 0 0 0-1.415 1.414l1.985 1.984a1 1 0 0 0 1.414 0l4.96-4.96Z" clip-rule="evenodd"/>
               </svg>
               
@@ -100,32 +100,33 @@ export default function renderScreenEditOrder(data) {
 
      // Agregar listeners para los 3 estados
      ["set", "wash", "touches"].forEach((estado) => {
-      const span = document.getElementById(`${estado}-${order.idOrder}`);
-      span.addEventListener("click", () => enviarEstado(order.idOrder, estado));
+      const span = document.getElementById(`${estado}-${order.id}`);
+      span.addEventListener("click", () => enviarEstado(order.id, estado));
     });
   });
 
   async function enviarEstado(id, estadoSeleccionado) {
-    // Quitar la clase activa de todos los íconos de estado
-    document.querySelectorAll(`#order-card-${id} .stage`).forEach(el => el.classList.remove("active-stage"));
-  
-    // Activar el ícono seleccionado
-    const selected = document.getElementById(`${estadoSeleccionado}-${id}`);
-    if (selected) {
-      selected.classList.add("active-stage");
-    } else {
-      console.error(`No se encontró el elemento con ID: ${estadoSeleccionado}-${id}`);
-    }
-  
-    const body = { id, estado: estadoSeleccionado };
-  
-    try {
-      const response = await makeRequest("/enviar-estado", "POST", body);
-      console.log("Respuesta del servidor:", response.message);
-    } catch (error) {
-      console.error("Error al enviar el estado:", error);
-    }
+  // Quitar la clase activa de todos los íconos de estado
+  document.querySelectorAll(`#order-card-${id} .stage`).forEach(el => el.classList.remove("active-stage"));
+
+  // Activar el ícono seleccionado
+  const selected = document.getElementById(`${estadoSeleccionado}-${id}`);
+  if (selected) {
+    selected.classList.add("active-stage");
+  } else {
+    console.error(`No se encontró el elemento con ID: ${estadoSeleccionado}-${id}`);
   }
+
+  const body = { id, estado: estadoSeleccionado };
+  console.log("Enviando estado:", body); // Agrega este log
+
+  try {
+    const response = await makeRequest("/enviar-estado", "POST", body);
+    console.log("Respuesta del servidor:", response.message);
+  } catch (error) {
+    console.error("Error al enviar el estado:", error);
+  }
+}
 
   back.addEventListener("click", () => {
     navigateToAdmin("/dashboardOrdersAdmin");
