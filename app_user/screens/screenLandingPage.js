@@ -7,16 +7,21 @@ export default function renderScreenUserLanding() {
     <div id="landing-screen">
 
       <nav>
-        <a href="#" id="services">Services</a>
-        <a href="#" id="washInsure">Wash Insure</a>
-        <img src="#" alt="KingCarWashLogo">
-        <a href="#" id="experiences">Experiences</a>
-        <a href="#" id="washTrack">Wash Track</a>
-      </nav>
+  <div class="nav-links">
+    <a href="#">SERVICES</a>
+    <a href="#">WASH INSURE</a>
+  </div>
+
+  <img src="/app_user/assets/Logo-navbar.png" alt="KingCarWashLogo" />
+
+  <div class="nav-links">
+    <a href="#">EXPERIENCES</a>
+    <a href="#">WASH TRACK</a>
+  </div>
+</nav>
 
       <section id="container">
         <div id="bannerInitial">
-          <img src="" alt="" id="bannerIcon">
           <h1>SHINE UP YOUR DAY</h1>
           <p>Schedule your appointment at WashTrack and make your car look brand new. </p>
           <h2>Easy, Fast, and Hassle-Free</h2>
