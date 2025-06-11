@@ -22,11 +22,10 @@ export default function renderScreenUserSignUp2(data) {
   app.innerHTML = `
     <div id="signup2-screen">
       <div id="logo-container">
-        <img src="/app_user/assets/logo-king.png" alt="Logo" id="logo">
+        <img src="/app_user/assets/Logo_gris.png" alt="Logo" id="logo">
       </div>
 
       <div id="user-begin">
-        <button id="backBTN">Back</button>
         <h1 id="currentName"></h1>
         <p>Let us get to know you better</p>
         <div id="dots"></div>
@@ -64,6 +63,7 @@ export default function renderScreenUserSignUp2(data) {
           </div>
 
           <div id="buttons">
+            <button type="submit" id="backBTN">Back</button>
             <button type="submit" id="next">Next</button>
           </div>
         </div>
