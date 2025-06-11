@@ -15,7 +15,8 @@ const getAllOrders = async () => {
         name
       ),
       Usuario (
-        name
+        name,
+        email
       ),
       Datos_Vehiculo (
         plate
@@ -63,18 +64,18 @@ const createOrderDB = async (orderData) => {
 };
 
 
-const deleteOrderDB = async (userId) => {
+const deleteOrderDB = async (orderId) => {
   const { data, error } = await supabaseCli
     .from("Pedido")
     .delete()
-    .eq("idUser", userId)
-    .select();
+    .eq("id", orderId); 
 
   if (error) {
-    console.error(error);
+    console.error('Error deleting order:', error);
+    throw error;
   }
 
-  return true;
+  return data;
 };
 
 module.exports = {

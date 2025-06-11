@@ -117,7 +117,7 @@ export default function renderScreenEditOrder(data) {
     console.error(`No se encontró el elemento con ID: ${estadoSeleccionado}-${id}`);
   }
 
-  const body = { id, estado: estadoSeleccionado };
+  const body = { id, estado: estadoSeleccionado, data };
   console.log("Enviando estado:", body); // Agrega este log
 
   try {
@@ -153,13 +153,25 @@ cancelDelete.addEventListener("click", () => {
 
 confirmDelete.addEventListener("click", async () => {
   try {
-    const response = await makeRequest("/delete-order", "POST", { id: data[0].idOrder });
-    console.log("Orden eliminada:", response.message);
-    alert("Order deleted successfully");
-    navigateToAdmin("/dashboardOrdersAdmin");
+    console.log("ID a eliminar:", data[0].id);
+    
+    // Cambiado a POST para coincidir con el backend
+    const response = await makeRequest("/delete-order", "POST", { 
+      id: data[0].id 
+    });
+    
+    if (response && response.success) {
+      console.log("Orden eliminada:", response);
+      alert("Order deleted successfully");
+      navigateToAdmin("/dashboardOrdersAdmin");
+    } else {
+      throw new Error(response?.message || "Error al eliminar la orden");
+    }
   } catch (err) {
     console.error("Error deleting order:", err);
-    alert("Error deleting the order.");
+    alert("Error deleting the order: " + (err.message || "Unknown error"));
+  } finally {
+    modal.classList.add("hidden");
   }
 });
 
