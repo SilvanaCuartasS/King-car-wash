@@ -1,0 +1,154 @@
+/* CONTENEDOR GENERAL */
+#user1-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+/* NAVBAR */
+#user1-screen nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  padding: 20px 0;
+  font-family: 'Inter', sans-serif;
+  gap: 40px;
+}
+
+#user1-screen .nav-links {
+  display: flex;
+  gap: 40px;
+}
+
+#user1-screen .nav-links a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 0 10px;
+  border-left: 1px solid white;
+}
+
+#user1-screen .nav-links a:first-child {
+  border-left: none;
+}
+
+#user1-screen nav img {
+  height: 55px;
+}
+
+/* CONTENIDO CENTRAL */
+#user1-screen #container {
+  flex: 1; /* Hace que ocupe todo el espacio disponible entre navbar y footer */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+  url('/app_user/assets/Fondo-user.png') center/cover no-repeat;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+
+#user1-screen #container h3 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+#user1-screen #container h1 {
+  font-size: 2.7rem;
+  font-weight: 800;
+  color: #FFD700;
+  margin: 0;
+}
+
+#user1-screen #container h4 {
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin: 20px 0 30px;
+}
+
+#user1-screen #container button {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  font-weight: bold;
+  padding: 12px 32px;
+  border-radius: 30px;
+  font-size: 1rem;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#user1-screen #container button:hover {
+  background-color: white;
+  color: black;
+}
+
+/* FOOTER */
+#user1-screen footer {
+  background-color: #000;
+  color: white;
+  padding: 30px 40px 10px;
+  font-size: 0.85rem;
+  font-family: 'Inter', sans-serif;
+}
+
+#user1-screen footer .footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 100px;
+}
+
+#user1-screen #social&king {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+#user1-screen #footer-logo {
+  height: 80px;
+}
+
+#user1-screen #social-icons {
+  height: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+#user1-screen .footer-section {
+  min-width: 180px;
+}
+
+#user1-screen .footer-section h3 {
+  margin-bottom: 5px;
+  font-size: 1rem;
+  color: #FFD700;
+}
+
+#user1-screen .footer-section p {
+  margin: 3px 0;
+}
+
+#user1-screen footer hr {
+  margin: 20px auto 10px;
+  width: 100%;
+  border-color: #444;
+}
+
+#user1-screen footer .footer-bottom {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 0.75rem;
+  color: #ccc;
+}

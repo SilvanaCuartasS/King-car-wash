@@ -3,74 +3,96 @@ import { navigateTo } from "../app.js";
 
 export default function renderScreenUser1() {
   const app = document.getElementById("app");
+
+  // 👉 Cargar el CSS específico de esta pantalla
+  function loadCSS(href) {
+    const existingLink = document.querySelector(`link[href="${href}"]`);
+    if (!existingLink) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = href;
+      document.head.appendChild(link);
+    }
+  }
+
+  loadCSS("/app_user/styles/screenUser1.css");
+
+  // 👉 Estructura HTML aislada con ID para evitar conflictos
   app.innerHTML = `
+    <div id="user1-screen">
 
-    <nav>
-    <a href="">Services</a>
-    <a href="">Wash Insure</a>
-    <div id="logoDiv">
-        <img src="" alt="KingCarWashLogo" id="logoForClick">
+      <nav>
+  <div class="nav-links">
+    <a href="#">SERVICES</a>
+    <a href="#">WASH INSURE</a>
+  </div>
+
+  <img src="/app_user/assets/Logo-navbar.png" alt="KingCarWashLogo" id="logoForClick" />
+
+  <div class="nav-links">
+    <a href="#">EXPERIENCES</a>
+    <a href="#">WASH TRACK</a>
+  </div>
+</nav>
+
+      <div id="container">
+        <h3>Welcome to</h3>
+        <h1>KING WASH TRACK</h1>
+        <h4>Get the control of your washing</h4>
+        <div id="button-row">
+        <button id="clientBTN">Client</button>
+        <button id="adminBTN">Admin</button>
+        </div>
+
+      </div>
+
+      <footer>
+  <div class="footer-content">
+    <div id="social&king">
+      <img src="/app_user/assets/logo-king.png" alt="Logo" id="footer-logo">
+      <div id="social-icons">
+        <img src="/app_user/assets/facebook-icon.png" alt="Facebook">
+        <img src="/app_user/assets/instagram-icon.png" alt="Instagram">
+        <img src="/app_user/assets/pinterest-icon.png" alt="Pinterest">
+      </div>
     </div>
-    <a href="">Experiences</a>
-    <a href="">Wash Track</a>
-    </nav>
 
-    <div id="container">
-    <h3>Welcome to</h3>
-    <h1>KING WASH TRACK</h1>
-    <h4>Get the control of your washing</h4>
-    <button id="clientBTN">Client</button>
-    <button id="adminBTN">Admin</button>
+    <div class="footer-section">
+      <h3>Working Hours:</h3>
+      <p>Mon-Sat: 08:30 - 17:00</p>
+      <p>Sun: 09:00 - 17:00</p>
     </div>
 
-    <footer>
-            <div id="social&king">
-           <img src="" alt="" id="kingIcon">
-           <img src="" alt="" id="facebookIcon">
-           <img src="" alt="" id="igIcon">
-           <img src="" alt="" id="pinterestIcon">
-        </div>
+    <div class="footer-section">
+      <h3>Address:</h3>
+      <p>Caney, Cra.83c #25-15,<br>Cali, Valle del Cauca, Colombia</p>
+    </div>
 
-        <div id="workingHours">
-            <h3>Working Hours:</h3>
-            <p>Mon-Sat: 08:30 - 17:00</p>
-            <p>Sun: 09:00 - 17:00</p>
-        </div>
+    <div class="footer-section">
+      <h3>Hits Up:</h3>
+      <p>+57 313 123 4567</p>
+      <p>KingWashTrack@gmail.com</p>
+    </div>
+  </div>
 
-        <div id="adress">
-            <h3>Address::</h3>
-            <p>Caney, Cra.83c #25-15, Cali, Valle del Cauca, Colombia</p>
-        </div>
+  <hr>
+  <div class="footer-bottom">
+    © KingWashTrack.com.au. All rights reserved | designed by ChontaduroGroup
+  </div>
+</footer>
+    </div>
+  `;
 
-        <div id="hitsUp">
-            <h3>Hits Up:</h3>
-            <p>+57 313 123 4567</p>
-            <p>KingWashTrack@gmail.com</p>
-        </div>
-
-        <hr>
-
-        <img src="" alt="" id="footerIcon">
-        <p>KingWashTrack.com.au. All rights reserved  | designed by ChontaduroGroup</p>
-    </footer>
-    `;
-
-  const clientBTN = document.getElementById("clientBTN");
-  const adminBTN = document.getElementById("adminBTN");
-
+  // 👉 Acciones de los botones
   document.getElementById("logoForClick").addEventListener("click", () => {
-    console.log("King icon clicked"); 
     navigateTo("/landingPage");
   });
 
-  adminBTN.addEventListener("click", () => {
-    console.log("click");
+  document.getElementById("adminBTN").addEventListener("click", () => {
     navigateToAdmin("/loginAdmin");
   });
 
-  clientBTN.addEventListener("click", () => {
-    console.log("click");
-
+  document.getElementById("clientBTN").addEventListener("click", () => {
     navigateTo("/loginUser1");
   });
 }
