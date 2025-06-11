@@ -5,7 +5,7 @@ export default function renderScreenUserSignUp3(data) {
 
   const app = document.getElementById("app");
 
-  // 👉 Cargar el CSS específico de esta pantalla
+  //  Cargar el CSS específico de esta pantalla
   function loadCSS(href) {
     const existingLink = document.querySelector(`link[href="${href}"]`);
     if (!existingLink) {
@@ -18,7 +18,7 @@ export default function renderScreenUserSignUp3(data) {
 
   loadCSS("/app_user/styles/screenSignUpUser3.css");
 
-  // 👉 Estructura HTML con ID aislado
+  //  Estructura HTML con ID aislado
   app.innerHTML = `
     <div id="signup3-screen">
       <div id="logo-container">

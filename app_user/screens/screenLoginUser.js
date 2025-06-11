@@ -3,7 +3,7 @@ import { makeRequest, navigateTo } from "../app.js";
 export default function renderScreenUserLogin1() {
   const app = document.getElementById("app");
 
-  // 👉 Cargar CSS específico de esta pantalla
+  // Cargar CSS específico de esta pantalla
   function loadCSS(href) {
     const existingLink = document.querySelector(`link[href="${href}"]`);
     if (!existingLink) {
@@ -16,7 +16,7 @@ export default function renderScreenUserLogin1() {
 
   loadCSS("/app_user/styles/screenLoginUser.css");
 
-  // 👉 Renderizado HTML
+  // Renderizado HTML
   app.innerHTML = `
     <div id="login-user-screen">
       <div id="logo-container">

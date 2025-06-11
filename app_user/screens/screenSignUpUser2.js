@@ -5,7 +5,7 @@ export default function renderScreenUserSignUp2(data) {
 
   const app = document.getElementById("app");
 
-  // 👉 Cargar el CSS específico de esta pantalla
+  //  Cargar el CSS específico de esta pantalla
   function loadCSS(href) {
     const existingLink = document.querySelector(`link[href="${href}"]`);
     if (!existingLink) {
@@ -18,7 +18,7 @@ export default function renderScreenUserSignUp2(data) {
 
   loadCSS("/app_user/styles/screenSignUpUser2.css");
 
-  // 👉 Estructura HTML
+  //  Estructura HTML
   app.innerHTML = `
     <div id="signup2-screen">
       <div id="logo-container">
@@ -71,7 +71,7 @@ export default function renderScreenUserSignUp2(data) {
     </div>
   `;
 
-  // 👉 Lógica funcional
+  //  Lógica funcional
   const inputYear = document.getElementById("year");
   const inputLicense = document.getElementById("license");
   const selectElementVehicles = document.getElementById("vehicles");

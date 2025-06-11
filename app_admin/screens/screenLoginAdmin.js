@@ -4,7 +4,7 @@ import { navigateToAdmin } from "../app.js";
 export default function renderScreenAdminLogin() {
   const app = document.getElementById("app");
 
-  // 👉 Cargar CSS específico de esta pantalla
+  //  Cargar CSS específico de esta pantalla
   function loadCSS(href) {
     const existingLink = document.querySelector(`link[href="${href}"]`);
     if (!existingLink) {
@@ -17,7 +17,7 @@ export default function renderScreenAdminLogin() {
 
   loadCSS("/app_admin/styles/screenLoginAdmin.css");
 
-  // 👉 HTML aislado dentro de #login-screen
+  //  HTML aislado dentro de #login-screen
   app.innerHTML = `
     <div id="login-screen">
       <div id="logo-container">
@@ -50,7 +50,7 @@ export default function renderScreenAdminLogin() {
     </div>
   `;
 
-  // 👇 Lógica funcional
+  //  Lógica funcional
   const inputEmail = document.getElementById("email");
   const inputPassword = document.getElementById("password");
   const inputAdminCode = document.getElementById("adminCode");
@@ -76,7 +76,7 @@ export default function renderScreenAdminLogin() {
   document.getElementById("log-in").addEventListener("click", loginAdminREQ);
 
 
-  // ✅ NUEVO: Click en logo = volver a screenAdmin1
+  //  NUEVO: Click en logo = volver a screenAdmin1
   const logo = document.getElementById("logo");
   logo.addEventListener("click", () => {
     navigateToAdmin("/");

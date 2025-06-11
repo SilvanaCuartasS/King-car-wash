@@ -1,7 +1,7 @@
 import { makeRequest, navigateToAdmin } from "../app.js";
 
 export default async function renderScreenDashboardOrders(data) {
-  // 👉 Cargar estilos para barra de progreso
+  //  Cargar estilos para barra de progreso
   const loadCSS = (href) => {
     const existing = document.querySelector(`link[href="${href}"]`);
     if (!existing) {

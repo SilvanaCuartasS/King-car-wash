@@ -17,7 +17,7 @@ export default function renderScreenUser1() {
 
   loadCSS("/app_user/styles/screenUser1.css");
 
-  // 👉 Estructura HTML aislada con ID para evitar conflictos
+  //  Estructura HTML aislada con ID para evitar conflictos
   app.innerHTML = `
     <div id="user1-screen">
 
@@ -83,7 +83,7 @@ export default function renderScreenUser1() {
     </div>
   `;
 
-  // 👉 Acciones de los botones
+  //  Acciones de los botones
   document.getElementById("logoForClick").addEventListener("click", () => {
     navigateTo("/landingPage");
   });

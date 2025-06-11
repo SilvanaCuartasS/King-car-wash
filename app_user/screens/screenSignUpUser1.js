@@ -3,7 +3,7 @@ import { navigateTo } from "../app.js";
 export default function renderScreenUserSignUp1() {
   const app = document.getElementById("app");
 
-  // 👉 Cargar CSS específico
+  //  Cargar CSS específico
   function loadCSS(href) {
     const existingLink = document.querySelector(`link[href="${href}"]`);
     if (!existingLink) {
@@ -16,7 +16,7 @@ export default function renderScreenUserSignUp1() {
 
   loadCSS("/app_user/styles/screenSignUpUser1.css");
 
-  // 👉 HTML de la pantalla
+  //  HTML de la pantalla
   app.innerHTML = `
     <div id="signup-user-screen">
       <div id="logo-container">
@@ -67,7 +67,7 @@ export default function renderScreenUserSignUp1() {
     </div>
   `;
 
-  // 👉 Variables de campos
+  //  Variables de campos
   const modal = document.getElementById("modal");
   modal.style.display = "none";
 
@@ -79,7 +79,7 @@ export default function renderScreenUserSignUp1() {
   const message1 = document.getElementById("message1");
   const message2 = document.getElementById("message2");
 
-  // 👉 Listeners
+  //  Listeners
   document.getElementById("sign-up").addEventListener("click", signUpUser);
 
   document.getElementById("togglePassword").addEventListener("click", () => {

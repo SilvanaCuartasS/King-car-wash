@@ -5,7 +5,7 @@ export default function renderScreenUserSignUp4(data) {
 
   const app = document.getElementById("app");
 
-  // 👉 Cargar CSS específico
+  //  Cargar CSS específico
   function loadCSS(href) {
     const existingLink = document.querySelector(`link[href="${href}"]`);
     if (!existingLink) {

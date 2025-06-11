@@ -5,7 +5,7 @@ export default function renderScreenUserProgressService(data) {
 
   const app = document.getElementById("app");
 
-  // 👉 Conectar CSS de forma modular
+  //  Conectar CSS de forma modular
   function loadCSS(href) {
     const existingLink = document.querySelector(`link[href="${href}"]`);
     if (!existingLink) {

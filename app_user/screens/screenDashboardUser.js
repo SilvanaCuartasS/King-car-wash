@@ -3,7 +3,7 @@ import { navigateTo, makeRequest } from "../app.js";
 export default function renderScreenDashboardUser(data) {
   console.log("data que llegó del sign up: ", data);
 
-  // 👉 Cargar CSS específico para esta pantalla
+  // Cargar CSS específico para esta pantalla
   function loadCSS(href) {
     const existingLink = document.querySelector(`link[href="${href}"]`);
     if (!existingLink) {
