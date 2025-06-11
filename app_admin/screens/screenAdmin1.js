@@ -1,69 +1,53 @@
 import { navigateTo } from "../../app_user/app.js";
 import { navigateToAdmin } from "../app.js";
 
+// Carga el CSS de esta pantalla
+function loadCSS(href) {
+  const existingLink = document.querySelector(`link[href="${href}"]`);
+  if (!existingLink) {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    document.head.appendChild(link);
+  }
+}
+
 export default function renderScreenAdmin1() {
+  loadCSS("/app_admin/styles/screenAdmin1.css");
+
   const app = document.getElementById("app");
+
   app.innerHTML = `
-  
-      <nav>
-      <a href="">Services</a>
-      <a href="">Wash Insure</a>
-      <img src="" alt="KingCarWashLogo">
-      <a href="">Experiences</a>
-      <a href="">Wash Track</a>
-      </nav>
-  
-      <div id="container">
-      <h3>Welcome to</h3>
-      <h1>KING WASH TRACK</h1>
-      <h4>Get the control of your washing</h4>
-      <button id="clientBTN">Client</button>
-      <button id="adminBTN">Admin</button>
+    <div id="screenAdminWelcome">
+      
+      <!-- Lado izquierdo: logo -->
+      <div id="logo-container">
+        <img src="/app_admin/assets/logo-king.png" alt="KingCarWashLogo" id="logo" />
       </div>
 
-      <footer>
-        <div id="social&king">
-           <img src="" alt="" id="kingIcon">
-           <img src="" alt="" id="facebookIcon">
-           <img src="" alt="" id="igIcon">
-           <img src="" alt="" id="pinterestIcon">
+      <!-- Lado derecho: bienvenida y botones -->
+      <div id="welcome-container">
+        <h3>WELCOME</h3>
+        <h2>King Wash Track</h2>
+        <h4>Get the control of your washing</h4>
+
+        <div class="button-group">
+          <button id="clientBTN">Client</button>
+          <button id="adminBTN">Admin</button>
         </div>
+      </div>
 
-        <div id="workingHours">
-            <h3>Working Hours:</h3>
-            <p>Mon-Sat: 08:30 - 17:00</p>
-            <p>Sun: 09:00 - 17:00</p>
-        </div>
-
-        <div id="adress">
-            <h3>Address::</h3>
-            <p>Caney, Cra.83c #25-15, Cali, Valle del Cauca, Colombia</p>
-        </div>
-
-        <div id="hitsUp">
-            <h3>Hits Up:</h3>
-            <p>+57 313 123 4567</p>
-            <p>KingWashTrack@gmail.com</p>
-        </div>
-
-        <hr>
-
-        <img src="" alt="" id="footerIcon">
-        <p>KingWashTrack.com.au. All rights reserved  | designed by ChontaduroGroup</p>
-      </footer>
-      `;
+    </div>
+  `;
 
   const clientBTN = document.getElementById("clientBTN");
   const adminBTN = document.getElementById("adminBTN");
 
   adminBTN.addEventListener("click", () => {
-    console.log("click");
     navigateToAdmin("/loginAdmin");
   });
 
   clientBTN.addEventListener("click", () => {
-    console.log("click");
-
     navigateTo("/loginUser1");
   });
 }
