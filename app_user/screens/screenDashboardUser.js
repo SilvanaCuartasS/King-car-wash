@@ -20,7 +20,6 @@ export default function renderScreenDashboardUser(data) {
   app.innerHTML = `
   <div id="dashboard-user">
     <div id="header">
-      <img src="/app_user/assets/Logo-navbar.png" alt="Logo" id="logo" />
 
       <div id="user-welcome">
         <h2 id="currentName"></h2>
