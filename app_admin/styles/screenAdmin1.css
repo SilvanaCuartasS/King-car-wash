@@ -5,6 +5,7 @@ html, body {
   box-sizing: border-box;
   width: 100vw;
   height: auto;
+    font-family: 'Inter', sans-serif;
 }
 
 /* ====== screenAdmin1.css - ESTILOS AISLADOS ====== */

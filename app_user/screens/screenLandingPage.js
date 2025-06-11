@@ -22,16 +22,17 @@ export default function renderScreenUserLanding() {
 
       <section id="container">
         <div id="bannerInitial">
+          <img src="/app_user/assets/Banner-icon.png" alt="CarLogo">
           <h1>SHINE UP YOUR DAY</h1>
-          <p>Schedule your appointment at WashTrack and make your car look brand new. </p>
+          <p>Schedule your appointment at <span style="color: #FFD700;"> WashTrack </span> <br> and make your car look brand new. </p>
           <h2>Easy, Fast, and Hassle-Free</h2>
           <button id="bookNow">Book now</button>
         </div>
 
         <div id="packages">
           <h2>Packages</h2>
-          <p>Your car deserves the best care! At King Wash Track</p>
-          <p>We offer tailored wash packages to suit your needs, from a quick refresh to a deep, luxurious clean. Select the perfect package and give your car the shine it deserves!</p>
+          <p>Your car deserves the best care! At <strong>King Wash Track</strong></p>
+          <p>We offer tailored wash packages to suit your needs, from a quick refresh to a deep <BR>, luxurious clean. Select the perfect package and give your car <strong>the shine it deserves!</strong></p>
         </div>
 
         <div id="services">
@@ -107,7 +108,9 @@ export default function renderScreenUserLanding() {
             .map(
               (card) => `
             <div class="card">
-              <button>${card.title}</button>
+              <div class="card-header">
+              <span>${card.title}</span>
+              </div>
               <p class="quality">100% quality assured</p>
               <p class="price">${card.price}</p>
               <p class="description">${card.desc}</p>
@@ -121,73 +124,78 @@ export default function renderScreenUserLanding() {
         </div>
 
         <div id="banner-spam">
-          <img src="" alt="" id="bannerIcon">
+          <img src="/app_user/assets/unexpected-rain.png" alt="" id="bannerIcon">
           <h1>UNEXPECTED RAIN?</h1>
-          <p>At King Car Wash, your wash is secure. With our rain insurance.</p>
+          <p>At King Car Wash, your wash is secure. <br> With our rain insurance.</p>
           <h3>Get a free re-wash within 48 hours</h3>
         </div>
 
         <div id="highlights">
           <h2>highlights</h2>
-          <p>What Sets Us Apart: An Unwavering Commitment to Your Satisfaction and Your Car's Care</p>
+          <p><strong>What Sets Us Apart:</strong> An Unwavering Commitment<br>to Your Satisfaction and Your Car's Care</p>
         </div>
 
         <div id="kingValue">
           <div id="kingValueCard">
-              <img src="" alt="" id="kingIconClean">
+              <img src="/app_user/assets/deep-clean.png" alt="" id="kingIconClean">
               <h4>Deep Clean</h4>
-              <p>Impeccable interior and exterior</p>
+              <p>Impeccable interior <br> and exterior</p>
           </div>
 
           <div id="kingValueCard">
-              <img src="" alt="" id="kingIconRain">
+              <img src="/app_user/assets/total-peace-of-mind.png" alt="" id="kingIconRain">
               <h4>Total Peace of Mind</h4>
-              <p>Rain insurance at no extra cost</p>
+              <p>Rain insurance at <br> no extra cost</p>
           </div>
 
           <div id="kingValueCard">
-              <img src="" alt="" id="kingIconWash">
+              <img src="/app_user/assets/complete-wash.png" alt="" id="kingIconWash">
               <h4>Complete Wash</h4>
-              <p>All the services your car needs</p>
+              <p>All the services <br> your car needs</p>
           </div>
 
           <div id="kingValueCard">
-              <img src="" alt="" id="kingIconLike">
+              <img src="/app_user/assets/worry-free-experience.png" alt="" id="kingIconLike">
               <h4>Worry-Free Experience</h4>
-              <p>We take care of everything</p>
+              <p>We take care of<br> everything</p>
           </div>
         </div>
 
         <footer>
-          <div id="social&king">
-             <img src="" alt="" id="kingIcon">
-             <img src="" alt="" id="facebookIcon">
-             <img src="" alt="" id="igIcon">
-             <img src="" alt="" id="pinterestIcon">
-          </div>
+  <div class="footer-content">
+    <div id="social&king">
+      <img src="/app_user/assets/logo-king.png" alt="Logo" id="footer-logo">
+      <div id="social-icons">
+        <img src="/app_user/assets/facebook-icon.png" alt="Facebook">
+        <img src="/app_user/assets/instagram-icon.png" alt="Instagram">
+        <img src="/app_user/assets/pinterest-icon.png" alt="Pinterest">
+      </div>
+    </div>
 
-          <div id="workingHours">
-              <h3>Working Hours:</h3>
-              <p>Mon-Sat: 08:30 - 17:00</p>
-              <p>Sun: 09:00 - 17:00</p>
-          </div>
+    <div class="footer-section">
+      <h3>Working Hours:</h3>
+      <p>Mon-Sat: 08:30 - 17:00</p>
+      <p>Sun: 09:00 - 17:00</p>
+    </div>
 
-          <div id="adress">
-              <h3>Address::</h3>
-              <p>Caney, Cra.83c #25-15, Cali, Valle del Cauca, Colombia</p>
-          </div>
+    <div class="footer-section">
+      <h3>Address:</h3>
+      <p>Caney, Cra.83c #25-15,<br>Cali, Valle del Cauca, Colombia</p>
+    </div>
 
-          <div id="hitsUp">
-              <h3>Hits Up:</h3>
-              <p>+57 313 123 4567</p>
-              <p>KingWashTrack@gmail.com</p>
-          </div>
+    <div class="footer-section">
+      <h3>Hits Up:</h3>
+      <p>+57 313 123 4567</p>
+      <p>KingWashTrack@gmail.com</p>
+    </div>
+  </div>
 
-          <hr>
+  <hr>
+  <div class="footer-bottom">
+    © KingWashTrack.com.au. All rights reserved | designed by ChontaduroGroup
+  </div>
+</footer>
 
-          <img src="" alt="" id="footerIcon">
-          <p>KingWashTrack.com.au. All rights reserved  | designed by ChontaduroGroup</p>
-        </footer>
       </section>
 
     </div>
