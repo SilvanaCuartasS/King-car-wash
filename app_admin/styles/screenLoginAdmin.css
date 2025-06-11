@@ -1,6 +1,6 @@
 #login-screen {
   display: flex;
-  height: 100vh;
+  height: auto;
   font-family: 'Inter', sans-serif;
 }
 
