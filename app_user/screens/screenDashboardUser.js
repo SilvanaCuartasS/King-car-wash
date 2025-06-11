@@ -3,13 +3,24 @@ import { navigateTo, makeRequest } from "../app.js";
 export default function renderScreenDashboardUser(data) {
   console.log("data que llegó del sign up: ", data);
 
-  
+  // 👉 Cargar CSS específico para esta pantalla
+  function loadCSS(href) {
+    const existingLink = document.querySelector(`link[href="${href}"]`);
+    if (!existingLink) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = href;
+      document.head.appendChild(link);
+    }
+  }
+
+  loadCSS("/app_user/styles/screenDashboardUser.css");
 
   const app = document.getElementById("app");
   app.innerHTML = `
   <div id="dashboard-user">
     <div id="header">
-      <img src="" alt="Logo" id="logo" />
+      <img src="/app_user/assets/Logo-navbar.png" alt="Logo" id="logo" />
 
       <div id="user-welcome">
         <h2 id="currentName"></h2>
@@ -22,9 +33,8 @@ export default function renderScreenDashboardUser(data) {
       </div>
 
       <div id="user-icon-container">
-        <img src="" alt="User Icon" id="user-icon" />
+        <img src="/app_user/assets/user-icon.png" alt="User Icon" id="user-icon" />
       </div>
-
     </div>
 
     <div id="services">
@@ -100,148 +110,140 @@ export default function renderScreenDashboardUser(data) {
         <button id="choose-king" data-id="369aec00-f7bc-4bec-b80f-67247da3c32f">Choose</button>
       </div>
     </div>
+      <footer>
+  <div class="footer-content">
+    <div id="social&king">
+      <img src="/app_user/assets/logo-king.png" alt="Logo" id="footer-logo">
+      <div id="social-icons">
+        <img src="/app_user/assets/facebook-icon.png" alt="Facebook">
+        <img src="/app_user/assets/instagram-icon.png" alt="Instagram">
+        <img src="/app_user/assets/pinterest-icon.png" alt="Pinterest">
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h3>Working Hours:</h3>
+      <p>Mon-Sat: 08:30 - 17:00</p>
+      <p>Sun: 09:00 - 17:00</p>
+    </div>
+
+    <div class="footer-section">
+      <h3>Address:</h3>
+      <p>Caney, Cra.83c #25-15,<br>Cali, Valle del Cauca, Colombia</p>
+    </div>
+
+    <div class="footer-section">
+      <h3>Hits Up:</h3>
+      <p>+57 313 123 4567</p>
+      <p>KingWashTrack@gmail.com</p>
+    </div>
   </div>
 
-  <footer>
-        <div id="social&king">
-           <img src="" alt="" id="kingIcon">
-           <img src="" alt="" id="facebookIcon">
-           <img src="" alt="" id="igIcon">
-           <img src="" alt="" id="pinterestIcon">
-        </div>
+  <hr>
+  <div class="footer-bottom">
+    © KingWashTrack.com.au. All rights reserved | designed by ChontaduroGroup
+  </div>
+</footer>
+  </div>
 
-        <div id="workingHours">
-            <h3>Working Hours:</h3>
-            <p>Mon-Sat: 08:30 - 17:00</p>
-            <p>Sun: 09:00 - 17:00</p>
-        </div>
 
-        <div id="adress">
-            <h3>Address::</h3>
-            <p>Caney, Cra.83c #25-15, Cali, Valle del Cauca, Colombia</p>
-        </div>
-
-        <div id="hitsUp">
-            <h3>Hits Up:</h3>
-            <p>+57 313 123 4567</p>
-            <p>KingWashTrack@gmail.com</p>
-        </div>
-
-        <hr>
-
-        <img src="" alt="" id="footerIcon">
-        <p>KingWashTrack.com.au. All rights reserved  | designed by ChontaduroGroup</p>
-      </footer>
 
   <section class="modal">
-  <div class="modal-container">
+    <div class="modal-container">
       <h1>Your Car is Ready to Shine!</h1>
-      <p>You've selected Full Clean at King Car Wash. Do you confirm your appointment?</p>
+      <p>You've selected <strong>Full Clean</strong> at King Car Wash. Do you confirm your appointment?</p>
       <label for="date-service">📅 Date:</label>
       <input type="date" id="date-service">
-      <label for="date-service"> 🕒 Time:</label>
-      <input type="time" id="time-user"> 
+      <label for="time-user">🕒 Time:</label>
+      <input type="time" id="time-user">
       <button id="acept-service">Acept</button>
       <button id="modal-close">Cancel</button>
-  </div>
+    </div>
   </section>
-`;
-const currentName = document.getElementById("currentName");
-const requestServiceUser = document.getElementById("requestService");
-currentName.innerHTML = "";
-currentName.innerHTML = `Welcome, ${data.inputFirstName}, to`;
+  `;
 
-requestServiceUser.addEventListener("click", () => {
-  const servicesSection = document.getElementById("services");
-  if (servicesSection) {
-    servicesSection.scrollIntoView({ behavior: "smooth" });
-  }
-});
+  const currentName = document.getElementById("currentName");
+  currentName.innerHTML = `Welcome ${data.inputFirstName}, to`;
 
-document.getElementById("user-icon").addEventListener("click", () => {
-  console.log("User icon clicked");
-  navigateTo("/userProfile", data);
-});
+  const requestServiceUser = document.getElementById("requestService");
 
-document.getElementById("logout").addEventListener("click", () => {
-  console.log("Logout clicked");
-
-  localStorage.clear();
-  sessionStorage.clear();
-
-  alert("You have logged out successfully");
-  navigateTo("/");
-});
-
-// Modal
-const modal = document.querySelector(".modal");
-const closeModal = document.getElementById("modal-close");
-
-const timeServiceInput = document.getElementById("time-user");
-const dateServiceInput = document.getElementById("date-service");
-
-const chooseButtons = document.querySelectorAll("button[id^='choose-']");
-
-chooseButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const serviceId = button.dataset.id; // Id del servicio
-    const serviceDisplayName =
-      button.parentElement.querySelector("h3")?.textContent || "Selected Service";
-
-    const modalText = modal.querySelector("p");
-    modalText.innerHTML = `You've selected <strong>${serviceDisplayName}</strong> at King Car Wash. Do you confirm your appointment?`;
-
-    // Guardar el ID del servicio en el modal como un atributo data
-    modal.dataset.serviceId = serviceId;
-
-    modal.classList.add("modal--show");
-  });
-});
-
-closeModal.addEventListener("click", (e) => {
-  e.preventDefault();
-  modal.classList.remove("modal--show");
-});
-
-// Confirmación de servicio
-document.getElementById("acept-service").addEventListener("click", async () => {
-
-  const serviceDisplayName = document.querySelector(".modal p strong").textContent;
-  const serviceId = modal.dataset.serviceId; // ID guardado
-  const date = dateServiceInput.value;
-  const time = timeServiceInput.value;
-  
-  if (!date || !time) {
-    alert("Por favor selecciona una fecha y hora");
-    return;
-  }
-
-  const serviceData = {
-    id: data.id,
-    id_user: data.id,
-    id_service: serviceId, // UUID del servicio desde Supabase
-    date_book: dateServiceInput.value,
-    time_book: timeServiceInput.value,
-    created_at: new Date().toISOString(),
-  };
-
-  try {
-    const response = await makeRequest("/new-service", "POST", serviceData);
-    
-    console.log("response", response);
-
-    if (response.success) {
-      console.log("Servicio creado:", response.currentServiceData);
-      alert("Service booked successfully!");
-      modal.classList.remove("modal--show");
-     
-      navigateTo("/userProgressService", response.currentServiceData);
-    } else {
-      alert(response.message || "Error booking service");
+  requestServiceUser.addEventListener("click", () => {
+    const servicesSection = document.getElementById("services");
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: "smooth" });
     }
-  } catch (error) {
-    console.error(error);
-    alert("Error connecting to the server.");
-  }
-});
+  });
+
+  document.getElementById("user-icon").addEventListener("click", () => {
+    navigateTo("/userProfile", data);
+  });
+
+  document.getElementById("logout").addEventListener("click", () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    alert("You have logged out successfully");
+    navigateTo("/");
+  });
+
+  // Modal
+  const modal = document.querySelector(".modal");
+  const closeModal = document.getElementById("modal-close");
+  const timeServiceInput = document.getElementById("time-user");
+  const dateServiceInput = document.getElementById("date-service");
+
+  const chooseButtons = document.querySelectorAll("button[id^='choose-']");
+  chooseButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const serviceId = button.dataset.id;
+      const serviceDisplayName =
+        button.parentElement.querySelector("h3")?.textContent || "Selected Service";
+
+      const modalText = modal.querySelector("p");
+      modalText.innerHTML = `You've selected <strong>${serviceDisplayName}</strong> at King Car Wash. Do you confirm your appointment?`;
+
+      modal.dataset.serviceId = serviceId;
+      modal.classList.add("modal--show");
+    });
+  });
+
+  closeModal.addEventListener("click", (e) => {
+    e.preventDefault();
+    modal.classList.remove("modal--show");
+  });
+
+  // Confirmación de servicio
+  document.getElementById("acept-service").addEventListener("click", async () => {
+    const serviceDisplayName = document.querySelector(".modal p strong").textContent;
+    const serviceId = modal.dataset.serviceId;
+    const date = dateServiceInput.value;
+    const time = timeServiceInput.value;
+
+    if (!date || !time) {
+      alert("Please select date and time");
+      return;
+    }
+
+    const serviceData = {
+      id: data.id,
+      id_user: data.id,
+      id_service: serviceId,
+      date_book: date,
+      time_book: time,
+      created_at: new Date().toISOString(),
+    };
+
+    try {
+      const response = await makeRequest("/new-service", "POST", serviceData);
+      if (response.success) {
+        alert("Service booked successfully!");
+        modal.classList.remove("modal--show");
+        navigateTo("/userProgressService", response.currentServiceData);
+      } else {
+        alert(response.message || "Error booking service.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error connecting to the server.");
+    }
+  });
 }
