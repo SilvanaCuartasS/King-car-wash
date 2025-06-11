@@ -1,7 +1,7 @@
 import { navigateTo, makeRequest, socket } from "../app.js";
 
 export default function renderScreenUserProgressService(data) {
-  console.log(data);
+  console.log("Servicio recibido:", data);
 
   const app = document.getElementById("app");
   app.innerHTML = `
@@ -144,13 +144,11 @@ socket.on("estadoServicio", ({ estado }) => {
     document.getElementById("readyModal").style.display = "none";
   });
   
-  document.getElementById("notNow")?.addEventListener("click", () => {
-    document.getElementById("readyModal").style.display = "none";
-  });
+ document.getElementById("notNow")?.addEventListener("click", () => {
+  document.getElementById("readyModal").style.display = "none";
+  navigateTo("/dashboardUser", data);
+});
 
-  document.getElementById("notNow")?.addEventListener("click", () => {
-    navigateTo("/dashboardUser");
-  });
 
   socket.on("ordenCancelada", (data) => {
     

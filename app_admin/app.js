@@ -47,22 +47,39 @@ function navigateToAdmin(path, data) {
 }
 
 async function makeRequest(url, method, body) {
-  //bien
-  console.log(url);
-  console.log(method);
-  console.log(body);
-
   const BASE_URL = "http://localhost:5057";
-  let response = await fetch(`${BASE_URL}${url}`, {
-    method: method,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: body ? JSON.stringify(body) : null,
-  });
+  
+  try {
+    console.log("Making request to:", `${BASE_URL}${url}`);
+    console.log("Method:", method);
+    console.log("Body:", body);
 
-  response = await response.json();
-  return response;
+    const options = {
+      method: method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    if (body) {
+      options.body = JSON.stringify(body);
+    }
+
+    const response = await fetch(`${BASE_URL}${url}`, options);
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => null);
+      throw new Error(
+        errorData?.message || 
+        `HTTP error! status: ${response.status}`
+      );
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error in makeRequest:", error);
+    throw error;
+  }
 }
 
 export { navigateToAdmin, socket, makeRequest };

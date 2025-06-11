@@ -173,26 +173,35 @@ const stateSend = async (req, res) => {
 };
 
 const deleteOrder = async (req, res) => {
-  const { id } = req.body;
+  try {
+    const { id } = req.body;
+    
+    if (!id) {
+      return res.status(400).json({ 
+        message: "ID requerido", 
+        success: false 
+      });
+    }
 
-  if (!id) {
-    return res.status(400).json({ message: "ID requerido", success: false });
+    await deleteOrderDB(id);
+
+    emitEvent("ordenCancelada", {
+      id,
+      mensaje: "Your order was cancelled due to non-compliance.",
+    });
+
+    return res.status(200).json({
+      message: "Orden eliminada exitosamente",
+      success: true,
+    });
+  } catch (error) {
+    console.error("Error en deleteOrder:", error);
+    return res.status(500).json({ 
+      message: "Error interno al eliminar la orden",
+      success: false,
+      error: error.message 
+    });
   }
-
-  await deleteOrderDB(id);
-
-  // Emitimos evento al cliente indicando que fue cancelado
-  emitEvent("ordenCancelada", {
-    id,
-    mensaje: "Your order was cancelled due to non-compliance.",
-  });
-
-  console.log(`Orden con ID ${id} eliminada`);
-
-  return res.status(200).json({
-    message: "Orden eliminada exitosamente",
-    success: true,
-  });
 };
 
 module.exports = {
