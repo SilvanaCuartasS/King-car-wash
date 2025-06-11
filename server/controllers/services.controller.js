@@ -111,8 +111,6 @@ const stateSend = async (req, res) => {
       return res.status(400).json({ message: "ID y estado son requeridos" });
     }
 
-    //  ["set", "wash", "touches"]
-
     // Simula guardado o actualización (por ejemplo en DB)
     console.log(`Orden con ID ${id} actualizada al estado: ${estado}`);
 
@@ -163,6 +161,7 @@ const stateSend = async (req, res) => {
     await sendEmailWithTemplate(payload);
     console.log("Payload para enviar email:", payload);
 
+    //Se envía al usuario
     return res.status(200).json({
       message: `Estado "${estado}" recibido correctamente para la orden ${id}`,
     });

@@ -23,10 +23,6 @@ const createUserDB = async (table, data) => {
   return result;
 };
 
-// const createUserDB = async (user) => {
-//   users.push(user);
-//   return user;
-// };
 
 module.exports = {
   getAllUsers,

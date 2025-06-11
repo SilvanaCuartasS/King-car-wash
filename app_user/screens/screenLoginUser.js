@@ -60,27 +60,7 @@ export default function renderScreenUserLogin1() {
       alert(response.message || "Login failed.");
     }
   }
-
-  // function registroUsuarios ()
-  // {
-  //     fetch ("http://localhost:5051/registro/" ,{
-  //         method: "POST",
-  //         headers: {  "Content-Type": "application/json"},
-  //         body: JSON.stringify({
-  //           image:imageRegistroInput.value,
-  //           user: userInput.value,
-  //           name: nameInput.value,
-  //           password: passwordInput.value })
-  //         })
-  //          .then((response)=> response.json())
-  //          .then((data) => {
-  //             alert(data.message);
-  //             mostrarPantalla("inicio");
-  //           })
-  //           .catch((error) => console.error("Error:", error));
-
-  // }
-
+  
   sign.addEventListener("click", () => {
     console.log("click");
     navigateTo("/signUpUser1");
