@@ -2,47 +2,64 @@ import { makeRequest, navigateTo } from "../app.js";
 
 export default function renderScreenUserLogin1() {
   const app = document.getElementById("app");
+
+  // 👉 Cargar CSS específico de esta pantalla
+  function loadCSS(href) {
+    const existingLink = document.querySelector(`link[href="${href}"]`);
+    if (!existingLink) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = href;
+      document.head.appendChild(link);
+    }
+  }
+
+  loadCSS("/app_user/styles/screenLoginUser.css");
+
+  // 👉 Renderizado HTML
   app.innerHTML = `
-    
-    <div id="logo-container">
-    <img src="" alt="Logo" id="logo">
-    </div>
-
-    <div id="login-container">
-    <button id="backBTN">Back</button>
-    <h1>LOG IN</h1>
-    <img src="" alt="userIcon" id="userIcon">
-    <input type="email" id="email" placeholder="email">
-    <img src="" alt="lockIcon" id="lockIcon">
-
-      <div class="password-wrapper">
-        <input type="password" id="password" placeholder="password">
-        <button type="button" id="togglePassword">Show</button>
+    <div id="login-user-screen">
+      <div id="logo-container">
+        <img src="/app_user/assets/logo-king.png" alt="Logo" id="logo" />
       </div>
-    <p>Forgot password? Remember in HERE</p>
 
-    <button id="log-in">Log in</button>
-    <p>Or sign in with</p>
-    <img src="" alt="FacebookIcon" id="FacebookIcon">
-    <img src="" alt="igIcon" id="igIcon">
-    
-    <a href="#" id="sign-up" >Haven't registered, What are you waiting for?  Sign up</a>
+      <div id="login-container">
+        <h1>LOG IN</h1>
+        <p>Welcome back!</p>
+
+        <div class="input-row">
+          <img src="/app_user/assets/user-icon.png" alt="userIcon" />
+          <input type="email" id="email" placeholder="Email" />
+        </div>
+
+        <div class="input-row">
+          <img src="/app_user/assets/lock-icon.png" alt="lockIcon" />
+          <input type="password" id="password" placeholder="Password" />
+        </div>
+
+        <div class="extra-actions">
+          <p>Forgot password? Remember in <span class="highlight">HERE</span></p>
+        </div>
+
+        <button id="log-in">Log In</button>
+
+        <p class="or-sign">Or sign in with</p>
+        <div class="social-icons">
+          <img src="/app_user/assets/facebook-icon.png" alt="Facebook" />
+          <img src="/app_user/assets/instagram-icon.png" alt="Instagram" />
+        </div>
+
+        <p class="register-msg">
+          Haven’t registered, What are you waiting for?
+          <span id="sign-up" class="highlight">Sign up</span>
+        </p>
+      </div>
     </div>
-      
-      `;
+  `;
 
+  // 👉 Lógica funcional
   const inputEmail = document.getElementById("email");
   const inputPassword = document.getElementById("password");
-  const togglePassword = document.getElementById("togglePassword");
-  const backBTN = document.getElementById("backBTN");
-  const sign = document.getElementById("sign-up");
-
-  togglePassword.addEventListener("click", () => {
-    const type =
-      inputPassword.getAttribute("type") === "password" ? "text" : "password";
-    inputPassword.setAttribute("type", type);
-    togglePassword.textContent = type === "password" ? "Show" : "Hide";
-  });
 
   document.getElementById("log-in").addEventListener("click", loginService);
 
@@ -51,43 +68,17 @@ export default function renderScreenUserLogin1() {
       inputEmail: inputEmail.value,
       inputPassword: inputPassword.value,
     });
-    console.log("response", response);
+
     if (response.success) {
       const userName = response.currentUserData?.inputFirstName || "user";
-      alert(`Welcome back, ${userName}!`);      
+      alert(`Welcome back, ${userName}!`);
       navigateTo("/dashboardUser", response.currentUserData);
     } else {
       alert(response.message || "Login failed.");
     }
   }
 
-  // function registroUsuarios ()
-  // {
-  //     fetch ("http://localhost:5051/registro/" ,{
-  //         method: "POST",
-  //         headers: {  "Content-Type": "application/json"},
-  //         body: JSON.stringify({
-  //           image:imageRegistroInput.value,
-  //           user: userInput.value,
-  //           name: nameInput.value,
-  //           password: passwordInput.value })
-  //         })
-  //          .then((response)=> response.json())
-  //          .then((data) => {
-  //             alert(data.message);
-  //             mostrarPantalla("inicio");
-  //           })
-  //           .catch((error) => console.error("Error:", error));
-
-  // }
-
-  sign.addEventListener("click", () => {
-    console.log("click");
+  document.getElementById("sign-up").addEventListener("click", () => {
     navigateTo("/signUpUser1");
-  });
-
-  backBTN.addEventListener("click", () => {
-    console.log("click");
-    navigateTo("/");
   });
 }

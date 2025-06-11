@@ -1,0 +1,112 @@
+/* Aislar todo en esta pantalla */
+#login-user-screen {
+  display: flex;
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+#login-user-screen #logo-container {
+  width: 30%;
+  background-color: #2e2b2c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-user-screen #logo-container img {
+  width: 70%;
+  max-width: 250px;
+}
+
+#login-user-screen #login-container {
+  width: 65%;
+  height: 100%;
+  background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/app_user/assets/Fondo-login.png') center/cover no-repeat;
+  padding: 60px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+#login-user-screen h1 {
+  font-size: 2rem;
+  color: #FFD700;
+  margin-bottom: 0.5rem;
+}
+
+#login-user-screen p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+#login-user-screen .input-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: white;
+  padding: 10px 14px;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+#login-user-screen .input-row img {
+  height: 20px;
+}
+
+#login-user-screen .input-row input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 1rem;
+  color: #000;
+  background: transparent;
+}
+
+#login-user-screen .extra-actions {
+  margin-bottom: 1rem;
+}
+
+#login-user-screen .highlight {
+  font-weight: bold;
+  color: #FFD700;
+  cursor: pointer;
+}
+
+#login-user-screen #log-in {
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 30px;
+  padding: 10px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+#login-user-screen #log-in:hover {
+  background-color: white;
+  color: black;
+}
+
+#login-user-screen .or-sign {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+#login-user-screen .social-icons {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 1rem;
+}
+
+#login-user-screen .social-icons img {
+  height: 24px;
+  cursor: pointer;
+}
+
+#login-user-screen .register-msg {
+  font-size: 0.85rem;
+}
