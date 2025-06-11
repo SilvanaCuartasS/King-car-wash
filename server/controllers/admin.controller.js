@@ -21,7 +21,7 @@ const loginAdmin = async (req, res) => {
     (u) =>
       u.email === inputEmail &&
       u.password === inputPassword &&
-      u.adminCode === inputAdminCode
+      u.admin_id === inputAdminCode
   );
 
   if (!foundAdmin) {

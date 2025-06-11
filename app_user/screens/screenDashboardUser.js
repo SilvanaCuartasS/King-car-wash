@@ -28,7 +28,7 @@ export default function renderScreenDashboardUser(data) {
     </div>
 
     <div id="services">
-      <div id="card-express">
+      <div class="card-express">
         <h3 id="badge-express">Express</h3>
         <p>$15</p>
         <ul>
@@ -37,10 +37,10 @@ export default function renderScreenDashboardUser(data) {
           <li>Quick window cleaning</li>
           <li>Express tire shine</li>
         </ul>
-        <button id="choose-express">Choose</button>
+        <button id="choose-express" data-id="2df221c7-ec41-43aa-b8e3-15a05e5d4f66">Choose</button>
       </div>
 
-      <div id="card-wheel">
+      <div class="card-wheel">
         <h3 id="badge-wheel">Wheel-S</h3>
         <p>$25</p>
         <ul>
@@ -49,10 +49,10 @@ export default function renderScreenDashboardUser(data) {
           <li>Brake dust removal</li>
           <li>Tire shine & protection</li>
         </ul>
-        <button id="choose-wheel">Choose</button>
+        <button id="choose-wheel" data-id="b4a48623-d689-4206-8c96-026880cbac76">Choose</button>
       </div>
 
-      <div id="card-full">
+      <div class="card-full">
         <h3 id="badge-full">Full Clean</h3>
         <p>$30</p>
         <ul>
@@ -61,10 +61,10 @@ export default function renderScreenDashboardUser(data) {
           <li>Dashboard and console cleaning</li>
           <li>Plastic protectant application</li>
         </ul>
-        <button id="choose-full">Choose</button>
+        <button id="choose-full" data-id="273b8172-6015-4729-a192-eb4d59c54d13">Choose</button>
       </div>
 
-      <div id="card-interior">
+      <div class="card-interior">
         <h3 id="badge-interior">Interior-R</h3>
         <p>$40</p>
         <ul>
@@ -73,10 +73,10 @@ export default function renderScreenDashboardUser(data) {
           <li>Fabric or leather conditioning</li>
           <li>Odor elimination treatment</li>
         </ul>
-        <button id="choose-interior">Choose</button>
+        <button id="choose-interior" data-id="76af8541-59c7-421c-ad69-7a323bcd0c8b">Choose</button>
       </div>
 
-      <div id="card-premium">
+      <div class="card-premium">
         <h3 id="badge-premium">Premium</h3>
         <p>$50</p>
         <ul>
@@ -85,10 +85,10 @@ export default function renderScreenDashboardUser(data) {
           <li>Liquid wax for shine & protection</li>
           <li>Deep wheel cleaning</li>
         </ul>
-        <button id="choose-premium">Choose</button>
+        <button id="choose-premium" data-id="cdb88716-d30a-4a11-b866-8e1e1a6ec8d6">Choose</button>
       </div>
 
-      <div id="card-king">
+      <div class="card-king">
         <h3 id="badge-king">King Wash</h3>
         <p>$80</p>
         <ul>
@@ -97,7 +97,7 @@ export default function renderScreenDashboardUser(data) {
           <li>Express ceramic coating</li>
           <li>Headlight polishing & sealing</li>
         </ul>
-        <button id="choose-king">Choose</button>
+        <button id="choose-king" data-id="369aec00-f7bc-4bec-b80f-67247da3c32f">Choose</button>
       </div>
     </div>
   </div>
@@ -146,74 +146,83 @@ export default function renderScreenDashboardUser(data) {
   </div>
   </section>
 `;
-  const currentName = document.getElementById("currentName");
-  const requestServiceUser = document.getElementById("requestService");
-  currentName.innerHTML = "";
-  currentName.innerHTML = `Welcome, ${data.inputFirstName}, to`;
+const currentName = document.getElementById("currentName");
+const requestServiceUser = document.getElementById("requestService");
+currentName.innerHTML = "";
+currentName.innerHTML = `Welcome, ${data.inputFirstName}, to`;
 
-  requestServiceUser.addEventListener("click", () => {
-    const servicesSection = document.getElementById("services");
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: "smooth" });
-    }
+requestServiceUser.addEventListener("click", () => {
+  const servicesSection = document.getElementById("services");
+  if (servicesSection) {
+    servicesSection.scrollIntoView({ behavior: "smooth" });
+  }
+});
+
+document.getElementById("user-icon").addEventListener("click", () => {
+  console.log("User icon clicked");
+  navigateTo("/userProfile", data);
+});
+
+document.getElementById("logout").addEventListener("click", () => {
+  console.log("Logout clicked");
+
+  localStorage.clear();
+  sessionStorage.clear();
+
+  alert("You have logged out successfully");
+  navigateTo("/");
+});
+
+// Modal
+const modal = document.querySelector(".modal");
+const closeModal = document.getElementById("modal-close");
+
+const timeServiceInput = document.getElementById("time-user");
+const dateServiceInput = document.getElementById("date-service");
+
+const chooseButtons = document.querySelectorAll("button[id^='choose-']");
+
+chooseButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const serviceId = button.dataset.id; // Id del servicio
+    const serviceDisplayName =
+      button.parentElement.querySelector("h3")?.textContent || "Selected Service";
+
+    const modalText = modal.querySelector("p");
+    modalText.innerHTML = `You've selected <strong>${serviceDisplayName}</strong> at King Car Wash. Do you confirm your appointment?`;
+
+    // Guardar el ID del servicio en el modal como un atributo data
+    modal.dataset.serviceId = serviceId;
+
+    modal.classList.add("modal--show");
   });
+});
 
-  document.getElementById("user-icon").addEventListener("click", () => {
-    console.log("User icon clicked");
-    navigateTo("/userProfile", data);
-  });
+closeModal.addEventListener("click", (e) => {
+  e.preventDefault();
+  modal.classList.remove("modal--show");
+});
 
-  document.getElementById("logout").addEventListener("click", () => {
-    console.log("Logout clicked");
-
-    localStorage.clear();
-    sessionStorage.clear();
-
-    alert("You have logged out successfully");
-    navigateTo("/");
-  });
-
-  //Modal
-  const modal = document.querySelector(".modal");
-  const closeModal = document.getElementById("modal-close");
-
-  const timeServiceInput = document.getElementById("time-user");
-  const dateServiceInput = document.getElementById("date-service");
-
-  const chooseButtons = document.querySelectorAll("button[id^='choose-']");
-
-  chooseButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const serviceName = button.id
-        .replace("choose-", "")
-        .replace("-", " ")
-        .toUpperCase();
-      const serviceDisplayName =
-        button.parentElement.querySelector("h3")?.textContent || serviceName;
-
-      const modalText = modal.querySelector("p");
-      modalText.innerHTML = `You've selected <strong>${serviceDisplayName}</strong> at King Car Wash. Do you confirm your appointment?`;
-
-      modal.classList.add("modal--show");
-    });
-  });
-
-  closeModal.addEventListener("click", (e) => {
-    e.preventDefault();
-    modal.classList.remove("modal--show");
-  });
-
-  // screenDashboardUser.js
+// Confirmación de servicio
 document.getElementById("acept-service").addEventListener("click", async () => {
+
   const serviceDisplayName = document.querySelector(".modal p strong").textContent;
+  const serviceId = modal.dataset.serviceId; // ID guardado
+  const date = dateServiceInput.value;
+  const time = timeServiceInput.value;
   
+  if (!date || !time) {
+    alert("Por favor selecciona una fecha y hora");
+    return;
+  }
+
   const serviceData = {
-    idUser: data.id, //Debemos saber el id del usuario que está creando su servicio
-    nameUser: data.inputFirstName,
-    plateUser: data.inputLicense,
-    serviceName: serviceDisplayName,
-    timeServiceInput: timeServiceInput.value,
-    dateServiceInput: dateServiceInput.value,
+    id: data.id,
+    id_user: data.id,
+    id_service: serviceId, // UUID del servicio desde Supabase
+    date_book: dateServiceInput.value,
+    time_book: timeServiceInput.value,
+    created_at: new Date().toISOString(),
   };
 
   try {

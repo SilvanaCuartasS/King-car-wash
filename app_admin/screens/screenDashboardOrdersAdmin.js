@@ -1,4 +1,4 @@
-import { makeRequest } from "../../app_user/app.js";
+import { makeRequest } from "../app.js";
 import { navigateToAdmin } from "../app.js";
 
 export default async function renderScreenDashboardOrders(data) {
@@ -42,17 +42,28 @@ export default async function renderScreenDashboardOrders(data) {
   const cardContainer = document.getElementById("card-container");
 
   async function orderGetDB() {
-    const response = await makeRequest("/orders", "GET");
+  const response = await makeRequest("/orders", "GET");
+  console.log("Respuesta completa:", response); // Verifica la estructura completa
 
-    if (response.success) {
-      console.log("response:", response.orders);
-
-      return response.orders;
-    } else {
-      alert(response.message || "Error al obtener la orden");
-      return [];
-    }
+  if (response.success && Array.isArray(response.orders)) {
+    const transformedOrders = response.orders.map(data => ({
+  id: data.id,
+  plate: data.Datos_Vehiculo?.plate || 'No plate',
+  clientName: data.Usuario?.name || 'Sin nombre', 
+  timeServiceInput: data.time_book || 'Hora no especificada',
+  dateServiceInput: data.date_book || 'Fecha no especificada', 
+  serviceName: data.Servicio?.name || 'Servicio no especificado', 
+  status: data.status || 'active'
+}));
+    
+    console.log("Orders transformed:", transformedOrders);
+    return transformedOrders;
+  } else {
+    console.error("Error o formato inesperado:", response);
+    alert(response.message || "Error al obtener la orden");
+    return [];
   }
+}
 
   const orderDB = await orderGetDB();
   console.log("orderDB:", orderDB);
@@ -66,7 +77,7 @@ export default async function renderScreenDashboardOrders(data) {
       <div class="card-content">
         <p><strong>Status:</strong> <span class="status-active">🟢 Active</span></p>
         <p><strong>Plate:</strong> ${order.plate}</p>
-        <p><strong>Client:</strong> ${order.nameClient}</p>
+        <p><strong>Client:</strong> ${order.clientName}</p>
         <p><strong>Arrival time:</strong> ${order.timeServiceInput}</p>
 
         <div id="progress">
