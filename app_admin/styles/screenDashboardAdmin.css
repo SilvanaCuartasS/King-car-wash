@@ -1,0 +1,72 @@
+/* Estructura principal */
+#dashboard-screen {
+  display: flex;
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Columna izquierda: logo */
+#dashboard-screen #logo-container {
+  width: 35%;
+  background-color: #2e2b2c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#dashboard-screen #logo {
+  width: 70%;
+  max-width: 250px;
+  cursor: pointer;
+}
+
+/* Columna derecha: contenido */
+#dashboard-screen #welcome-container {
+  width: 65%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+    url("/app_user/assets/Fondo-login.png"); /* actualiza la ruta si es diferente */
+  background-size: cover;
+  background-position: center;
+  padding: 60px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#dashboard-screen h1 {
+  font-size: 2.5rem;
+  color: #FFD700;
+  margin-bottom: 0.3rem;
+}
+
+#dashboard-screen p#currentName {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.dashboard-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.dashboard-buttons button {
+  font-size: 1rem;
+  padding: 10px 24px;
+  border-radius: 30px;
+  border: 2px solid white;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.dashboard-buttons button:hover {
+  background-color: white;
+  color: black;
+}
