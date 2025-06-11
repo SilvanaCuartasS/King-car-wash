@@ -9,10 +9,6 @@ const getAllservices = async () => {
   return data;
 };
 
-// const getAllservices = async () => {
-//   return services;
-// };
-
 module.exports = {
   getAllservices,
 };

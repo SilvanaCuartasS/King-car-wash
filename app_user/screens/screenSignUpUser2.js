@@ -63,7 +63,7 @@ export default function renderScreenUserSignUp2(data) {
   currentName.innerHTML = data.inputFirstName;
 
   inputLicense.addEventListener("input", () => {
-    inputLicense.value = inputLicense.value.toUpperCase();
+    inputLicense.value = inputLicense.value.toUpperCase(); //Todo en mayúsculas
   });
 
   document.getElementById("next").addEventListener("click", signUpUser2);
