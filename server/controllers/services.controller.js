@@ -11,13 +11,30 @@ const getServices = async (req, res) => {
 
 //Obtiene todas las ordenes que se van creando
 const getOrders = async (req, res) => {
-  const orders = await getAllOrders();
+  try {
+    const orders = await getAllOrders();
+    
+    if (!orders || !Array.isArray(orders)) {
+      return res.status(500).json({
+        message: "Error al obtener las órdenes",
+        success: false,
+        orders: []
+      });
+    }
 
-  res.json({
-    message: "Enviadas todas las ordenes",
-    success: true,
-    orders: orders,
-  });
+    res.json({
+      message: "Enviadas todas las ordenes",
+      success: true,
+      orders: orders,
+    });
+  } catch (error) {
+    console.error("Error en getOrders:", error);
+    res.status(500).json({
+      message: "Error interno del servidor",
+      success: false,
+      orders: []
+    });
+  }
 };
 
 

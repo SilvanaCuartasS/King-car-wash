@@ -64,7 +64,7 @@ export default function renderScreenEditOrder(data) {
       <div class="card-content">
         <p><strong>Status:</strong> <span class="status-active">🟢 Active</span></p>
         <p><strong>Plate:</strong> ${order.plate}</p>
-        <p><strong>Client:</strong> ${order.nameClient}</p>
+        <p><strong>Client:</strong> ${order.clientName}</p>
         <p><strong>Arrival time:</strong> ${order.timeServiceInput}</p>
 
 

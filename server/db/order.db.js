@@ -1,13 +1,38 @@
 const supabaseCli = require("../services/supabase.service");
 
 const getAllOrders = async () => {
-  const { data, error } = await supabaseCli.from("Pedido").select();
+  const { data, error } = await supabaseCli
+    .from("Pedido")
+    .select(`
+      id,
+      created_at,
+      id_user,
+      id_service,
+      date_book,
+      time_book,
+      id_vehiculo,
+      Servicio (
+        name
+      ),
+      Usuario (
+        name
+      ),
+      Datos_Vehiculo (
+        plate
+      )
+    `);
+
+  console.log("Datos de Supabase:", data); // Agrega esto
+  console.log("Error de Supabase:", error); // Agrega esto
+
   if (error) {
-    console.error(error);
+    console.error("Error al obtener los pedidos:", error);
     return error;
   }
+
   return data;
 };
+
 
 const createOrderDB = async (orderData) => {
   try {
