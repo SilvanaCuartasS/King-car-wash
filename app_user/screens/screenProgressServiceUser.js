@@ -20,34 +20,33 @@ export default function renderScreenUserProgressService(data) {
 
   app.innerHTML = `
     <div id="progressService-user">
-      <header>
-        <img src="/app_user/assets/logo-king.png" alt="Logo" id="logo">
-        <div id="user-icon-container">
-          <img src="/app_user/assets/user-icon.png" alt="User" id="user-icon" />
-        </div>
-      </header>
+  <header id="header"> <!-- Aquí el ID correcto -->
+    <img src="/app_user/assets/Logo-navbar.png" alt="Logo" id="logo">
+    <div id="user-icon-container">
+      <img src="/app_user/assets/user-icon.png" alt="User" id="user-icon" />
+    </div>
+  </header>
 
+  <main id="progress-main">
       <section id="progress-status">
         <h1>YOUR CAR IS IN PROGRESS!</h1>
         <div id="progress-steps">
-          <div class="step" id="iconReceived"><img src="/app_user/assets/received.svg" alt="Received"><p>Received</p></div>
-          <div class="step" id="iconWashing"><img src="/app_user/assets/washing.svg" alt="Washing"><p>Washing</p></div>
-          <div class="step" id="iconFinalTouches"><img src="/app_user/assets/touches.svg" alt="Final Touches"><p>Final touches</p></div>
-          <div class="step" id="iconAllSet"><img src="/app_user/assets/done.svg" alt="All Set"><p>All set!</p></div>
+          <div class="step" id="iconReceived"><img src="/app_user/assets/Received.png" alt="Received"><p>Received</p></div>
+          <div class="step" id="iconWashing"><img src="/app_user/assets/Washing.png" alt="Washing"><p>Washing</p></div>
+          <div class="step" id="iconFinalTouches"><img src="/app_user/assets/Final Touches.png" alt="Final Touches"><p>Final touches</p></div>
+          <div class="step" id="iconAllSet"><img src="/app_user/assets/All Set.png" alt="All Set"><p>All set!</p></div>
         </div>
         <p id="estadoMensaje"></p>
       </section>
+</main>
 
       <section id="progress-banner">
         <div class="banner-content">
           <div class="text">
             <h3>Shine more, pay less!</h3>
-            <p>This week at King Car Wash, your car gets the royal treatment for less!</p>
+            <p>This week at King Car Wash, your car gets the royal <br> treatment for less!</p>
             <h2>30% <span>OFF</span> on premium washes</h2>
             <p class="small">Because your ride deserves to shine without breaking the bank.</p>
-          </div>
-          <div class="image">
-            <img src="/app_user/assets/offer-car.png" alt="Offer">
           </div>
         </div>
       </section>
@@ -65,37 +64,40 @@ export default function renderScreenUserProgressService(data) {
         </div>
       </div>
 
-      <footer>
-        <div class="footer-content">
-          <div class="footer-section social">
-            <img src="/app_user/assets/logo-king.png" alt="King Logo" id="footer-logo">
-            <div id="social-icons">
-              <img src="/app_user/assets/facebook-icon.png" alt="Facebook">
-              <img src="/app_user/assets/instagram-icon.png" alt="Instagram">
-              <img src="/app_user/assets/pinterest-icon.png" alt="Pinterest">
-            </div>
-          </div>
+        <footer>
+  <div class="footer-content">
+    <div id="social&king">
+      <img src="/app_user/assets/logo-king.png" alt="Logo" id="footer-logo">
+      <div id="social-icons">
+        <img src="/app_user/assets/facebook-icon.png" alt="Facebook">
+        <img src="/app_user/assets/instagram-icon.png" alt="Instagram">
+        <img src="/app_user/assets/pinterest-icon.png" alt="Pinterest">
+      </div>
+    </div>
 
-          <div class="footer-section">
-            <h3>Working Hours:</h3>
-            <p>Mon-Sat: 08:30 - 17:00</p>
-            <p>Sun: 09:00 - 17:00</p>
-          </div>
+    <div class="footer-section">
+      <h3>Working Hours:</h3>
+      <p>Mon-Sat: 08:30 - 17:00</p>
+      <p>Sun: 09:00 - 17:00</p>
+    </div>
 
-          <div class="footer-section">
-            <h3>Address:</h3>
-            <p>Caney, Cra.83c #25-15,<br>Cali, Valle del Cauca, Colombia</p>
-          </div>
+    <div class="footer-section">
+      <h3>Address:</h3>
+      <p>Caney, Cra.83c #25-15,<br>Cali, Valle del Cauca, Colombia</p>
+    </div>
 
-          <div class="footer-section">
-            <h3>Hits Up:</h3>
-            <p>+57 313 123 4567</p>
-            <p>KingWashTrack@gmail.com</p>
-          </div>
-        </div>
-        <hr>
-        <p class="footer-bottom">© KingWashTrack.com.au. All rights reserved | designed by ChontaduroGroup</p>
-      </footer>
+    <div class="footer-section">
+      <h3>Hits Up:</h3>
+      <p>+57 313 123 4567</p>
+      <p>KingWashTrack@gmail.com</p>
+    </div>
+  </div>
+
+  <hr>
+  <div class="footer-bottom">
+    © KingWashTrack.com.au. All rights reserved | designed by ChontaduroGroup
+  </div>
+</footer>
     </div>
   `;
 
@@ -148,5 +150,9 @@ export default function renderScreenUserProgressService(data) {
   document.getElementById("notNow").addEventListener("click", () => {
     document.getElementById("readyModal").style.display = "none";
     navigateTo("/dashboardUser");
+  });
+
+  document.getElementById("logo").addEventListener("click", () => {
+  navigateTo("/screenDashboardUser", data);
   });
 }
