@@ -2,6 +2,7 @@ const { getAllOrders, createOrderDB } = require("../db/order.db.js");
 const { getAllservices } = require("../db/services.db.js");
 const { emitEvent } = require("../services/socket.service.js");
 const { deleteOrderDB } = require("../db/order.db.js");
+const { sendEmailWithTemplate } = require("../services/brevo.service");
 
 //Obtiene los servicios de la base de datos quemada
 const getServices = async (req, res) => {
@@ -110,9 +111,9 @@ const createOrder = async (req, res) => {
 
 const stateSend = async (req, res) => {
   try {
-    const { id, estado } = req.body;
+    const { id, estado, data } = req.body;
 
-    if (!id || !estado) {
+    if (!id || !estado || !data) {
       return res.status(400).json({ message: "ID y estado son requeridos" });
     }
 
@@ -123,6 +124,23 @@ const stateSend = async (req, res) => {
       id,
       estado,
     });
+    
+    const allOrders = await getAllOrders();
+    const orderData = allOrders.find((order) => order.id === id);
+
+    if (!orderData) {
+      return res.status(404).json({ message: "Pedido no encontrado" });
+    }
+
+     const payload = {
+      templateId: 4,
+      email: orderData.Usuario?.email,
+      name: orderData.Usuario?.name,
+      service: orderData.Servicio?.name,
+    };
+    
+    await sendEmailWithTemplate(payload);
+    console.log( "Payload para enviar email:", payload);
 
     return res.status(200).json({
       message: `Estado "${estado}" recibido correctamente para la orden ${id}`

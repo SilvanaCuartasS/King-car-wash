@@ -117,7 +117,7 @@ export default function renderScreenEditOrder(data) {
     console.error(`No se encontró el elemento con ID: ${estadoSeleccionado}-${id}`);
   }
 
-  const body = { id, estado: estadoSeleccionado };
+  const body = { id, estado: estadoSeleccionado, data };
   console.log("Enviando estado:", body); // Agrega este log
 
   try {

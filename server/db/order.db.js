@@ -15,7 +15,8 @@ const getAllOrders = async () => {
         name
       ),
       Usuario (
-        name
+        name,
+        email
       ),
       Datos_Vehiculo (
         plate
